@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUXURY · High-End</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #fff;
+            font-family: 'Cormorant Garamond', serif;
+            overflow-x: hidden;
+        }
+
+        /* Animated line */
+        .line {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+            animation: moveLine 8s linear infinite;
+            opacity: 0.3;
+            z-index: 1;
+        }
+
+        @keyframes moveLine {
+            0% { transform: translateY(-100vh); }
+            100% { transform: translateY(100vh); }
+        }
+
+        /* Main content */
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0 40px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 300;
+            letter-spacing: 8px;
+            color: #d4af37;
+        }
+
+        .nav {
+            display: flex;
+            gap: 60px;
+        }
+
+        .nav a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            letter-spacing: 2px;
+            transition: color 0.3s;
+        }
+
+        .nav a:hover {
+            color: #d4af37;
+        }
+
+        /* Hero */
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 80px 0;
+        }
+
+        .subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            letter-spacing: 6px;
+            color: #d4af37;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 120px;
+            font-weight: 300;
+            line-height: 0.9;
+            margin-bottom: 40px;
+        }
+
+        h1 span {
+            font-weight: 600;
+            color: #d4af37;
+            display: block;
+        }
+
+        .desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 18px;
+            color: rgba(255,255,255,0.6);
+            max-width: 600px;
+            line-height: 1.8;
+            margin-bottom: 60px;
+        }
+
+        /* Stats */
+        .stats {
+            display: flex;
+            gap: 80px;
+        }
+
+        .stat h3 {
+            font-size: 48px;
+            font-weight: 300;
+            color: #d4af37;
+            margin-bottom: 5px;
+        }
+
+        .stat p {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.4);
+        }
+
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 100px 0;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            background: #1a1a1a;
+            border: 1px solid rgba(212,175,55,0.1);
+            transition: all 0.5s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: #d4af37;
+        }
+
+        .gallery-item:hover {
+            border-color: #d4af37;
+            transform: translateY(-10px);
+            background: #222;
+        }
+
+        /* Footer */
+        footer {
+            display: flex;
+            justify-content: space-between;
+            padding: 40px 0;
+            border-top: 1px solid rgba(212,175,55,0.1);
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            color: rgba(255,255,255,0.3);
+            letter-spacing: 1px;
+        }
+
+        /* Dots */
+        .dots {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 100;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .dot:hover {
+            background: #d4af37;
+        }
+
+        .dot.active {
+            background: #d4af37;
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="line"></div>
+
+    <!-- Navigation dots -->
+    <div class="dots">
+        <div class="dot active" onclick="window.location.href='index.html'"></div>
+        <div class="dot" onclick="window.location.href='tech.html'"></div>
+        <div class="dot" onclick="window.location.href='creative.html'"></div>
+        <div class="dot" onclick="window.location.href='wellness.html'"></div>
+        <div class="dot" onclick="window.location.href='ecommerce.html'"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="logo">✦ LUXE</div>
+            <div class="nav">
+                <a href="#">COLLECTIONS</a>
+                <a href="#">HERITAGE</a>
+                <a href="#">ATELIER</a>
+                <a href="#">CONTACT</a>
+            </div>
+        </header>
+
+        <div class="hero">
+            <div class="subtitle">TIMELESS ELEGANCE</div>
+            <h1>WHERE CRAFTSMANSHIP<br><span>MEETS ARTISTRY</span></h1>
+            <p class="desc">Since 1920, creating exceptional pieces for those who appreciate the finest things in life. Each piece tells a story of dedication and passion.</p>
+            
+            <div class="stats">
+                <div class="stat">
+                    <h3>100+</h3>
+                    <p>YEARS OF HERITAGE</p>
+                </div>
+                <div class="stat">
+                    <h3>50+</h3>
+                    <p>MASTER CRAFTSMEN</p>
+                </div>
+                <div class="stat">
+                    <h3>28</h3>
+                    <p>BOUTIQUES WORLDWIDE</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="gallery">
+            <div class="gallery-item">⌚</div>
+            <div class="gallery-item">💎</div>
+            <div class="gallery-item">👔</div>
+        </div>
+
+        <footer>
+            <div>© LUXE EST. 1920</div>
+            <div>MADE WITH ✦ IN PARIS</div>
+        </footer>
+    </div>
+</body>
+</html>

@@ -3,141 +3,621 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Portfolio | Interactive Design</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>5 WEBSITES · ONE PAGE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            overflow: hidden;
+            transition: background 0.5s ease;
+        }
+
+        /* Animated line */
+        .line {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #fff, transparent);
+            animation: moveLine 8s linear infinite;
+            opacity: 0.2;
+            z-index: 1;
+        }
+
+        @keyframes moveLine {
+            0% { transform: translateY(-100vh); }
+            100% { transform: translateY(100vh); }
+        }
+
+        .line-2 {
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #fff, transparent);
+            animation: moveLine2 12s linear infinite;
+            opacity: 0.15;
+            transform: rotate(30deg);
+        }
+
+        @keyframes moveLine2 {
+            0% { transform: translateY(-100vh) rotate(30deg); }
+            100% { transform: translateY(100vh) rotate(30deg); }
+        }
+
+        /* Main container */
+        .container {
+            position: relative;
+            z-index: 10;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px;
+        }
+
+        /* Title - always present */
+        .main-title {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            font-size: 14px;
+            font-weight: 300;
+            letter-spacing: 6px;
+            color: rgba(255,255,255,0.5);
+            z-index: 20;
+        }
+
+        /* Dots at bottom */
+        .dots {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 20;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot:hover {
+            background: rgba(255,255,255,0.5);
+            transform: scale(1.3);
+        }
+
+        .dot.active {
+            background: white;
+            transform: scale(1.2);
+        }
+
+        /* Website containers - each design */
+        .website {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.8s ease;
+            overflow-y: auto;
+            padding: 100px 60px 100px;
+        }
+
+        .website.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* ===== WEBSITE 1: CORPORATE LUXURY ===== */
+        .site-1 {
+            background: #0a0a0a;
+        }
+
+        .corporate-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0 60px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .corporate-logo {
+            font-size: 24px;
+            font-weight: 300;
+            letter-spacing: 4px;
+        }
+
+        .corporate-nav {
+            display: flex;
+            gap: 40px;
+        }
+
+        .corporate-nav a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .corporate-nav a:hover {
+            color: white;
+        }
+
+        .corporate-hero {
+            padding: 80px 0;
+        }
+
+        .corporate-hero h1 {
+            font-size: 80px;
+            font-weight: 300;
+            line-height: 1.1;
+            max-width: 800px;
+            margin-bottom: 40px;
+        }
+
+        .corporate-hero h1 span {
+            font-weight: 700;
+            color: #0066ff;
+        }
+
+        .corporate-stats {
+            display: flex;
+            gap: 60px;
+            margin: 60px 0;
+        }
+
+        .corporate-stat h3 {
+            font-size: 40px;
+            font-weight: 300;
+        }
+
+        .corporate-stat p {
+            color: rgba(255,255,255,0.5);
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        /* ===== WEBSITE 2: CREATIVE AGENCY ===== */
+        .site-2 {
+            background: #000;
+        }
+
+        .creative {
+            display: flex;
+            height: 100%;
+        }
+
+        .creative-left {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-right: 60px;
+        }
+
+        .creative-left h2 {
+            font-size: 14px;
+            color: #ff3366;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+        }
+
+        .creative-left h1 {
+            font-size: 72px;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, #fff, #ff3366);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .creative-left p {
+            font-size: 18px;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.6;
+            max-width: 500px;
+        }
+
+        .creative-right {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            align-items: center;
+        }
+
+        .creative-box {
+            aspect-ratio: 1;
+            background: rgba(255,51,102,0.1);
+            border: 1px solid rgba(255,51,102,0.3);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            transition: all 0.3s;
+        }
+
+        .creative-box:hover {
+            background: rgba(255,51,102,0.2);
+            transform: translateY(-10px);
+        }
+
+        /* ===== WEBSITE 3: E-COMMERCE ===== */
+        .site-3 {
+            background: #111;
+        }
+
+        .ecom-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 0;
+        }
+
+        .ecom-logo {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .ecom-cart {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ecom-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .ecom-product {
+            background: #1a1a1a;
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s;
+        }
+
+        .ecom-product:hover {
+            transform: translateY(-10px);
+            background: #222;
+        }
+
+        .ecom-product-image {
+            width: 100%;
+            aspect-ratio: 1;
+            background: #2a2a2a;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+        }
+
+        .ecom-product h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .ecom-price {
+            color: #00ff88;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        /* ===== WEBSITE 4: TECH STARTUP ===== */
+        .site-4 {
+            background: #0a0f1a;
+        }
+
+        .tech {
+            text-align: center;
+        }
+
+        .tech-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(0,255,255,0.1);
+            border-radius: 40px;
+            color: #0ff;
+            font-size: 12px;
+            letter-spacing: 1px;
+            margin-bottom: 40px;
+        }
+
+        .tech h1 {
+            font-size: 100px;
+            font-weight: 700;
+            letter-spacing: -2px;
+            line-height: 1;
+            margin-bottom: 30px;
+        }
+
+        .tech h1 span {
+            background: linear-gradient(45deg, #0ff, #00f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tech p {
+            font-size: 20px;
+            color: rgba(255,255,255,0.6);
+            max-width: 600px;
+            margin: 0 auto 50px;
+        }
+
+        .tech-btn {
+            display: inline-block;
+            padding: 18px 50px;
+            background: linear-gradient(45deg, #0ff, #00f);
+            border-radius: 50px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .tech-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px rgba(0,255,255,0.2);
+        }
+
+        /* ===== WEBSITE 5: MINIMAL PORTFOLIO ===== */
+        .site-5 {
+            background: #0a0a0a;
+        }
+
+        .minimal {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .minimal-header {
+            display: flex;
+            justify-content: space-between;
+            padding: 40px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .minimal-name {
+            font-size: 18px;
+            font-weight: 400;
+        }
+
+        .minimal-year {
+            color: rgba(255,255,255,0.3);
+        }
+
+        .minimal-hero {
+            padding: 80px 0;
+        }
+
+        .minimal-hero h1 {
+            font-size: 80px;
+            font-weight: 300;
+            line-height: 1.1;
+            max-width: 800px;
+        }
+
+        .minimal-work {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .minimal-item {
+            aspect-ratio: 1;
+            background: #111;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .minimal-item:hover {
+            background: #1a1a1a;
+        }
+
+        /* Scrollbar styling */
+        .website::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .website::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .website::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.2);
+            border-radius: 3px;
+        }
+
+        .website::-webkit-scrollbar-thumb:hover {
+            background: rgba(255,255,255,0.3);
+        }
+    </style>
 </head>
-<body class="theme-cosmic">
-    <!-- Loading Screen -->
-    <div class="loader" id="loader">
-        <div class="loader-content">
-            <div class="loader-logo">✦ CHROMATIC STUDIO</div>
-            <div class="loader-line"></div>
-            <div class="loader-text">5 THEMES • INFINITE POSSIBILITIES</div>
-        </div>
+<body>
+    <!-- Animated lines -->
+    <div class="line"></div>
+    <div class="line-2"></div>
+
+    <!-- Title -->
+    <div class="main-title">WEBSITES</div>
+
+    <!-- 5 Dots at bottom -->
+    <div class="dots">
+        <div class="dot active" data-site="1"></div>
+        <div class="dot" data-site="2"></div>
+        <div class="dot" data-site="3"></div>
+        <div class="dot" data-site="4"></div>
+        <div class="dot" data-site="5"></div>
     </div>
 
-    <!-- Main Interface -->
-    <div id="interface">
-        <!-- Header -->
-        <div class="header">
-            <div class="logo">
-                <span>✦</span> CHROMATIC
+    <!-- WEBSITE 1: Corporate Luxury -->
+    <div class="website site-1 active" id="site1">
+        <div class="container" style="position: relative; max-width: 1400px; margin: 0 auto;">
+            <div class="corporate-header">
+                <div class="corporate-logo">✦ LUXE</div>
+                <div class="corporate-nav">
+                    <a href="#">Services</a>
+                    <a href="#">Work</a>
+                    <a href="#">About</a>
+                    <a href="#">Contact</a>
+                </div>
             </div>
-            <div class="nav">
-                <a href="#" class="nav-item">Work</a>
-                <a href="#" class="nav-item">Studio</a>
-                <a href="#" class="nav-item">News</a>
-                <a href="#" class="nav-item">Contact</a>
-            </div>
-        </div>
-
-        <!-- Counter -->
-        <div class="counter">
-            <span id="project-counter">01</span> / 05
-        </div>
-
-        <!-- Hero Text -->
-        <div class="hero">
-            <div class="hero-title">
-                DIGITAL <span>CRAFT</span>
-            </div>
-            <div class="hero-subtitle">
-                Interactive Design • 3D Art • Creative Code
-            </div>
-        </div>
-
-        <!-- Project Showcase -->
-        <div class="showcase">
-            <div class="project-item active" data-project="0">
-                <div class="project-year">2024</div>
-                <div class="project-name">NEBULA</div>
-                <div class="project-category">IMMERSIVE WEBSITE</div>
-                <div class="project-indicator"></div>
-            </div>
-            <div class="project-item" data-project="1">
-                <div class="project-year">2023</div>
-                <div class="project-name">ECHO</div>
-                <div class="project-category">MOBILE APP</div>
-                <div class="project-indicator"></div>
-            </div>
-            <div class="project-item" data-project="2">
-                <div class="project-year">2023</div>
-                <div class="project-name">AURA</div>
-                <div class="project-category">BRAND IDENTITY</div>
-                <div class="project-indicator"></div>
-            </div>
-            <div class="project-item" data-project="3">
-                <div class="project-year">2022</div>
-                <div class="project-name">SOLARIS</div>
-                <div class="project-category">3D INSTALLATION</div>
-                <div class="project-indicator"></div>
-            </div>
-            <div class="project-item" data-project="4">
-                <div class="project-year">2022</div>
-                <div class="project-name">LUMINA</div>
-                <div class="project-category">UI COLLECTION</div>
-                <div class="project-indicator"></div>
-            </div>
-        </div>
-
-        <!-- Phone Mockup -->
-        <div class="mockup-container">
-            <div class="phone-mockup" id="phoneMockup">
-                <div class="phone-frame">
-                    <div class="phone-notch"></div>
-                    <div class="phone-screen" id="phoneScreen">
-                        <span id="screenEmoji">✦</span>
+            <div class="corporate-hero">
+                <h1>Building <span>legacy</span> through exceptional digital experiences</h1>
+                <div class="corporate-stats">
+                    <div class="corporate-stat">
+                        <h3>$2B+</h3>
+                        <p>REVENUE GENERATED</p>
+                    </div>
+                    <div class="corporate-stat">
+                        <h3>150+</h3>
+                        <p>ENTERPRISE CLIENTS</p>
+                    </div>
+                    <div class="corporate-stat">
+                        <h3>12</h3>
+                        <p>COUNTRIES</p>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Bottom Info Bar with Theme Dots -->
-        <div class="info-bar">
-            <div class="scroll-indicator">
-                <span>SCROLL</span>
-                <div class="scroll-line"></div>
-            </div>
-            
-            <!-- THEME SELECTOR DOTS -->
-            <div class="theme-selector">
-                <div class="theme-dot active" data-theme="cosmic" data-tooltip="COSMIC"></div>
-                <div class="theme-dot" data-theme="desert" data-tooltip="DESERT"></div>
-                <div class="theme-dot" data-theme="emerald" data-tooltip="EMERALD"></div>
-                <div class="theme-dot" data-theme="royal" data-tooltip="ROYAL"></div>
-                <div class="theme-dot" data-theme="golden" data-tooltip="GOLDEN"></div>
-            </div>
-            
-            <div class="social-links">
-                <a href="#" class="social-link">GH</a>
-                <a href="#" class="social-link">IG</a>
-                <a href="#" class="social-link">LI</a>
-                <a href="#" class="social-link">TW</a>
+    <!-- WEBSITE 2: Creative Agency -->
+    <div class="website site-2" id="site2">
+        <div class="container" style="max-width: 1400px; margin: 0 auto;">
+            <div class="creative">
+                <div class="creative-left">
+                    <h2>CREATIVE STUDIO</h2>
+                    <h1>We break the rules</h1>
+                    <p>Brand strategy, visual identity, and digital experiences for the world's most ambitious brands.</p>
+                </div>
+                <div class="creative-right">
+                    <div class="creative-box">🎨</div>
+                    <div class="creative-box">✨</div>
+                    <div class="creative-box">🎯</div>
+                    <div class="creative-box">💫</div>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Floating Background Elements -->
-    <div class="floating-elements">
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
+    <!-- WEBSITE 3: E-commerce -->
+    <div class="website site-3" id="site3">
+        <div class="container" style="max-width: 1400px; margin: 0 auto;">
+            <div class="ecom-header">
+                <div class="ecom-logo">MODERN</div>
+                <div class="ecom-cart">🛒</div>
+            </div>
+            <div class="ecom-grid">
+                <div class="ecom-product">
+                    <div class="ecom-product-image">⌚</div>
+                    <h3>Chronograph</h3>
+                    <div class="ecom-price">$890</div>
+                </div>
+                <div class="ecom-product">
+                    <div class="ecom-product-image">👟</div>
+                    <h3>Runner X</h3>
+                    <div class="ecom-price">$245</div>
+                </div>
+                <div class="ecom-product">
+                    <div class="ecom-product-image">🎧</div>
+                    <h3>Studio Pro</h3>
+                    <div class="ecom-price">$399</div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- Gradient Overlay -->
-    <div class="gradient-overlay" id="gradientOverlay"></div>
+    <!-- WEBSITE 4: Tech Startup -->
+    <div class="website site-4" id="site4">
+        <div class="container" style="max-width: 1400px; margin: 0 auto;">
+            <div class="tech">
+                <div class="tech-badge">LAUNCHING 2026</div>
+                <h1>Build <span>faster</span><br>Scale <span>smarter</span></h1>
+                <p>The platform that helps startups grow from 0 to $1M ARR in months, not years.</p>
+                <a href="#" class="tech-btn">Get early access</a>
+            </div>
+        </div>
+    </div>
 
-    <!-- Three.js Canvas -->
-    <canvas id="canvas3d"></canvas>
+    <!-- WEBSITE 5: Minimal Portfolio -->
+    <div class="website site-5" id="site5">
+        <div class="container" style="max-width: 1400px; margin: 0 auto;">
+            <div class="minimal">
+                <div class="minimal-header">
+                    <div class="minimal-name">ALEX CHEN</div>
+                    <div class="minimal-year">2026</div>
+                </div>
+                <div class="minimal-hero">
+                    <h1>Designer & Developer</h1>
+                </div>
+                <div class="minimal-work">
+                    <div class="minimal-item"></div>
+                    <div class="minimal-item"></div>
+                    <div class="minimal-item"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <!-- Scripts -->
-    <script type="importmap">
-        {
-            "imports": {
-                "three": "https://unpkg.com/three@0.128.0/build/three.module.js"
-            }
-        }
+    <script>
+        // Dot navigation
+        const dots = document.querySelectorAll('.dot');
+        const websites = document.querySelectorAll('.website');
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                // Update dots
+                dots.forEach(d => d.classList.remove('active'));
+                dot.classList.add('active');
+
+                // Update website
+                websites.forEach(site => site.classList.remove('active'));
+                websites[index].classList.add('active');
+            });
+        });
+
+        // Add smooth scrolling for each site
+        websites.forEach(site => {
+            site.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                site.scrollBy({
+                    top: e.deltaY,
+                    behavior: 'smooth'
+                });
+            });
+        });
     </script>
-    <script type="module" src="js/main.js"></script>
 </body>
 </html>

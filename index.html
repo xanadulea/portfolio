@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Portfolio | Interactive Design</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="theme-cosmic">
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loader-logo">✦ CHROMATIC STUDIO</div>
+            <div class="loader-line"></div>
+            <div class="loader-text">5 THEMES • INFINITE POSSIBILITIES</div>
+        </div>
+    </div>
+
+    <!-- Main Interface -->
+    <div id="interface">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <span>✦</span> CHROMATIC
+            </div>
+            <div class="nav">
+                <a href="#" class="nav-item">Work</a>
+                <a href="#" class="nav-item">Studio</a>
+                <a href="#" class="nav-item">News</a>
+                <a href="#" class="nav-item">Contact</a>
+            </div>
+        </div>
+
+        <!-- Counter -->
+        <div class="counter">
+            <span id="project-counter">01</span> / 05
+        </div>
+
+        <!-- Hero Text -->
+        <div class="hero">
+            <div class="hero-title">
+                DIGITAL <span>CRAFT</span>
+            </div>
+            <div class="hero-subtitle">
+                Interactive Design • 3D Art • Creative Code
+            </div>
+        </div>
+
+        <!-- Project Showcase -->
+        <div class="showcase">
+            <div class="project-item active" data-project="0">
+                <div class="project-year">2024</div>
+                <div class="project-name">NEBULA</div>
+                <div class="project-category">IMMERSIVE WEBSITE</div>
+                <div class="project-indicator"></div>
+            </div>
+            <div class="project-item" data-project="1">
+                <div class="project-year">2023</div>
+                <div class="project-name">ECHO</div>
+                <div class="project-category">MOBILE APP</div>
+                <div class="project-indicator"></div>
+            </div>
+            <div class="project-item" data-project="2">
+                <div class="project-year">2023</div>
+                <div class="project-name">AURA</div>
+                <div class="project-category">BRAND IDENTITY</div>
+                <div class="project-indicator"></div>
+            </div>
+            <div class="project-item" data-project="3">
+                <div class="project-year">2022</div>
+                <div class="project-name">SOLARIS</div>
+                <div class="project-category">3D INSTALLATION</div>
+                <div class="project-indicator"></div>
+            </div>
+            <div class="project-item" data-project="4">
+                <div class="project-year">2022</div>
+                <div class="project-name">LUMINA</div>
+                <div class="project-category">UI COLLECTION</div>
+                <div class="project-indicator"></div>
+            </div>
+        </div>
+
+        <!-- Phone Mockup -->
+        <div class="mockup-container">
+            <div class="phone-mockup" id="phoneMockup">
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen" id="phoneScreen">
+                        <span id="screenEmoji">✦</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Info Bar with Theme Dots -->
+        <div class="info-bar">
+            <div class="scroll-indicator">
+                <span>SCROLL</span>
+                <div class="scroll-line"></div>
+            </div>
+            
+            <!-- THEME SELECTOR DOTS -->
+            <div class="theme-selector">
+                <div class="theme-dot active" data-theme="cosmic" data-tooltip="COSMIC"></div>
+                <div class="theme-dot" data-theme="desert" data-tooltip="DESERT"></div>
+                <div class="theme-dot" data-theme="emerald" data-tooltip="EMERALD"></div>
+                <div class="theme-dot" data-theme="royal" data-tooltip="ROYAL"></div>
+                <div class="theme-dot" data-theme="golden" data-tooltip="GOLDEN"></div>
+            </div>
+            
+            <div class="social-links">
+                <a href="#" class="social-link">GH</a>
+                <a href="#" class="social-link">IG</a>
+                <a href="#" class="social-link">LI</a>
+                <a href="#" class="social-link">TW</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Background Elements -->
+    <div class="floating-elements">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+    </div>
+
+    <!-- Gradient Overlay -->
+    <div class="gradient-overlay" id="gradientOverlay"></div>
+
+    <!-- Three.js Canvas -->
+    <canvas id="canvas3d"></canvas>
+
+    <!-- Scripts -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.128.0/build/three.module.js"
+            }
+        }
+    </script>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

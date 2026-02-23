@@ -3,594 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APPS + WEBSITES • Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #0a0a0a;
-            color: #ffffff;
-            overflow: hidden;
-            transition: background 0.5s ease;
-        }
-
-        /* ===== THEMES ===== */
-        body.theme-dark { background: #0a0a0a; }
-        body.theme-purple { background: #1a0a2a; }
-        body.theme-blue { background: #0a1a2a; }
-        body.theme-green { background: #0a2a1a; }
-        body.theme-orange { background: #2a1a0a; }
-
-        /* ===== LOADER ===== */
-        .loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #0a0a0a;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            transition: opacity 1s ease;
-        }
-
-        .loader.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .loader-content {
-            text-align: center;
-        }
-
-        .loader-line {
-            width: 200px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #ffffff, transparent);
-            margin: 20px auto;
-            animation: loaderWidth 2s infinite;
-        }
-
-        @keyframes loaderWidth {
-            0% { width: 0px; opacity: 0; }
-            50% { width: 200px; opacity: 1; }
-            100% { width: 0px; opacity: 0; }
-        }
-
-        /* ===== MAIN INTERFACE ===== */
-        #interface {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* ===== HEADER ===== */
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 40px;
-        }
-
-        .logo {
-            font-size: 14px;
-            font-weight: 300;
-            letter-spacing: 4px;
-            opacity: 0.7;
-        }
-
-        .logo span {
-            font-weight: 600;
-            opacity: 1;
-        }
-
-        /* ===== CATEGORY BUTTONS - THIS IS WHAT YOU WANTED ===== */
-        .category-selector {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-bottom: 40px;
-        }
-
-        .category-btn {
-            background: transparent;
-            border: 2px solid rgba(255,255,255,0.2);
-            color: white;
-            font-size: 24px;
-            font-weight: 500;
-            padding: 15px 60px;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            letter-spacing: 2px;
-            backdrop-filter: blur(10px);
-        }
-
-        .category-btn:hover {
-            border-color: rgba(255,255,255,0.5);
-            transform: translateY(-2px);
-        }
-
-        .category-btn.active {
-            background: white;
-            color: black;
-            border-color: white;
-        }
-
-        /* ===== MAIN CONTENT ===== */
-        .content-area {
-            flex: 1;
-            display: flex;
-            gap: 60px;
-            align-items: center;
-        }
-
-        /* ===== MOCKUP CONTAINER ===== */
-        .mockup-container {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            perspective: 1000px;
-        }
-
-        /* ===== PHONE MOCKUP ===== */
-        .phone-mockup {
-            width: 320px;
-            height: 650px;
-            position: relative;
-            transform-style: preserve-3d;
-            transform: rotateY(-5deg) rotateX(2deg);
-            transition: transform 0.5s ease;
-            cursor: pointer;
-        }
-
-        .phone-mockup:hover {
-            transform: rotateY(-3deg) rotateX(1deg) translateY(-10px);
-        }
-
-        .phone-frame {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: #1a1a1a;
-            border-radius: 40px;
-            border: 1px solid #333;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-            overflow: hidden;
-        }
-
-        .phone-screen {
-            position: absolute;
-            top: 20px;
-            left: 15px;
-            right: 15px;
-            bottom: 20px;
-            background: #000;
-            border-radius: 30px;
-            overflow: hidden;
-        }
-
-        .phone-notch {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120px;
-            height: 25px;
-            background: #1a1a1a;
-            border-bottom-left-radius: 15px;
-            border-bottom-right-radius: 15px;
-            z-index: 10;
-            border: 1px solid #333;
-            border-top: none;
-        }
-
-        /* ===== LAPTOP MOCKUP ===== */
-        .laptop-mockup {
-            width: 500px;
-            height: 350px;
-            position: relative;
-            transform-style: preserve-3d;
-            transform: rotateY(-5deg) rotateX(2deg);
-            transition: transform 0.5s ease;
-            cursor: pointer;
-        }
-
-        .laptop-mockup:hover {
-            transform: rotateY(-3deg) rotateX(1deg) translateY(-10px);
-        }
-
-        .laptop-body {
-            position: absolute;
-            width: 100%;
-            height: 280px;
-            background: #1a1a1a;
-            border-radius: 20px;
-            border: 1px solid #333;
-            overflow: hidden;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-        }
-
-        .laptop-screen {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            right: 15px;
-            bottom: 15px;
-            background: #000;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .laptop-base {
-            position: absolute;
-            bottom: -20px;
-            left: 10%;
-            width: 80%;
-            height: 20px;
-            background: #1a1a1a;
-            border-radius: 0 0 10px 10px;
-            border: 1px solid #333;
-            border-top: none;
-        }
-
-        /* ===== PROJECT LIST ===== */
-        .projects {
-            flex: 0.8;
-        }
-
-        .project-item {
-            padding: 20px;
-            margin-bottom: 15px;
-            border: 1px solid #333;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: rgba(255,255,255,0.02);
-        }
-
-        .project-item:hover {
-            border-color: #666;
-            transform: translateX(-5px);
-            background: rgba(255,255,255,0.05);
-        }
-
-        .project-item.active {
-            border-color: #fff;
-            background: rgba(255,255,255,0.1);
-        }
-
-        .project-year {
-            font-size: 12px;
-            opacity: 0.5;
-            margin-bottom: 5px;
-        }
-
-        .project-name {
-            font-size: 28px;
-            font-weight: 400;
-            margin-bottom: 5px;
-        }
-
-        .project-type {
-            font-size: 12px;
-            opacity: 0.7;
-            letter-spacing: 1px;
-        }
-
-        /* ===== CONTENT INSIDE MOCKUPS ===== */
-        .mockup-content {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .app-icon {
-            font-size: 80px;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 10px 20px rgba(255,255,255,0.1));
-        }
-
-        .website-preview {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .browser-bar {
-            height: 30px;
-            background: #1a1a1a;
-            display: flex;
-            align-items: center;
-            padding: 0 10px;
-            gap: 8px;
-        }
-
-        .browser-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #ff5f56;
-        }
-
-        .browser-dot:nth-child(2) {
-            background: #ffbd2e;
-        }
-
-        .browser-dot:nth-child(3) {
-            background: #27c93f;
-        }
-
-        .browser-url {
-            margin-left: auto;
-            font-size: 10px;
-            opacity: 0.5;
-        }
-
-        .website-content {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-        }
-
-        /* ===== BOTTOM BAR ===== */
-        .bottom-bar {
-            margin-top: auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 40px;
-        }
-
-        /* ===== THEME DOTS ===== */
-        .theme-selector {
-            display: flex;
-            gap: 15px;
-        }
-
-        .theme-dot {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .theme-dot:hover {
-            transform: scale(1.2);
-        }
-
-        .theme-dot.active {
-            border-color: #fff;
-            transform: scale(1.1);
-        }
-
-        .theme-dot[data-theme="dark"] { background: #0a0a0a; border: 2px solid #333; }
-        .theme-dot[data-theme="purple"] { background: #4a1e4a; }
-        .theme-dot[data-theme="blue"] { background: #1e4a6a; }
-        .theme-dot[data-theme="green"] { background: #1e6a4a; }
-        .theme-dot[data-theme="orange"] { background: #6a4a1e; }
-
-        .counter {
-            font-size: 14px;
-            opacity: 0.5;
-        }
-
-        .counter span {
-            font-size: 24px;
-            color: #fff;
-            margin-right: 5px;
-            opacity: 1;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .social-link {
-            color: #fff;
-            text-decoration: none;
-            font-size: 14px;
-            opacity: 0.5;
-            transition: opacity 0.3s ease;
-        }
-
-        .social-link:hover {
-            opacity: 1;
-        }
-
-        /* ===== SECTIONS ===== */
-        .apps-section, .websites-section {
-            display: none;
-            width: 100%;
-        }
-
-        .apps-section.active, .websites-section.active {
-            display: flex;
-            gap: 60px;
-            align-items: center;
-            width: 100%;
-        }
-
-        /* ===== 3D CANVAS ===== */
-        #canvas3d {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-            opacity: 0.2;
-        }
-    </style>
+    <title>3D Portfolio | Interactive Design</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body class="theme-dark">
+<body class="theme-cosmic">
+    <!-- Loading Screen -->
     <div class="loader" id="loader">
         <div class="loader-content">
-            <div style="font-size: 12px; letter-spacing: 4px;">APPS + WEBSITES</div>
+            <div class="loader-logo">✦ CHROMATIC STUDIO</div>
             <div class="loader-line"></div>
+            <div class="loader-text">5 THEMES • INFINITE POSSIBILITIES</div>
         </div>
     </div>
 
+    <!-- Main Interface -->
     <div id="interface">
         <!-- Header -->
         <div class="header">
-            <div class="logo"><span>✦</span> CREATIVE STUDIO</div>
+            <div class="logo">
+                <span>✦</span> CHROMATIC
+            </div>
+            <div class="nav">
+                <a href="#" class="nav-item">Work</a>
+                <a href="#" class="nav-item">Studio</a>
+                <a href="#" class="nav-item">News</a>
+                <a href="#" class="nav-item">Contact</a>
+            </div>
         </div>
 
-        <!-- CATEGORY BUTTONS - TOP CENTER -->
-        <div class="category-selector">
-            <button class="category-btn active" id="appsBtn">📱 APPS</button>
-            <button class="category-btn" id="websitesBtn">💻 WEBSITES</button>
+        <!-- Counter -->
+        <div class="counter">
+            <span id="project-counter">01</span> / 05
         </div>
 
-        <!-- APPS SECTION -->
-        <div class="apps-section active" id="appsSection">
-            <!-- Phone Mockup -->
-            <div class="mockup-container">
-                <div class="phone-mockup" id="phoneMockup">
-                    <div class="phone-frame">
-                        <div class="phone-notch"></div>
-                        <div class="phone-screen" id="phoneScreen">
-                            <div class="mockup-content" id="appContent">
-                                <div class="app-icon" id="appIcon">📱</div>
-                                <div style="font-size: 24px;" id="appTitle">NEBULA</div>
-                                <div style="font-size: 12px; opacity:0.5;" id="appSubtitle">SOCIAL APP</div>
-                            </div>
-                        </div>
+        <!-- Hero Text -->
+        <div class="hero">
+            <div class="hero-title">
+                DIGITAL <span>CRAFT</span>
+            </div>
+            <div class="hero-subtitle">
+                Interactive Design • 3D Art • Creative Code
+            </div>
+        </div>
+
+        <!-- Project Showcase -->
+        <div class="showcase">
+            <div class="project-item active" data-project="0">
+                <div class="project-year">2024</div>
+                <div class="project-name">NEBULA</div>
+                <div class="project-category">IMMERSIVE WEBSITE</div>
+                <div class="project-indicator"></div>
+            </div>
+            <div class="project-item" data-project="1">
+                <div class="project-year">2023</div>
+                <div class="project-name">ECHO</div>
+                <div class="project-category">MOBILE APP</div>
+                <div class="project-indicator"></div>
+            </div>
+            <div class="project-item" data-project="2">
+                <div class="project-year">2023</div>
+                <div class="project-name">AURA</div>
+                <div class="project-category">BRAND IDENTITY</div>
+                <div class="project-indicator"></div>
+            </div>
+            <div class="project-item" data-project="3">
+                <div class="project-year">2022</div>
+                <div class="project-name">SOLARIS</div>
+                <div class="project-category">3D INSTALLATION</div>
+                <div class="project-indicator"></div>
+            </div>
+            <div class="project-item" data-project="4">
+                <div class="project-year">2022</div>
+                <div class="project-name">LUMINA</div>
+                <div class="project-category">UI COLLECTION</div>
+                <div class="project-indicator"></div>
+            </div>
+        </div>
+
+        <!-- Phone Mockup -->
+        <div class="mockup-container">
+            <div class="phone-mockup" id="phoneMockup">
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen" id="phoneScreen">
+                        <span id="screenEmoji">✦</span>
                     </div>
                 </div>
             </div>
-
-            <!-- App Projects List -->
-            <div class="projects" id="appProjects">
-                <div class="project-item active" data-app="0">
-                    <div class="project-year">2024</div>
-                    <div class="project-name">NEBULA</div>
-                    <div class="project-type">SOCIAL APP</div>
-                </div>
-                <div class="project-item" data-app="1">
-                    <div class="project-year">2024</div>
-                    <div class="project-name">ECHO</div>
-                    <div class="project-type">MESSAGING</div>
-                </div>
-                <div class="project-item" data-app="2">
-                    <div class="project-year">2023</div>
-                    <div class="project-name">AURA</div>
-                    <div class="project-type">WELLNESS</div>
-                </div>
-                <div class="project-item" data-app="3">
-                    <div class="project-year">2023</div>
-                    <div class="project-name">SOLARIS</div>
-                    <div class="project-type">WEATHER</div>
-                </div>
-                <div class="project-item" data-app="4">
-                    <div class="project-year">2022</div>
-                    <div class="project-name">LUMINA</div>
-                    <div class="project-type">PHOTO EDITOR</div>
-                </div>
-            </div>
         </div>
 
-        <!-- WEBSITES SECTION -->
-        <div class="websites-section" id="websitesSection">
-            <!-- Laptop Mockup -->
-            <div class="mockup-container">
-                <div class="laptop-mockup" id="laptopMockup">
-                    <div class="laptop-body">
-                        <div class="laptop-screen" id="laptopScreen">
-                            <div class="website-preview" id="websiteContent">
-                                <div class="browser-bar">
-                                    <span class="browser-dot"></span>
-                                    <span class="browser-dot"></span>
-                                    <span class="browser-dot"></span>
-                                    <span class="browser-url" id="websiteUrl">nebula.design</span>
-                                </div>
-                                <div class="website-content" id="websiteEmoji">
-                                    🌐
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="laptop-base"></div>
-                </div>
+        <!-- Bottom Info Bar with Theme Dots -->
+        <div class="info-bar">
+            <div class="scroll-indicator">
+                <span>SCROLL</span>
+                <div class="scroll-line"></div>
             </div>
-
-            <!-- Website Projects List -->
-            <div class="projects" id="websiteProjects">
-                <div class="project-item active" data-site="0">
-                    <div class="project-year">2024</div>
-                    <div class="project-name">NEBULA</div>
-                    <div class="project-type">PORTFOLIO</div>
-                </div>
-                <div class="project-item" data-site="1">
-                    <div class="project-year">2024</div>
-                    <div class="project-name">ECHO</div>
-                    <div class="project-type">E-COMMERCE</div>
-                </div>
-                <div class="project-item" data-site="2">
-                    <div class="project-year">2023</div>
-                    <div class="project-name">AURA</div>
-                    <div class="project-type">BLOG</div>
-                </div>
-                <div class="project-item" data-site="3">
-                    <div class="project-year">2023</div>
-                    <div class="project-name">SOLARIS</div>
-                    <div class="project-type">DASHBOARD</div>
-                </div>
-                <div class="project-item" data-site="4">
-                    <div class="project-year">2022</div>
-                    <div class="project-name">LUMINA</div>
-                    <div class="project-type">CREATIVE</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Bottom Bar -->
-        <div class="bottom-bar">
-            <div class="counter">
-                <span id="projectCounter">01</span> / 05
-            </div>
+            
+            <!-- THEME SELECTOR DOTS -->
             <div class="theme-selector">
-                <div class="theme-dot active" data-theme="dark" data-tooltip="DARK"></div>
-                <div class="theme-dot" data-theme="purple" data-tooltip="PURPLE"></div>
-                <div class="theme-dot" data-theme="blue" data-tooltip="BLUE"></div>
-                <div class="theme-dot" data-theme="green" data-tooltip="GREEN"></div>
-                <div class="theme-dot" data-theme="orange" data-tooltip="ORANGE"></div>
+                <div class="theme-dot active" data-theme="cosmic" data-tooltip="COSMIC"></div>
+                <div class="theme-dot" data-theme="desert" data-tooltip="DESERT"></div>
+                <div class="theme-dot" data-theme="emerald" data-tooltip="EMERALD"></div>
+                <div class="theme-dot" data-theme="royal" data-tooltip="ROYAL"></div>
+                <div class="theme-dot" data-theme="golden" data-tooltip="GOLDEN"></div>
             </div>
+            
             <div class="social-links">
                 <a href="#" class="social-link">GH</a>
                 <a href="#" class="social-link">IG</a>
                 <a href="#" class="social-link">LI</a>
+                <a href="#" class="social-link">TW</a>
             </div>
         </div>
     </div>
 
+    <!-- Floating Background Elements -->
+    <div class="floating-elements">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+    </div>
+
+    <!-- Gradient Overlay -->
+    <div class="gradient-overlay" id="gradientOverlay"></div>
+
+    <!-- Three.js Canvas -->
     <canvas id="canvas3d"></canvas>
 
+    <!-- Scripts -->
     <script type="importmap">
         {
             "imports": {
@@ -598,155 +138,6 @@
             }
         }
     </script>
-
-    <script type="module">
-        import * as THREE from 'three';
-
-        // ===== THREE.JS BACKGROUND =====
-        const canvas = document.getElementById('canvas3d');
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.z = 5;
-        
-        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        
-        // Particles
-        const particlesGeometry = new THREE.BufferGeometry();
-        const particlesCount = 1000;
-        const posArray = new Float32Array(particlesCount * 3);
-        
-        for(let i = 0; i < particlesCount * 3; i += 3) {
-            posArray[i] = (Math.random() - 0.5) * 10;
-            posArray[i+1] = (Math.random() - 0.5) * 10;
-            posArray[i+2] = (Math.random() - 0.5) * 10;
-        }
-        
-        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-        const particlesMaterial = new THREE.PointsMaterial({ size: 0.02, color: 0xffffff });
-        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-        scene.add(particlesMesh);
-        
-        function animate() {
-            requestAnimationFrame(animate);
-            particlesMesh.rotation.y += 0.0002;
-            renderer.render(scene, camera);
-        }
-        animate();
-
-        // ===== DATA =====
-        const apps = [
-            { icon: '📱', name: 'NEBULA', type: 'SOCIAL APP', color: '#4a1e4a' },
-            { icon: '💬', name: 'ECHO', type: 'MESSAGING', color: '#1e4a6a' },
-            { icon: '🧘', name: 'AURA', type: 'WELLNESS', color: '#1e6a4a' },
-            { icon: '☀️', name: 'SOLARIS', type: 'WEATHER', color: '#6a4a1e' },
-            { icon: '✨', name: 'LUMINA', type: 'PHOTO EDITOR', color: '#4a1e6a' }
-        ];
-
-        const websites = [
-            { emoji: '🌐', name: 'NEBULA', type: 'PORTFOLIO', url: 'nebula.design', color: '#4a1e4a' },
-            { emoji: '🛒', name: 'ECHO', type: 'E-COMMERCE', url: 'echo.shop', color: '#1e4a6a' },
-            { emoji: '📝', name: 'AURA', type: 'BLOG', url: 'aura.blog', color: '#1e6a4a' },
-            { emoji: '📊', name: 'SOLARIS', type: 'DASHBOARD', url: 'solaris.io', color: '#6a4a1e' },
-            { emoji: '🎨', name: 'LUMINA', type: 'CREATIVE', url: 'lumina.studio', color: '#4a1e6a' }
-        ];
-
-        // ===== ELEMENTS =====
-        const appsBtn = document.getElementById('appsBtn');
-        const websitesBtn = document.getElementById('websitesBtn');
-        const appsSection = document.getElementById('appsSection');
-        const websitesSection = document.getElementById('websitesSection');
-        
-        const appIcon = document.getElementById('appIcon');
-        const appTitle = document.getElementById('appTitle');
-        const appSubtitle = document.getElementById('appSubtitle');
-        const phoneScreen = document.getElementById('phoneScreen');
-        
-        const websiteEmoji = document.getElementById('websiteEmoji');
-        const websiteUrl = document.getElementById('websiteUrl');
-        const websiteContent = document.getElementById('websiteContent');
-        
-        const appProjects = document.querySelectorAll('#appProjects .project-item');
-        const websiteProjects = document.querySelectorAll('#websiteProjects .project-item');
-        const projectCounter = document.getElementById('projectCounter');
-        
-        const themeDots = document.querySelectorAll('.theme-dot');
-        const body = document.body;
-
-        // ===== CATEGORY SWITCHING =====
-        appsBtn.addEventListener('click', () => {
-            appsBtn.classList.add('active');
-            websitesBtn.classList.remove('active');
-            appsSection.classList.add('active');
-            websitesSection.classList.remove('active');
-            projectCounter.textContent = '01';
-        });
-
-        websitesBtn.addEventListener('click', () => {
-            websitesBtn.classList.add('active');
-            appsBtn.classList.remove('active');
-            websitesSection.classList.add('active');
-            appsSection.classList.remove('active');
-            projectCounter.textContent = '01';
-        });
-
-        // ===== APP PROJECTS =====
-        appProjects.forEach((project, index) => {
-            project.addEventListener('click', () => {
-                appProjects.forEach(p => p.classList.remove('active'));
-                project.classList.add('active');
-                
-                const app = apps[index];
-                appIcon.textContent = app.icon;
-                appTitle.textContent = app.name;
-                appSubtitle.textContent = app.type;
-                phoneScreen.style.background = app.color;
-                projectCounter.textContent = `0${index + 1}`;
-            });
-        });
-
-        // ===== WEBSITE PROJECTS =====
-        websiteProjects.forEach((project, index) => {
-            project.addEventListener('click', () => {
-                websiteProjects.forEach(p => p.classList.remove('active'));
-                project.classList.add('active');
-                
-                const site = websites[index];
-                websiteEmoji.textContent = site.emoji;
-                websiteUrl.textContent = site.url;
-                websiteContent.style.background = site.color;
-                projectCounter.textContent = `0${index + 1}`;
-            });
-        });
-
-        // ===== THEME SWITCHING =====
-        themeDots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                const themes = ['dark', 'purple', 'blue', 'green', 'orange'];
-                
-                themes.forEach(t => body.classList.remove(`theme-${t}`));
-                body.classList.add(`theme-${themes[index]}`);
-                
-                themeDots.forEach(d => d.classList.remove('active'));
-                dot.classList.add('active');
-                
-                // Update particle color
-                const colors = [0xffffff, 0x8866ff, 0x3399ff, 0x33ff99, 0xff9933];
-                particlesMesh.material.color.setHex(colors[index]);
-            });
-        });
-
-        // ===== HIDE LOADER =====
-        setTimeout(() => {
-            document.getElementById('loader').classList.add('hidden');
-        }, 2000);
-
-        // ===== RESIZE =====
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
-    </script>
+    <script type="module" src="js/main.js"></script>
 </body>
 </html>

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>5 WEBSITES · RUBIK'S 3D</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>5 THEMES · 3D</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,10 +13,8 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: #0a0a0a;
-            color: #fff;
             overflow: hidden;
+            transition: background 0.8s ease;
         }
 
         /* 3D Canvas */
@@ -39,94 +37,201 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            pointer-events: none;
+            text-align: center;
+            transition: all 0.8s ease;
+            backdrop-filter: blur(2px);
         }
 
-        h1 {
+        /* Theme 1: Retro */
+        body.theme-retro {
+            background: #0a0a1a;
+        }
+        .theme-retro .content {
+            color: #ff00ff;
+            font-family: 'Orbitron', sans-serif;
+            text-shadow: 0 0 20px #00ffff, 0 0 40px #ff00ff;
+        }
+        .theme-retro h1 {
+            font-size: 120px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            animation: glitch 3s infinite;
+        }
+        @keyframes glitch {
+            0% { transform: skew(0deg); }
+            5% { transform: skew(2deg); text-shadow: -2px 0 cyan, 2px 0 magenta; }
+            10% { transform: skew(-2deg); }
+            15% { transform: skew(0deg); }
+        }
+        .theme-retro .sub {
+            font-size: 16px;
+            letter-spacing: 8px;
+            color: #00ffff;
+        }
+
+        /* Theme 2: Sci-Fi */
+        body.theme-scifi {
+            background: #001020;
+        }
+        .theme-scifi .content {
+            color: #88ddff;
+            font-family: 'Space Mono', monospace;
+        }
+        .theme-scifi h1 {
+            font-size: 100px;
+            font-weight: 400;
+            letter-spacing: 10px;
+            text-transform: uppercase;
+            border-right: 4px solid #00aaff;
+            padding-right: 20px;
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            from, to { border-color: transparent; }
+            50% { border-color: #00aaff; }
+        }
+        .theme-scifi .sub {
+            color: #88ddff;
+            opacity: 0.7;
+        }
+
+        /* Theme 3: Luxury */
+        body.theme-luxury {
+            background: #0a0a0a;
+        }
+        .theme-luxury .content {
+            color: #d4af37;
+            font-family: 'Playfair Display', serif;
+        }
+        .theme-luxury h1 {
+            font-size: 120px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            text-shadow: 0 0 30px rgba(212,175,55,0.3);
+        }
+        .theme-luxury h1 span {
+            font-weight: 700;
+            color: #fff;
+        }
+        .theme-luxury .sub {
+            letter-spacing: 12px;
+            font-size: 14px;
+            color: rgba(212,175,55,0.6);
+        }
+
+        /* Theme 4: Natural */
+        body.theme-natural {
+            background: #1a2a1a;
+        }
+        .theme-natural .content {
+            color: #d4b38c;
+            font-family: 'Inter', sans-serif;
+        }
+        .theme-natural h1 {
             font-size: 100px;
             font-weight: 300;
+            letter-spacing: 2px;
+            color: #e8d5b5;
+        }
+        .theme-natural .sub {
+            color: #a8c3a8;
+            letter-spacing: 6px;
+        }
+
+        /* Theme 5: Minimal */
+        body.theme-minimal {
+            background: #f5f5f5;
+        }
+        .theme-minimal .content {
+            color: #111;
+            font-family: 'Inter', sans-serif;
+        }
+        .theme-minimal h1 {
+            font-size: 100px;
+            font-weight: 200;
             letter-spacing: -2px;
+        }
+        .theme-minimal .sub {
+            color: #666;
+            font-weight: 300;
+        }
+
+        /* Common elements */
+        h1 {
             margin-bottom: 20px;
-            text-shadow: 0 0 30px rgba(255,255,255,0.2);
-            background: linear-gradient(45deg, #fff, #aaa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            pointer-events: none;
+            transition: all 0.8s ease;
         }
 
         .sub {
             font-size: 14px;
-            letter-spacing: 6px;
-            color: rgba(255,255,255,0.5);
             margin-bottom: 60px;
-            pointer-events: none;
+            transition: all 0.8s ease;
         }
 
-        /* Dots - clickable */
+        /* Dots */
         .dots {
             display: flex;
-            gap: 25px;
+            gap: 30px;
             margin-top: 40px;
-            pointer-events: auto;
+            z-index: 10;
         }
 
         .dot {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
             cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            color: rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            background: rgba(255,255,255,0.1);
             backdrop-filter: blur(5px);
-            text-decoration: none;
         }
 
         .dot:hover {
-            border-color: #fff;
-            color: #fff;
-            transform: scale(1.1);
-            background: rgba(255,255,255,0.1);
+            transform: scale(1.2);
         }
 
         .dot.active {
-            border-color: #fff;
-            color: #fff;
-            background: rgba(255,255,255,0.15);
+            border-color: currentColor;
+            transform: scale(1.1);
         }
 
+        /* Dot colors per theme */
+        .theme-retro .dot { background: #ff00ff; box-shadow: 0 0 20px #00ffff; }
+        .theme-scifi .dot { background: #00aaff; box-shadow: 0 0 20px #00aaff; }
+        .theme-luxury .dot { background: #d4af37; box-shadow: 0 0 20px #d4af37; }
+        .theme-natural .dot { background: #a8c3a8; box-shadow: 0 0 20px #a8c3a8; }
+        .theme-minimal .dot { background: #111; box-shadow: 0 0 20px #999; }
+
+        /* Loading */
         .loading {
             position: fixed;
             bottom: 30px;
             left: 30px;
             font-size: 12px;
-            color: rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.3);
             z-index: 10;
         }
     </style>
 </head>
-<body>
+<body class="theme-retro">
     <div id="canvas-3d"></div>
 
     <div class="content">
-        <h1>5 WEBSITES</h1>
-        <div class="sub">ONE PAGE · FIVE WORLDS</div>
+        <h1 id="main-title">RETRO<span>WAVE</span></h1>
+        <div class="sub" id="main-sub">1980s · NEON · DIGITAL</div>
         
         <div class="dots">
-            <a href="luxury.html" class="dot">1</a>
-            <a href="tech.html" class="dot">2</a>
-            <a href="creative.html" class="dot">3</a>
-            <a href="wellness.html" class="dot">4</a>
-            <a href="ecommerce.html" class="dot">5</a>
+            <div class="dot active" data-theme="retro"></div>
+            <div class="dot" data-theme="scifi"></div>
+            <div class="dot" data-theme="luxury"></div>
+            <div class="dot" data-theme="natural"></div>
+            <div class="dot" data-theme="minimal"></div>
         </div>
     </div>
 
-    <div class="loading">✦ RUBIK'S CUBE · SOLVING ITSELF</div>
+    <div class="loading">✦ 5 THEMES · 5 WORLDS</div>
 
     <script type="importmap">
         {
@@ -138,228 +243,228 @@
 
     <script type="module">
         import * as THREE from 'three';
-        import { OrbitControls } from 'https://unpkg.com/three@0.128.0/examples/jsm/controls/OrbitControls.js';
 
         // Setup
         const canvas = document.getElementById('canvas-3d');
         const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x0a0a0a);
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = 15;
         
-        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.set(5, 5, 5);
-        camera.lookAt(0, 0, 0);
-        
-        const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(window.devicePixelRatio);
-        renderer.shadowMap.enabled = true;
 
-        // Lights
+        // Lighting
         const ambientLight = new THREE.AmbientLight(0x404040);
         scene.add(ambientLight);
 
-        const light1 = new THREE.PointLight(0xffffff, 1);
-        light1.position.set(5, 10, 7);
-        scene.add(light1);
+        // Create different 3D objects for each theme
+        let currentObjects = [];
 
-        const light2 = new THREE.PointLight(0x4466ff, 0.5);
-        light2.position.set(-5, 0, 5);
-        scene.add(light2);
-
-        // Create a single cube with stickers
-        function createStickerCube(x, y, z, colors) {
+        function createRetroTheme() {
             const group = new THREE.Group();
             
-            // Main cube body (black)
-            const geometry = new THREE.BoxGeometry(0.9, 0.9, 0.9);
-            const material = new THREE.MeshStandardMaterial({ color: 0x111111 });
-            const cube = new THREE.Mesh(geometry, material);
-            cube.castShadow = true;
-            cube.receiveShadow = true;
-            group.add(cube);
+            // Neon grid floor
+            const gridHelper = new THREE.GridHelper(20, 20, 0xff00ff, 0x00ffff);
+            gridHelper.position.y = -2;
+            group.add(gridHelper);
 
-            // Add colored stickers on each face
-            const stickerSize = 0.15;
-            const stickerGeo = new THREE.PlaneGeometry(0.7, 0.7);
-            
-            // Front face (red)
-            if (colors.front) {
-                const sticker = new THREE.Mesh(stickerGeo, new THREE.MeshStandardMaterial({ color: colors.front, emissive: colors.front, emissiveIntensity: 0.3 }));
-                sticker.position.set(0, 0, 0.46);
-                group.add(sticker);
-            }
-            
-            // Back face (orange)
-            if (colors.back) {
-                const sticker = new THREE.Mesh(stickerGeo, new THREE.MeshStandardMaterial({ color: colors.back, emissive: colors.back, emissiveIntensity: 0.3 }));
-                sticker.position.set(0, 0, -0.46);
-                sticker.rotation.y = Math.PI;
-                group.add(sticker);
-            }
-            
-            // Right face (green)
-            if (colors.right) {
-                const sticker = new THREE.Mesh(stickerGeo, new THREE.MeshStandardMaterial({ color: colors.right, emissive: colors.right, emissiveIntensity: 0.3 }));
-                sticker.position.set(0.46, 0, 0);
-                sticker.rotation.y = Math.PI / 2;
-                group.add(sticker);
-            }
-            
-            // Left face (blue)
-            if (colors.left) {
-                const sticker = new THREE.Mesh(stickerGeo, new THREE.MeshStandardMaterial({ color: colors.left, emissive: colors.left, emissiveIntensity: 0.3 }));
-                sticker.position.set(-0.46, 0, 0);
-                sticker.rotation.y = -Math.PI / 2;
-                group.add(sticker);
-            }
-            
-            // Top face (white)
-            if (colors.top) {
-                const sticker = new THREE.Mesh(stickerGeo, new THREE.MeshStandardMaterial({ color: colors.top, emissive: colors.top, emissiveIntensity: 0.3 }));
-                sticker.position.set(0, 0.46, 0);
-                sticker.rotation.x = -Math.PI / 2;
-                group.add(sticker);
-            }
-            
-            // Bottom face (yellow)
-            if (colors.bottom) {
-                const sticker = new THREE.Mesh(stickerGeo, new THREE.MeshStandardMaterial({ color: colors.bottom, emissive: colors.bottom, emissiveIntensity: 0.3 }));
-                sticker.position.set(0, -0.46, 0);
-                sticker.rotation.x = Math.PI / 2;
-                group.add(sticker);
+            // Floating cubes
+            for (let i = 0; i < 10; i++) {
+                const geometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
+                const material = new THREE.MeshStandardMaterial({ 
+                    color: Math.random() > 0.5 ? 0xff00ff : 0x00ffff,
+                    emissive: 0x222222,
+                    transparent: true,
+                    opacity: 0.8
+                });
+                const cube = new THREE.Mesh(geometry, material);
+                cube.position.x = (Math.random() - 0.5) * 8;
+                cube.position.y = (Math.random() - 0.5) * 4;
+                cube.position.z = (Math.random() - 0.5) * 5;
+                group.add(cube);
             }
 
-            group.position.set(x, y, z);
             return group;
         }
 
-        // Create the full Rubik's cube
-        const cubeGroup = new THREE.Group();
-        const cubes = [];
+        function createSciFiTheme() {
+            const group = new THREE.Group();
+            
+            // Wireframe sphere
+            const sphereGeo = new THREE.SphereGeometry(2, 16, 16);
+            const sphereMat = new THREE.MeshStandardMaterial({ 
+                color: 0x00aaff,
+                wireframe: true,
+                emissive: 0x004466
+            });
+            const sphere = new THREE.Mesh(sphereGeo, sphereMat);
+            sphere.position.y = 1;
+            group.add(sphere);
 
-        // Colors for a solved cube: front=red, back=orange, right=green, left=blue, top=white, bottom=yellow
-        for (let x = -1; x <= 1; x++) {
-            for (let y = -1; y <= 1; y++) {
-                for (let z = -1; z <= 1; z++) {
-                    // Skip the center piece
-                    if (x === 0 && y === 0 && z === 0) continue;
-                    
-                    const colors = {
-                        front: z === 1 ? 0xff3333 : null,      // red
-                        back: z === -1 ? 0xff8800 : null,      // orange
-                        right: x === 1 ? 0x33ff33 : null,       // green
-                        left: x === -1 ? 0x3333ff : null,       // blue
-                        top: y === 1 ? 0xffffff : null,         // white
-                        bottom: y === -1 ? 0xffff33 : null      // yellow
-                    };
-                    
-                    const cube = createStickerCube(x, y, z, colors);
-                    cubeGroup.add(cube);
-                    cubes.push(cube);
-                }
+            // Floating particles
+            const particlesGeo = new THREE.BufferGeometry();
+            const particlesPos = [];
+            for (let i = 0; i < 200; i++) {
+                particlesPos.push((Math.random() - 0.5) * 15);
+                particlesPos.push((Math.random() - 0.5) * 10);
+                particlesPos.push((Math.random() - 0.5) * 15);
             }
+            particlesGeo.setAttribute('position', new THREE.Float32BufferAttribute(particlesPos, 3));
+            const particlesMat = new THREE.PointsMaterial({ color: 0x88ddff, size: 0.05 });
+            const particles = new THREE.Points(particlesGeo, particlesMat);
+            group.add(particles);
+
+            return group;
         }
 
-        scene.add(cubeGroup);
-
-        // Add a subtle grid floor
-        const gridHelper = new THREE.GridHelper(10, 20, 0x333333, 0x222222);
-        gridHelper.position.y = -2;
-        scene.add(gridHelper);
-
-        // Animation sequences for solving
-        const sequences = [
-            { axis: 'y', layer: 1, angle: Math.PI/2, duration: 1000 },  // Rotate top
-            { axis: 'x', layer: 1, angle: -Math.PI/2, duration: 1000 }, // Rotate right
-            { axis: 'z', layer: 1, angle: Math.PI/2, duration: 1000 },  // Rotate front
-            { axis: 'y', layer: -1, angle: -Math.PI/2, duration: 1000 }, // Rotate bottom
-            { axis: 'x', layer: -1, angle: Math.PI/2, duration: 1000 },  // Rotate left
-            { axis: 'z', layer: -1, angle: -Math.PI/2, duration: 1000 }, // Rotate back
-        ];
-
-        let currentSequence = 0;
-        let animating = false;
-        let startTime = 0;
-        let startRotation = {};
-        let targetRotation = {};
-
-        function startNextRotation() {
-            if (currentSequence >= sequences.length) {
-                currentSequence = 0; // Loop forever
+        function createLuxuryTheme() {
+            const group = new THREE.Group();
+            
+            // Golden rings
+            for (let i = 0; i < 5; i++) {
+                const ringGeo = new THREE.TorusGeometry(2 + i * 0.5, 0.1, 16, 100);
+                const ringMat = new THREE.MeshStandardMaterial({ 
+                    color: 0xd4af37,
+                    emissive: 0x332211,
+                    roughness: 0.3,
+                    metalness: 0.8
+                });
+                const ring = new THREE.Mesh(ringGeo, ringMat);
+                ring.rotation.x = Math.PI / 2;
+                ring.rotation.z = i * 0.5;
+                group.add(ring);
             }
+
+            return group;
+        }
+
+        function createNaturalTheme() {
+            const group = new THREE.Group();
             
-            const seq = sequences[currentSequence];
-            animating = true;
-            startTime = Date.now();
+            // Organic shapes
+            for (let i = 0; i < 20; i++) {
+                const geo = new THREE.SphereGeometry(0.3 + Math.random() * 0.3, 5);
+                const mat = new THREE.MeshStandardMaterial({ 
+                    color: Math.random() > 0.5 ? 0xa8c3a8 : 0xd4b38c,
+                    roughness: 0.7
+                });
+                const sphere = new THREE.Mesh(geo, mat);
+                sphere.position.x = (Math.random() - 0.5) * 10;
+                sphere.position.y = (Math.random() - 0.5) * 6;
+                sphere.position.z = (Math.random() - 0.5) * 8;
+                group.add(sphere);
+            }
+
+            return group;
+        }
+
+        function createMinimalTheme() {
+            const group = new THREE.Group();
             
-            // Store starting rotations for affected cubes
-            startRotation = {};
-            cubes.forEach(cube => {
-                if (Math.abs(cube.position[seq.axis]) === seq.layer) {
-                    startRotation[cube.id] = {
-                        x: cube.rotation.x,
-                        y: cube.rotation.y,
-                        z: cube.rotation.z
-                    };
+            // Simple floating lines
+            for (let i = 0; i < 10; i++) {
+                const lineGeo = new THREE.BoxGeometry(0.1, 2, 0.1);
+                const lineMat = new THREE.MeshStandardMaterial({ color: 0xcccccc });
+                const line = new THREE.Mesh(lineGeo, lineMat);
+                line.position.x = (Math.random() - 0.5) * 12;
+                line.position.z = (Math.random() - 0.5) * 8;
+                group.add(line);
+            }
+
+            return group;
+        }
+
+        // Theme switching
+        const dots = document.querySelectorAll('.dot');
+        const body = document.body;
+        const mainTitle = document.getElementById('main-title');
+        const mainSub = document.getElementById('main-sub');
+
+        const themeData = {
+            retro: {
+                title: 'RETRO<span>WAVE</span>',
+                sub: '1980s · NEON · DIGITAL',
+                create3D: createRetroTheme
+            },
+            scifi: {
+                title: 'NOVA<span>CORE</span>',
+                sub: '2112 · FUTURISTIC · TECH',
+                create3D: createSciFiTheme
+            },
+            luxury: {
+                title: 'LUXE<span>COLLECTION</span>',
+                sub: 'ELEGANCE · GOLD · BESPOKE',
+                create3D: createLuxuryTheme
+            },
+            natural: {
+                title: 'EARTH<span>& SOUL</span>',
+                sub: 'ORGANIC · PURE · BALANCE',
+                create3D: createNaturalTheme
+            },
+            minimal: {
+                title: 'LESS<span>IS MORE</span>',
+                sub: 'CLEAN · SIMPLE · MODERN',
+                create3D: createMinimalTheme
+            }
+        };
+
+        function setTheme(theme) {
+            // Update body class
+            body.className = `theme-${theme}`;
+            
+            // Update text
+            mainTitle.innerHTML = themeData[theme].title;
+            mainSub.textContent = themeData[theme].sub;
+            
+            // Update dots
+            dots.forEach(dot => {
+                dot.classList.remove('active');
+                if (dot.dataset.theme === theme) {
+                    dot.classList.add('active');
                 }
             });
+
+            // Update 3D scene
+            currentObjects.forEach(obj => scene.remove(obj));
+            currentObjects = [];
             
-            targetRotation = {
-                axis: seq.axis,
-                angle: seq.angle
-            };
+            const newObjects = themeData[theme].create3D();
+            scene.add(newObjects);
+            currentObjects.push(newObjects);
         }
 
-        // Mouse interaction
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                setTheme(dot.dataset.theme);
+            });
+        });
+
+        // Animation
         let mouseX = 0;
         let mouseY = 0;
-        
+
         document.addEventListener('mousemove', (event) => {
             mouseX = (event.clientX / window.innerWidth - 0.5) * 2;
             mouseY = (event.clientY / window.innerHeight - 0.5) * 2;
         });
 
-        // Animation loop
         function animate() {
             requestAnimationFrame(animate);
 
-            // Handle cube solving animation
-            if (animating) {
-                const elapsed = Date.now() - startTime;
-                const duration = sequences[currentSequence].duration;
-                const progress = Math.min(elapsed / duration, 1);
-                
-                // Easing function
-                const easeProgress = 1 - Math.pow(1 - progress, 3);
-                
-                // Apply rotation to affected cubes
-                cubes.forEach(cube => {
-                    if (Math.abs(cube.position[targetRotation.axis]) === sequences[currentSequence].layer) {
-                        const start = startRotation[cube.id];
-                        if (start) {
-                            cube.rotation[targetRotation.axis] = start[targetRotation.axis] + targetRotation.angle * easeProgress;
-                        }
-                    }
-                });
-                
-                if (progress >= 1) {
-                    animating = false;
-                    currentSequence++;
-                    setTimeout(startNextRotation, 500); // Pause between moves
-                }
-            }
-
-            // Rotate entire cube group based on mouse
-            cubeGroup.rotation.y += (mouseX * 2 - cubeGroup.rotation.y) * 0.02;
-            cubeGroup.rotation.x += (mouseY * 1 - cubeGroup.rotation.x) * 0.02;
+            // Rotate current objects based on mouse
+            currentObjects.forEach(obj => {
+                obj.rotation.y += (mouseX * 0.02 - obj.rotation.y) * 0.02;
+                obj.rotation.x += (mouseY * 0.02 - obj.rotation.x) * 0.02;
+            });
 
             renderer.render(scene, camera);
         }
 
         animate();
 
-        // Start the first rotation
-        setTimeout(startNextRotation, 1000);
+        // Initialize with retro theme
+        setTheme('retro');
 
         // Resize
         window.addEventListener('resize', () => {

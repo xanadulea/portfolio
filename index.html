@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>5 THEMES · 3D</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <title>STUDIO · NEXT LEVEL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,225 +13,474 @@
         }
 
         body {
-            overflow: hidden;
-            transition: background 0.8s ease;
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0f;
+            color: #fff;
+            overflow-x: hidden;
         }
 
-        /* 3D Canvas */
+        /* Canvas for 3D background */
         #canvas-3d {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 1;
+            z-index: 0;
         }
 
         /* Content */
         .content {
             position: relative;
-            z-index: 2;
-            width: 100vw;
-            height: 100vh;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+            pointer-events: none;
+        }
+
+        /* Navigation */
+        nav {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            text-align: center;
-            transition: all 0.8s ease;
-            backdrop-filter: blur(2px);
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 80px;
+            pointer-events: auto;
         }
 
-        /* Theme 1: Retro */
-        body.theme-retro {
-            background: #0a0a1a;
-        }
-        .theme-retro .content {
-            color: #ff00ff;
-            font-family: 'Orbitron', sans-serif;
-            text-shadow: 0 0 20px #00ffff, 0 0 40px #ff00ff;
-        }
-        .theme-retro h1 {
-            font-size: 120px;
-            font-weight: 700;
-            letter-spacing: 4px;
-            margin-bottom: 20px;
-            animation: glitch 3s infinite;
-        }
-        @keyframes glitch {
-            0% { transform: skew(0deg); }
-            5% { transform: skew(2deg); text-shadow: -2px 0 cyan, 2px 0 magenta; }
-            10% { transform: skew(-2deg); }
-            15% { transform: skew(0deg); }
-        }
-        .theme-retro .sub {
-            font-size: 16px;
-            letter-spacing: 8px;
-            color: #00ffff;
-        }
-
-        /* Theme 2: Sci-Fi */
-        body.theme-scifi {
-            background: #001020;
-        }
-        .theme-scifi .content {
-            color: #88ddff;
-            font-family: 'Space Mono', monospace;
-        }
-        .theme-scifi h1 {
-            font-size: 100px;
-            font-weight: 400;
-            letter-spacing: 10px;
-            text-transform: uppercase;
-            border-right: 4px solid #00aaff;
-            padding-right: 20px;
-            animation: blink 1s step-end infinite;
-        }
-        @keyframes blink {
-            from, to { border-color: transparent; }
-            50% { border-color: #00aaff; }
-        }
-        .theme-scifi .sub {
-            color: #88ddff;
-            opacity: 0.7;
-        }
-
-        /* Theme 3: Luxury */
-        body.theme-luxury {
-            background: #0a0a0a;
-        }
-        .theme-luxury .content {
-            color: #d4af37;
-            font-family: 'Playfair Display', serif;
-        }
-        .theme-luxury h1 {
-            font-size: 120px;
+        .logo {
+            font-size: 14px;
             font-weight: 300;
             letter-spacing: 4px;
-            text-shadow: 0 0 30px rgba(212,175,55,0.3);
+            color: rgba(255,255,255,0.7);
         }
-        .theme-luxury h1 span {
-            font-weight: 700;
+
+        .logo span {
+            font-weight: 600;
             color: #fff;
-        }
-        .theme-luxury .sub {
-            letter-spacing: 12px;
-            font-size: 14px;
-            color: rgba(212,175,55,0.6);
+            text-shadow: 0 0 20px rgba(255,255,255,0.3);
         }
 
-        /* Theme 4: Natural */
-        body.theme-natural {
-            background: #1a2a1a;
-        }
-        .theme-natural .content {
-            color: #d4b38c;
-            font-family: 'Inter', sans-serif;
-        }
-        .theme-natural h1 {
-            font-size: 100px;
-            font-weight: 300;
-            letter-spacing: 2px;
-            color: #e8d5b5;
-        }
-        .theme-natural .sub {
-            color: #a8c3a8;
-            letter-spacing: 6px;
-        }
-
-        /* Theme 5: Minimal */
-        body.theme-minimal {
-            background: #f5f5f5;
-        }
-        .theme-minimal .content {
-            color: #111;
-            font-family: 'Inter', sans-serif;
-        }
-        .theme-minimal h1 {
-            font-size: 100px;
-            font-weight: 200;
-            letter-spacing: -2px;
-        }
-        .theme-minimal .sub {
-            color: #666;
-            font-weight: 300;
-        }
-
-        /* Common elements */
-        h1 {
-            margin-bottom: 20px;
-            transition: all 0.8s ease;
-        }
-
-        .sub {
-            font-size: 14px;
-            margin-bottom: 60px;
-            transition: all 0.8s ease;
-        }
-
-        /* Dots */
-        .dots {
+        .nav-links {
             display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+            text-shadow: 0 0 15px rgba(255,255,255,0.5);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #fff;
+            transition: width 0.3s;
+            box-shadow: 0 0 15px #fff;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero section */
+        .hero {
+            text-align: center;
+            margin-bottom: 120px;
+            pointer-events: none;
+        }
+
+        .glow-text {
+            font-size: 14px;
+            letter-spacing: 8px;
+            color: rgba(255,255,255,0.3);
+            margin-bottom: 30px;
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; text-shadow: none; }
+            50% { opacity: 0.8; text-shadow: 0 0 30px rgba(255,255,255,0.3); }
+        }
+
+        h1 {
+            font-size: 90px;
+            font-weight: 300;
+            letter-spacing: -2px;
+            line-height: 1;
+            margin-bottom: 30px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, #fff, #a0a0ff, #ffa0a0, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 300% 300%;
+            animation: gradient 8s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: rgba(255,255,255,0.5);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Stats */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            margin-bottom: 120px;
+            pointer-events: none;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 300;
+            color: #fff;
+            text-shadow: 0 0 30px rgba(255,255,255,0.3);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.4);
+        }
+
+        /* Work grid */
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 30px;
-            margin-top: 40px;
-            z-index: 10;
+            margin-bottom: 120px;
+            pointer-events: auto;
         }
 
-        .dot {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
+        .work-item {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 30px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
             cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(5px);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
         }
 
-        .dot:hover {
-            transform: scale(1.2);
+        .work-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.03), transparent);
+            transition: left 0.7s;
         }
 
-        .dot.active {
-            border-color: currentColor;
-            transform: scale(1.1);
+        .work-item:hover::before {
+            left: 100%;
         }
 
-        /* Dot colors per theme */
-        .theme-retro .dot { background: #ff00ff; box-shadow: 0 0 20px #00ffff; }
-        .theme-scifi .dot { background: #00aaff; box-shadow: 0 0 20px #00aaff; }
-        .theme-luxury .dot { background: #d4af37; box-shadow: 0 0 20px #d4af37; }
-        .theme-natural .dot { background: #a8c3a8; box-shadow: 0 0 20px #a8c3a8; }
-        .theme-minimal .dot { background: #111; box-shadow: 0 0 20px #999; }
+        .work-item:hover {
+            border-color: rgba(255,255,255,0.2);
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        }
 
-        /* Loading */
-        .loading {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
+        .work-year {
             font-size: 12px;
             color: rgba(255,255,255,0.3);
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .work-title {
+            font-size: 28px;
+            font-weight: 400;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .work-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: #fff;
+            box-shadow: 0 0 20px #fff;
+            transition: width 0.3s;
+        }
+
+        .work-item:hover .work-title::after {
+            width: 60px;
+        }
+
+        .work-category {
+            font-size: 14px;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* CTA Section */
+        .cta {
+            text-align: center;
+            padding: 80px 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 80px;
+            pointer-events: none;
+        }
+
+        .cta h2 {
+            font-size: 48px;
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+
+        .cta h2 span {
+            font-weight: 600;
+            background: linear-gradient(45deg, #fff, #a0a0ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 18px 50px;
+            background: transparent;
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 50px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+            pointer-events: auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-btn:hover::before {
+            left: 100%;
+        }
+
+        .cta-btn:hover {
+            border-color: #fff;
+            box-shadow: 0 0 40px rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            display: flex;
+            justify-content: space-between;
+            color: rgba(255,255,255,0.3);
+            font-size: 12px;
+            padding: 40px 0;
+            pointer-events: auto;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .social-links a {
+            color: rgba(255,255,255,0.3);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #fff;
+            text-shadow: 0 0 20px #fff;
+        }
+
+        /* Floating particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            from { transform: translateY(100vh); }
+            to { transform: translateY(-100vh); }
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            color: rgba(255,255,255,0.3);
+            font-size: 12px;
+            letter-spacing: 2px;
+            writing-mode: vertical-rl;
             z-index: 10;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(180deg, #fff, transparent);
+            animation: scrollPulse 2s infinite;
+        }
+
+        @keyframes scrollPulse {
+            0% { opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { opacity: 0.3; }
         }
     </style>
 </head>
-<body class="theme-retro">
-    <div id="canvas-3d"></div>
+<body>
+    <!-- 3D Canvas -->
+    <canvas id="canvas-3d"></canvas>
 
-    <div class="content">
-        <h1 id="main-title">RETRO<span>WAVE</span></h1>
-        <div class="sub" id="main-sub">1980s · NEON · DIGITAL</div>
-        
-        <div class="dots">
-            <div class="dot active" data-theme="retro"></div>
-            <div class="dot" data-theme="scifi"></div>
-            <div class="dot" data-theme="luxury"></div>
-            <div class="dot" data-theme="natural"></div>
-            <div class="dot" data-theme="minimal"></div>
-        </div>
+    <!-- Floating particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator">
+        <span>SCROLL</span>
+        <div class="scroll-line"></div>
     </div>
 
-    <div class="loading">✦ 5 THEMES · 5 WORLDS</div>
+    <!-- Main content -->
+    <div class="content">
+        <!-- Navigation -->
+        <nav>
+            <div class="logo"><span>✦</span> STUDIO</div>
+            <div class="nav-links">
+                <a href="#">WORK</a>
+                <a href="#">STUDIO</a>
+                <a href="#">THOUGHTS</a>
+                <a href="#">CONTACT</a>
+            </div>
+        </nav>
+
+        <!-- Hero -->
+        <section class="hero">
+            <div class="glow-text">CRAFTING THE FUTURE</div>
+            <h1>
+                <span class="gradient-text">CREATE WITHOUT</span><br>
+                <span class="gradient-text">LIMITS</span>
+            </h1>
+            <p>Digital experiences that live at the intersection of design, technology, and human emotion.</p>
+        </section>
+
+        <!-- Stats -->
+        <section class="stats">
+            <div class="stat-item">
+                <div class="stat-number">8+</div>
+                <div class="stat-label">YEARS</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">PROJECTS</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">∞</div>
+                <div class="stat-label">POSSIBILITIES</div>
+            </div>
+        </section>
+
+        <!-- Work grid -->
+        <section class="work-grid">
+            <div class="work-item">
+                <div class="work-year">2024</div>
+                <div class="work-title">NEBULA</div>
+                <div class="work-category">AI · Platform</div>
+            </div>
+            <div class="work-item">
+                <div class="work-year">2024</div>
+                <div class="work-title">ECHO</div>
+                <div class="work-category">Fintech · App</div>
+            </div>
+            <div class="work-item">
+                <div class="work-year">2023</div>
+                <div class="work-title">AURA</div>
+                <div class="work-category">Health · Tech</div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="cta">
+            <h2>Ready to build <span>something</span>?</h2>
+            <a href="#" class="cta-btn">START A CONVERSATION</a>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div>© 2026 STUDIO · ALL RIGHTS RESERVED</div>
+            <div class="social-links">
+                <a href="#">GH</a>
+                <a href="#">IG</a>
+                <a href="#">LI</a>
+                <a href="#">TW</a>
+            </div>
+        </footer>
+    </div>
 
     <script type="importmap">
         {
@@ -244,203 +493,114 @@
     <script type="module">
         import * as THREE from 'three';
 
-        // Setup
+        // --- SETUP ---
         const canvas = document.getElementById('canvas-3d');
         const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.z = 15;
+        scene.background = new THREE.Color(0x0a0a0f);
         
-        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(0, 0, 15);
+        
+        const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(window.devicePixelRatio);
 
-        // Lighting
-        const ambientLight = new THREE.AmbientLight(0x404040);
-        scene.add(ambientLight);
+        // --- CREATE FLOATING GLOBE (like GitHub) ---
+        const globeGroup = new THREE.Group();
 
-        // Create different 3D objects for each theme
-        let currentObjects = [];
+        // Outer sphere (wireframe)
+        const sphereGeo = new THREE.SphereGeometry(4, 32, 32);
+        const sphereMat = new THREE.MeshStandardMaterial({
+            color: 0x335588,
+            emissive: 0x112233,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.3
+        });
+        const sphere = new THREE.Mesh(sphereGeo, sphereMat);
+        globeGroup.add(sphere);
 
-        function createRetroTheme() {
-            const group = new THREE.Group();
+        // Inner glowing core
+        const coreGeo = new THREE.SphereGeometry(1.5, 32, 32);
+        const coreMat = new THREE.MeshStandardMaterial({
+            color: 0x88aaff,
+            emissive: 0x224466,
+            transparent: true,
+            opacity: 0.8
+        });
+        const core = new THREE.Mesh(coreGeo, coreMat);
+        globeGroup.add(core);
+
+        // Floating particles around globe
+        const particlesGeo = new THREE.BufferGeometry();
+        const particlesCount = 2000;
+        const posArray = new Float32Array(particlesCount * 3);
+        const colorArray = new Float32Array(particlesCount * 3);
+
+        for (let i = 0; i < particlesCount * 3; i += 3) {
+            const radius = 5 + Math.random() * 2;
+            const theta = Math.random() * Math.PI * 2;
+            const phi = Math.acos((Math.random() * 2) - 1);
             
-            // Neon grid floor
-            const gridHelper = new THREE.GridHelper(20, 20, 0xff00ff, 0x00ffff);
-            gridHelper.position.y = -2;
-            group.add(gridHelper);
+            posArray[i] = radius * Math.sin(phi) * Math.cos(theta);
+            posArray[i+1] = radius * Math.sin(phi) * Math.sin(theta);
+            posArray[i+2] = radius * Math.cos(phi);
 
-            // Floating cubes
-            for (let i = 0; i < 10; i++) {
-                const geometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
-                const material = new THREE.MeshStandardMaterial({ 
-                    color: Math.random() > 0.5 ? 0xff00ff : 0x00ffff,
-                    emissive: 0x222222,
-                    transparent: true,
-                    opacity: 0.8
-                });
-                const cube = new THREE.Mesh(geometry, material);
-                cube.position.x = (Math.random() - 0.5) * 8;
-                cube.position.y = (Math.random() - 0.5) * 4;
-                cube.position.z = (Math.random() - 0.5) * 5;
-                group.add(cube);
-            }
-
-            return group;
+            const color = new THREE.Color().setHSL(
+                0.6 + Math.random() * 0.3,
+                0.8,
+                0.5 + Math.random() * 0.3
+            );
+            colorArray[i] = color.r;
+            colorArray[i+1] = color.g;
+            colorArray[i+2] = color.b;
         }
 
-        function createSciFiTheme() {
-            const group = new THREE.Group();
-            
-            // Wireframe sphere
-            const sphereGeo = new THREE.SphereGeometry(2, 16, 16);
-            const sphereMat = new THREE.MeshStandardMaterial({ 
-                color: 0x00aaff,
-                wireframe: true,
-                emissive: 0x004466
-            });
-            const sphere = new THREE.Mesh(sphereGeo, sphereMat);
-            sphere.position.y = 1;
-            group.add(sphere);
+        particlesGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        particlesGeo.setAttribute('color', new THREE.BufferAttribute(colorArray, 3));
 
-            // Floating particles
-            const particlesGeo = new THREE.BufferGeometry();
-            const particlesPos = [];
-            for (let i = 0; i < 200; i++) {
-                particlesPos.push((Math.random() - 0.5) * 15);
-                particlesPos.push((Math.random() - 0.5) * 10);
-                particlesPos.push((Math.random() - 0.5) * 15);
-            }
-            particlesGeo.setAttribute('position', new THREE.Float32BufferAttribute(particlesPos, 3));
-            const particlesMat = new THREE.PointsMaterial({ color: 0x88ddff, size: 0.05 });
-            const particles = new THREE.Points(particlesGeo, particlesMat);
-            group.add(particles);
-
-            return group;
-        }
-
-        function createLuxuryTheme() {
-            const group = new THREE.Group();
-            
-            // Golden rings
-            for (let i = 0; i < 5; i++) {
-                const ringGeo = new THREE.TorusGeometry(2 + i * 0.5, 0.1, 16, 100);
-                const ringMat = new THREE.MeshStandardMaterial({ 
-                    color: 0xd4af37,
-                    emissive: 0x332211,
-                    roughness: 0.3,
-                    metalness: 0.8
-                });
-                const ring = new THREE.Mesh(ringGeo, ringMat);
-                ring.rotation.x = Math.PI / 2;
-                ring.rotation.z = i * 0.5;
-                group.add(ring);
-            }
-
-            return group;
-        }
-
-        function createNaturalTheme() {
-            const group = new THREE.Group();
-            
-            // Organic shapes
-            for (let i = 0; i < 20; i++) {
-                const geo = new THREE.SphereGeometry(0.3 + Math.random() * 0.3, 5);
-                const mat = new THREE.MeshStandardMaterial({ 
-                    color: Math.random() > 0.5 ? 0xa8c3a8 : 0xd4b38c,
-                    roughness: 0.7
-                });
-                const sphere = new THREE.Mesh(geo, mat);
-                sphere.position.x = (Math.random() - 0.5) * 10;
-                sphere.position.y = (Math.random() - 0.5) * 6;
-                sphere.position.z = (Math.random() - 0.5) * 8;
-                group.add(sphere);
-            }
-
-            return group;
-        }
-
-        function createMinimalTheme() {
-            const group = new THREE.Group();
-            
-            // Simple floating lines
-            for (let i = 0; i < 10; i++) {
-                const lineGeo = new THREE.BoxGeometry(0.1, 2, 0.1);
-                const lineMat = new THREE.MeshStandardMaterial({ color: 0xcccccc });
-                const line = new THREE.Mesh(lineGeo, lineMat);
-                line.position.x = (Math.random() - 0.5) * 12;
-                line.position.z = (Math.random() - 0.5) * 8;
-                group.add(line);
-            }
-
-            return group;
-        }
-
-        // Theme switching
-        const dots = document.querySelectorAll('.dot');
-        const body = document.body;
-        const mainTitle = document.getElementById('main-title');
-        const mainSub = document.getElementById('main-sub');
-
-        const themeData = {
-            retro: {
-                title: 'RETRO<span>WAVE</span>',
-                sub: '1980s · NEON · DIGITAL',
-                create3D: createRetroTheme
-            },
-            scifi: {
-                title: 'NOVA<span>CORE</span>',
-                sub: '2112 · FUTURISTIC · TECH',
-                create3D: createSciFiTheme
-            },
-            luxury: {
-                title: 'LUXE<span>COLLECTION</span>',
-                sub: 'ELEGANCE · GOLD · BESPOKE',
-                create3D: createLuxuryTheme
-            },
-            natural: {
-                title: 'EARTH<span>& SOUL</span>',
-                sub: 'ORGANIC · PURE · BALANCE',
-                create3D: createNaturalTheme
-            },
-            minimal: {
-                title: 'LESS<span>IS MORE</span>',
-                sub: 'CLEAN · SIMPLE · MODERN',
-                create3D: createMinimalTheme
-            }
-        };
-
-        function setTheme(theme) {
-            // Update body class
-            body.className = `theme-${theme}`;
-            
-            // Update text
-            mainTitle.innerHTML = themeData[theme].title;
-            mainSub.textContent = themeData[theme].sub;
-            
-            // Update dots
-            dots.forEach(dot => {
-                dot.classList.remove('active');
-                if (dot.dataset.theme === theme) {
-                    dot.classList.add('active');
-                }
-            });
-
-            // Update 3D scene
-            currentObjects.forEach(obj => scene.remove(obj));
-            currentObjects = [];
-            
-            const newObjects = themeData[theme].create3D();
-            scene.add(newObjects);
-            currentObjects.push(newObjects);
-        }
-
-        dots.forEach(dot => {
-            dot.addEventListener('click', () => {
-                setTheme(dot.dataset.theme);
-            });
+        const particlesMat = new THREE.PointsMaterial({
+            size: 0.1,
+            vertexColors: true,
+            transparent: true,
+            blending: THREE.AdditiveBlending,
+            sizeAttenuation: true
         });
 
-        // Animation
+        const particles = new THREE.Points(particlesGeo, particlesMat);
+        globeGroup.add(particles);
+
+        scene.add(globeGroup);
+
+        // --- ADD STARS BACKGROUND ---
+        const starsGeo = new THREE.BufferGeometry();
+        const starsCount = 2000;
+        const starsPos = new Float32Array(starsCount * 3);
+        
+        for (let i = 0; i < starsCount * 3; i += 3) {
+            starsPos[i] = (Math.random() - 0.5) * 200;
+            starsPos[i+1] = (Math.random() - 0.5) * 200;
+            starsPos[i+2] = (Math.random() - 0.5) * 200;
+        }
+        
+        starsGeo.setAttribute('position', new THREE.BufferAttribute(starsPos, 3));
+        const starsMat = new THREE.PointsMaterial({ color: 0xffffff, size: 0.1 });
+        const stars = new THREE.Points(starsGeo, starsMat);
+        scene.add(stars);
+
+        // --- LIGHTS ---
+        const ambientLight = new THREE.AmbientLight(0x404060);
+        scene.add(ambientLight);
+
+        const light1 = new THREE.PointLight(0x88aaff, 1, 20);
+        light1.position.set(2, 3, 5);
+        scene.add(light1);
+
+        const light2 = new THREE.PointLight(0xff88aa, 0.5, 20);
+        light2.position.set(-3, -1, 5);
+        scene.add(light2);
+
+        // --- MOUSE INTERACTION ---
         let mouseX = 0;
         let mouseY = 0;
 
@@ -449,29 +609,46 @@
             mouseY = (event.clientY / window.innerHeight - 0.5) * 2;
         });
 
+        // --- ANIMATION ---
         function animate() {
             requestAnimationFrame(animate);
 
-            // Rotate current objects based on mouse
-            currentObjects.forEach(obj => {
-                obj.rotation.y += (mouseX * 0.02 - obj.rotation.y) * 0.02;
-                obj.rotation.x += (mouseY * 0.02 - obj.rotation.x) * 0.02;
-            });
+            // Rotate globe based on mouse
+            globeGroup.rotation.y += (mouseX * 0.5 - globeGroup.rotation.y) * 0.02;
+            globeGroup.rotation.x += (mouseY * 0.3 - globeGroup.rotation.x) * 0.02;
+
+            // Rotate stars slowly
+            stars.rotation.y += 0.0001;
 
             renderer.render(scene, camera);
         }
 
         animate();
 
-        // Initialize with retro theme
-        setTheme('retro');
-
-        // Resize
+        // --- RESIZE ---
         window.addEventListener('resize', () => {
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
         });
+
+        // --- CREATE FLOATING PARTICLES (HTML) ---
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = 15 + Math.random() * 20 + 's';
+                particle.style.opacity = Math.random() * 0.3;
+                particle.style.width = Math.random() * 3 + 1 + 'px';
+                particle.style.height = particle.style.width;
+                container.appendChild(particle);
+            }
+        }
+
+        createParticles();
     </script>
 </body>
 </html>

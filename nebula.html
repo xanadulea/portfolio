@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEBULA · AI Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0f;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 50px;
+            background: rgba(10,10,15,0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff, #8a8aff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 50px;
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .nav-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 12px 30px;
+            border-radius: 30px;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .nav-btn:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 150px 50px 100px;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 60px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff, #8a8aff, #ff8a8a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 40px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn-primary {
+            background: #fff;
+            color: #000;
+            padding: 15px 40px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 30px rgba(255,255,255,0.1);
+        }
+
+        .btn-secondary {
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
+            padding: 15px 40px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .hero-image {
+            background: linear-gradient(135deg, #1a1a2a, #2a1a3a);
+            border-radius: 30px;
+            padding: 40px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 100px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Logos */
+        .logos {
+            padding: 60px 50px;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .logos p {
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+        }
+
+        .logo-grid {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .logo-item {
+            font-size: 24px;
+            font-weight: 300;
+            color: rgba(255,255,255,0.3);
+            letter-spacing: 1px;
+        }
+
+        /* Features */
+        .features {
+            padding: 100px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: rgba(255,255,255,0.5);
+            max-width: 600px;
+            margin: 0 auto 80px;
+            font-size: 18px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 30px;
+            padding: 40px;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.04);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: rgba(255,255,255,0.5);
+            line-height: 1.8;
+        }
+
+        /* Product Showcase */
+        .showcase {
+            padding: 100px 50px;
+            background: rgba(255,255,255,0.02);
+        }
+
+        .showcase-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .showcase-content h2 {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .showcase-content p {
+            color: rgba(255,255,255,0.6);
+            font-size: 18px;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .showcase-image {
+            background: linear-gradient(135deg, #2a1a3a, #1a2a3a);
+            border-radius: 30px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 120px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Pricing */
+        .pricing {
+            padding: 100px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .pricing-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 30px;
+            padding: 50px 40px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        .pricing-card.popular {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.2);
+            transform: scale(1.05);
+        }
+
+        .pricing-card h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .price {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .price span {
+            font-size: 16px;
+            color: rgba(255,255,255,0.4);
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 30px 0;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .pricing-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .pricing-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 40px;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .pricing-btn:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        /* CTA */
+        .cta {
+            padding: 100px 50px;
+            background: linear-gradient(135deg, #1a1a2a, #2a1a3a);
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 50px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            font-size: 18px;
+            color: rgba(255,255,255,0.7);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 18px 60px;
+            background: #fff;
+            color: #000;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.3s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 50px 30px;
+            background: #0a0a0f;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-col h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .footer-col a {
+            display: block;
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+
+        .footer-col a:hover {
+            color: #fff;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: rgba(255,255,255,0.3);
+            font-size: 14px;
+        }
+
+        /* Back button */
+        .back-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 10px 20px;
+            border-radius: 30px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .features-grid,
+            .pricing-grid,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .showcase-grid {
+                grid-template-columns: 1fr;
+            }
+            nav {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Back to portfolio -->
+    <a href="index.html" class="back-btn">← BACK TO PORTFOLIO</a>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">NEBULA</div>
+        <div class="nav-links">
+            <a href="#">Product</a>
+            <a href="#">Features</a>
+            <a href="#">Pricing</a>
+            <a href="#">About</a>
+        </div>
+        <a href="#" class="nav-btn">Get Started</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div>
+            <h1>Build faster with AI-powered development</h1>
+            <p>Nebula helps developers and teams ship better code faster with intelligent automation and real-time collaboration.</p>
+            <div class="hero-btns">
+                <a href="#" class="btn-primary">Start Building</a>
+                <a href="#" class="btn-secondary">Watch Demo</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            🚀
+        </div>
+    </section>
+
+    <!-- Logos Section -->
+    <section class="logos">
+        <p>TRUSTED BY INNOVATIVE TEAMS</p>
+        <div class="logo-grid">
+            <span class="logo-item">VERCEL</span>
+            <span class="logo-item">NETLIFY</span>
+            <span class="logo-item">GITHUB</span>
+            <span class="logo-item">FIGMA</span>
+            <span class="logo-item">SLACK</span>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2 class="section-title">Everything you need to build great products</h2>
+        <p class="section-subtitle">Powerful features that help you and your team work better together</p>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Lightning Fast</h3>
+                <p>Build and deploy in seconds with our optimized infrastructure and intelligent caching.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <h3>AI-Powered</h3>
+                <p>Get intelligent suggestions and automation that learn from your code patterns.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Enterprise Security</h3>
+                <p>Bank-level encryption and security features to keep your code safe.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌐</div>
+                <h3>Global CDN</h3>
+                <p>Serve your content from anywhere in the world with our global network.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Real-time Analytics</h3>
+                <p>See exactly how your applications are performing with detailed insights.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">👥</div>
+                <h3>Team Collaboration</h3>
+                <p>Work together seamlessly with real-time editing and comments.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Showcase -->
+    <section class="showcase">
+        <div class="showcase-grid">
+            <div class="showcase-content">
+                <h2>See your code come to life</h2>
+                <p>Nebula's real-time preview shows you exactly what you're building as you type. No more switching between editor and browser.</p>
+                <a href="#" class="btn-primary">Try it now</a>
+            </div>
+            <div class="showcase-image">
+                💻
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing">
+        <h2 class="section-title">Simple, transparent pricing</h2>
+        <p class="section-subtitle">Choose the plan that's right for you</p>
+        
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Starter</h3>
+                <div class="price">$0 <span>/month</span></div>
+                <ul class="pricing-features">
+                    <li>3 projects</li>
+                    <li>Basic analytics</li>
+                    <li>Community support</li>
+                    <li>2 team members</li>
+                </ul>
+                <a href="#" class="pricing-btn">Get Started</a>
+            </div>
+            <div class="pricing-card popular">
+                <h3>Pro</h3>
+                <div class="price">$29 <span>/month</span></div>
+                <ul class="pricing-features">
+                    <li>Unlimited projects</li>
+                    <li>Advanced analytics</li>
+                    <li>Priority support</li>
+                    <li>10 team members</li>
+                </ul>
+                <a href="#" class="pricing-btn">Get Started</a>
+            </div>
+            <div class="pricing-card">
+                <h3>Enterprise</h3>
+                <div class="price">$99 <span>/month</span></div>
+                <ul class="pricing-features">
+                    <li>Custom solutions</li>
+                    <li>Dedicated support</li>
+                    <li>SLA guarantee</li>
+                    <li>Unlimited team</li>
+                </ul>
+                <a href="#" class="pricing-btn">Contact Sales</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <h2>Ready to build something amazing?</h2>
+        <p>Join thousands of developers who are already shipping faster with Nebula.</p>
+        <a href="#" class="cta-btn">Start your free trial</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Product</h4>
+                <a href="#">Features</a>
+                <a href="#">Pricing</a>
+                <a href="#">Integrations</a>
+                <a href="#">Changelog</a>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <a href="#">Documentation</a>
+                <a href="#">Tutorials</a>
+                <a href="#">Blog</a>
+                <a href="#">Community</a>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <a href="#">About</a>
+                <a href="#">Careers</a>
+                <a href="#">Press</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Security</a>
+                <a href="#">Status</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 NEBULA. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

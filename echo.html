@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECHO · Medical Center</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 600;
+            color: #0f4c81;
+        }
+
+        .logo span {
+            color: #7fb7d9;
+            font-weight: 300;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            color: #4b5563;
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #0f4c81;
+        }
+
+        .nav-btn {
+            background: #0f4c81;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .nav-btn:hover {
+            background: #0a3a5e;
+            transform: translateY(-2px);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 150px 50px 100px;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: #0f4c81;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #4b5563;
+            margin-bottom: 30px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn-primary {
+            background: #0f4c81;
+            color: white;
+            padding: 14px 35px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: #0a3a5e;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            border: 2px solid #0f4c81;
+            color: #0f4c81;
+            padding: 12px 35px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: #f0f7ff;
+        }
+
+        .hero-image {
+            background: linear-gradient(135deg, #e6f0fa, #d4e4f0);
+            border-radius: 30px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 120px;
+        }
+
+        /* Trust Badges */
+        .trust {
+            padding: 40px 50px;
+            background: white;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .trust p {
+            color: #64748b;
+            margin-bottom: 30px;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        .trust-grid {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #334155;
+        }
+
+        .trust-icon {
+            width: 40px;
+            height: 40px;
+            background: #e6f0fa;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0f4c81;
+            font-weight: bold;
+        }
+
+        /* Services */
+        .services {
+            padding: 80px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 600;
+            color: #0f4c81;
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto 60px;
+            font-size: 18px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            border: 1px solid #e2e8f0;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(15,76,129,0.1);
+            border-color: #0f4c81;
+        }
+
+        .service-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #0f4c81;
+        }
+
+        .service-card p {
+            color: #64748b;
+            line-height: 1.8;
+        }
+
+        /* Doctors */
+        .doctors {
+            padding: 80px 50px;
+            background: #f1f5f9;
+        }
+
+        .doctors-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .doctor-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+
+        .doctor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(15,76,129,0.1);
+        }
+
+        .doctor-image {
+            height: 250px;
+            background: linear-gradient(135deg, #d4e4f0, #c0d4e8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+        }
+
+        .doctor-info {
+            padding: 25px;
+        }
+
+        .doctor-info h3 {
+            font-size: 20px;
+            margin-bottom: 5px;
+            color: #0f4c81;
+        }
+
+        .doctor-title {
+            color: #4b5563;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .doctor-desc {
+            color: #64748b;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Stats */
+        .stats {
+            padding: 60px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 40px;
+            font-weight: 700;
+            color: #0f4c81;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #64748b;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Appointment */
+        .appointment {
+            padding: 80px 50px;
+            background: white;
+        }
+
+        .appointment-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .appointment-content h2 {
+            font-size: 36px;
+            font-weight: 600;
+            color: #0f4c81;
+            margin-bottom: 20px;
+        }
+
+        .appointment-content p {
+            color: #64748b;
+            font-size: 18px;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .appointment-features {
+            list-style: none;
+        }
+
+        .appointment-features li {
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #4b5563;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .appointment-features li:last-child {
+            border-bottom: none;
+        }
+
+        .check {
+            color: #0f4c81;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .appointment-form {
+            background: #f8fafc;
+            border-radius: 30px;
+            padding: 40px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #4b5563;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #0f4c81;
+            box-shadow: 0 0 0 3px rgba(15,76,129,0.1);
+        }
+
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .form-btn {
+            width: 100%;
+            padding: 14px;
+            background: #0f4c81;
+            color: white;
+            border: none;
+            border-radius: 40px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .form-btn:hover {
+            background: #0a3a5e;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 50px;
+            background: #f1f5f9;
+        }
+
+        .testimonials-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .testimonial-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #4b5563;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #e6f0fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0f4c81;
+            font-weight: bold;
+        }
+
+        .author-info h4 {
+            font-size: 16px;
+            margin-bottom: 3px;
+            color: #0f4c81;
+        }
+
+        .author-info p {
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        /* Footer */
+        footer {
+            background: #1e293b;
+            color: white;
+            padding: 60px 50px 30px;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-col h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #e2e8f0;
+        }
+
+        .footer-col a {
+            display: block;
+            color: #94a3b8;
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+            font-size: 14px;
+        }
+
+        .footer-col a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .footer-bottom a {
+            color: #94a3b8;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .footer-bottom a:hover {
+            color: white;
+        }
+
+        /* Back button */
+        .back-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: white;
+            border: 1px solid #e2e8f0;
+            padding: 10px 20px;
+            border-radius: 30px;
+            color: #0f4c81;
+            text-decoration: none;
+            font-size: 14px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            z-index: 100;
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #0f4c81;
+            color: white;
+            border-color: #0f4c81;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .services-grid,
+            .doctors-grid,
+            .stats,
+            .testimonials-grid,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .appointment-grid {
+                grid-template-columns: 1fr;
+            }
+            nav {
+                flex-direction: column;
+                gap: 20px;
+                padding: 20px;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Back to portfolio -->
+    <a href="index.html" class="back-btn">← BACK TO PORTFOLIO</a>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">ECHO <span>Medical Center</span></div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Services</a>
+            <a href="#">Doctors</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </div>
+        <a href="#" class="nav-btn">Book Appointment</a>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div>
+            <h1>Your Health, Our Priority</h1>
+            <p>Echo Medical Center provides compassionate, comprehensive healthcare for you and your family. With state-of-the-art facilities and experienced doctors, we're here for you 24/7.</p>
+            <div class="hero-btns">
+                <a href="#" class="btn-primary">Find a Doctor</a>
+                <a href="#" class="btn-secondary">Our Services</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            🏥
+        </div>
+    </section>
+
+    <!-- Trust Badges -->
+    <section class="trust">
+        <p>TRUSTED BY THOUSANDS OF PATIENTS</p>
+        <div class="trust-grid">
+            <div class="trust-item">
+                <div class="trust-icon">✓</div>
+                <span>Board Certified</span>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon">✓</div>
+                <span>24/7 Emergency</span>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon">✓</div>
+                <span>Insurance Accepted</span>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon">✓</div>
+                <span>100+ Specialists</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services">
+        <h2 class="section-title">Our Medical Services</h2>
+        <p class="section-subtitle">Comprehensive healthcare services tailored to your needs</p>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">❤️</div>
+                <h3>Cardiology</h3>
+                <p>Expert heart care with advanced diagnostic and treatment options for all cardiac conditions.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🧠</div>
+                <h3>Neurology</h3>
+                <p>Comprehensive care for brain and nervous system disorders with leading specialists.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🦷</div>
+                <h3>Dentistry</h3>
+                <p>Complete dental care for the whole family, from routine checkups to complex procedures.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">👁️</div>
+                <h3>Ophthalmology</h3>
+                <p>Advanced eye care and vision correction services with state-of-the-art technology.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🫀</div>
+                <h3>Orthopedics</h3>
+                <p>Expert care for bones, joints, and muscles to help you stay active and pain-free.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">👶</div>
+                <h3>Pediatrics</h3>
+                <p>Specialized healthcare for children from infancy through adolescence.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Doctors -->
+    <section class="doctors">
+        <h2 class="section-title">Meet Our Specialists</h2>
+        <p class="section-subtitle">Experienced doctors dedicated to your wellbeing</p>
+        
+        <div class="doctors-grid">
+            <div class="doctor-card">
+                <div class="doctor-image">👩‍⚕️</div>
+                <div class="doctor-info">
+                    <h3>Dr. Sarah Chen</h3>
+                    <div class="doctor-title">Cardiologist, MD</div>
+                    <p class="doctor-desc">15+ years experience in interventional cardiology. Harvard trained.</p>
+                </div>
+            </div>
+            <div class="doctor-card">
+                <div class="doctor-image">👨‍⚕️</div>
+                <div class="doctor-info">
+                    <h3>Dr. James Wilson</h3>
+                    <div class="doctor-title">Neurologist, PhD</div>
+                    <p class="doctor-desc">Specializes in neurodegenerative disorders and stroke treatment.</p>
+                </div>
+            </div>
+            <div class="doctor-card">
+                <div class="doctor-image">👩‍⚕️</div>
+                <div class="doctor-info">
+                    <h3>Dr. Emily Rodriguez</h3>
+                    <div class="doctor-title">Pediatrician, MD</div>
+                    <p class="doctor-desc">Dedicated to children's health with a gentle, caring approach.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="stat-item">
+            <div class="stat-number">50K+</div>
+            <div class="stat-label">PATIENTS</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">100+</div>
+            <div class="stat-label">SPECIALISTS</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">25</div>
+            <div class="stat-label">YEARS</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">EMERGENCY</div>
+        </div>
+    </section>
+
+    <!-- Appointment -->
+    <section class="appointment">
+        <div class="appointment-grid">
+            <div class="appointment-content">
+                <h2>Book Your Appointment Today</h2>
+                <p>Take the first step towards better health. Schedule a visit with our specialists at your convenience.</p>
+                <ul class="appointment-features">
+                    <li><span class="check">✓</span> Same-day appointments available</li>
+                    <li><span class="check">✓</span> Virtual consultations</li>
+                    <li><span class="check">✓</span> Most insurance accepted</li>
+                    <li><span class="check">✓</span> No long waiting lists</li>
+                </ul>
+            </div>
+            <div class="appointment-form">
+                <form>
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" placeholder="john@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="tel" placeholder="(555) 123-4567">
+                    </div>
+                    <div class="form-group">
+                        <label>Service</label>
+                        <select>
+                            <option>Cardiology</option>
+                            <option>Neurology</option>
+                            <option>Pediatrics</option>
+                            <option>Dentistry</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea placeholder="Any specific concerns?"></textarea>
+                    </div>
+                    <button type="submit" class="form-btn">Request Appointment</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <h2 class="section-title">What Our Patients Say</h2>
+        <p class="section-subtitle">Real stories from real people we've had the privilege to care for</p>
+        
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-text">"The care I received at Echo was exceptional. Dr. Chen took time to explain everything and made me feel truly heard. I couldn't ask for better healthcare."</div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">M</div>
+                    <div class="author-info">
+                        <h4>Margaret Thompson</h4>
+                        <p>Cardiology Patient</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">"As a new mom, I was nervous about finding the right pediatrician. Dr. Rodriguez is wonderful with my baby and so supportive. We're so grateful."</div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">J</div>
+                    <div class="author-info">
+                        <h4>Jessica Park</h4>
+                        <p>Pediatrics Patient</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Echo Medical</h4>
+                <a href="#">About Us</a>
+                <a href="#">Careers</a>
+                <a href="#">Insurance</a>
+                <a href="#">Patient Portal</a>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <a href="#">Cardiology</a>
+                <a href="#">Neurology</a>
+                <a href="#">Pediatrics</a>
+                <a href="#">Dentistry</a>
+                <a href="#">Orthopedics</a>
+            </div>
+            <div class="footer-col">
+                <h4>Patients</h4>
+                <a href="#">Appointments</a>
+                <a href="#">Medical Records</a>
+                <a href="#">Billing</a>
+                <a href="#">FAQs</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <a href="#">(555) 123-4567</a>
+                <a href="#">info@echo.medical</a>
+                <a href="#">123 Health Ave</a>
+                <a href="#">Emergency: 911</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Echo Medical Center. All rights reserved.</p>
+            <p>
+                <a href="#">Privacy Policy</a> |
+                <a href="#">Terms of Use</a> |
+                <a href="#">Accessibility</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

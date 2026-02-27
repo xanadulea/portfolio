@@ -23,46 +23,6 @@
             overflow-x: hidden;
         }
 
-        /* Custom cursor - more magical */
-        .cursor {
-            width: 40px;
-            height: 40px;
-            border: 2px solid rgba(255,255,255,0.3);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transition: all 0.1s ease;
-            transform: translate(-50%, -50%);
-            mix-blend-mode: difference;
-            backdrop-filter: invert(1);
-        }
-
-        .cursor::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 4px;
-            height: 4px;
-            background: white;
-            border-radius: 50%;
-            animation: cursorPulse 2s infinite;
-        }
-
-        @keyframes cursorPulse {
-            0%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-            50% { opacity: 0.5; transform: translate(-50%, -50%) scale(1.5); }
-        }
-
-        .cursor.hover {
-            width: 60px;
-            height: 60px;
-            border-color: rgba(255,255,255,0.8);
-            backdrop-filter: blur(5px);
-        }
-
         /* Canvas for 3D */
         #canvas-3d {
             position: fixed;
@@ -84,7 +44,7 @@
             pointer-events: none;
         }
 
-        /* Navigation with floating effect */
+        /* Navigation */
         nav {
             display: flex;
             justify-content: space-between;
@@ -177,7 +137,7 @@
             width: 100%;
         }
 
-        /* Hero section with particle text */
+        /* Hero section */
         .hero {
             text-align: center;
             margin-bottom: 180px;
@@ -244,7 +204,6 @@
             animation: gradientFlow 6s ease infinite;
             display: inline-block;
             filter: drop-shadow(0 0 40px rgba(255,255,255,0.2));
-            position: relative;
         }
 
         @keyframes gradientFlow {
@@ -266,7 +225,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            opacity: 0.5;
+            opacity: 0.3;
         }
 
         .glitch-text::before {
@@ -283,18 +242,18 @@
 
         @keyframes glitch1 {
             0%, 100% { transform: translate(0); }
-            20% { transform: translate(-3px, 2px); }
-            40% { transform: translate(3px, -2px); }
-            60% { transform: translate(-2px, 3px); }
-            80% { transform: translate(2px, -3px); }
+            20% { transform: translate(-2px, 1px); }
+            40% { transform: translate(2px, -1px); }
+            60% { transform: translate(-1px, 2px); }
+            80% { transform: translate(1px, -2px); }
         }
 
         @keyframes glitch2 {
             0%, 100% { transform: translate(0); }
-            20% { transform: translate(3px, -2px); }
-            40% { transform: translate(-3px, 2px); }
-            60% { transform: translate(2px, -3px); }
-            80% { transform: translate(-2px, 3px); }
+            20% { transform: translate(2px, -1px); }
+            40% { transform: translate(-2px, 1px); }
+            60% { transform: translate(1px, -2px); }
+            80% { transform: translate(-1px, 2px); }
         }
 
         .hero p {
@@ -323,7 +282,7 @@
             to { transform: translateX(-50%) rotate(360deg); }
         }
 
-        /* Stats with glass morphism */
+        /* Stats */
         .stats {
             display: flex;
             justify-content: center;
@@ -352,29 +311,11 @@
             overflow: hidden;
         }
 
-        .stat-item::before {
-            content: '';
-            position: absolute;
-            top: var(--y, 0);
-            left: var(--x, 0);
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .stat-item:hover::before {
-            opacity: 1;
-        }
-
         .stat-item:hover {
             transform: translateY(-15px) scale(1.02);
             border-color: rgba(255,255,255,0.2);
             box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            background: rgba(255,255,255,0.05);
         }
 
         .stat-number {
@@ -415,7 +356,7 @@
             font-size: 8px;
         }
 
-        /* Featured work with 3D cards */
+        /* Featured work */
         .featured {
             margin-bottom: 180px;
             animation: workFadeIn 3s ease;
@@ -484,27 +425,11 @@
             animation-delay: 1s;
         }
 
-        .work-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255,255,255,0.1) 0%, transparent 50%);
-            opacity: 0;
-            transition: opacity 0.3s;
-            pointer-events: none;
-        }
-
-        .work-item:hover::before {
-            opacity: 1;
-        }
-
         .work-item:hover {
             transform: translateY(-20px) scale(1.05) rotateX(5deg);
             border-color: rgba(255,255,255,0.2);
             box-shadow: 0 50px 100px rgba(0,0,0,0.5);
+            background: rgba(255,255,255,0.05);
         }
 
         .work-year {
@@ -565,7 +490,7 @@
             bottom: 50px;
         }
 
-        /* Testimonials with floating avatars */
+        /* Testimonials */
         .testimonials {
             margin-bottom: 180px;
             animation: testimonialFadeIn 3.5s ease;
@@ -601,14 +526,15 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
-            animation: rotate 20s infinite linear;
+            background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
+            animation: rotate 30s infinite linear;
         }
 
         .testimonial-item:hover {
             transform: translateX(-15px) scale(1.02);
             border-color: rgba(255,255,255,0.2);
             box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            background: rgba(255,255,255,0.04);
         }
 
         .testimonial-text {
@@ -661,7 +587,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
             animation: rotate 4s infinite linear;
         }
 
@@ -678,7 +604,7 @@
             letter-spacing: 2px;
         }
 
-        /* CTA with magnetic effect */
+        /* CTA */
         .cta {
             text-align: center;
             padding: 120px 0;
@@ -702,8 +628,8 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
-            animation: rotate 30s infinite linear;
+            background: radial-gradient(circle, rgba(255,255,255,0.02) 0%, transparent 70%);
+            animation: rotate 40s infinite linear;
         }
 
         .cta h2 {
@@ -845,6 +771,7 @@
             pointer-events: none;
             opacity: 0;
             animation: particleFloat 15s infinite linear;
+            will-change: transform, opacity;
         }
 
         @keyframes particleFloat {
@@ -853,10 +780,10 @@
                 opacity: 0;
             }
             10% {
-                opacity: 0.3;
+                opacity: 0.2;
             }
             90% {
-                opacity: 0.3;
+                opacity: 0.2;
             }
             100% {
                 transform: translateY(-100vh) scale(1);
@@ -963,7 +890,7 @@
             100% { transform: scaleX(0); opacity: 0; }
         }
 
-        /* Floating orbs (replacing planet) */
+        /* Floating orbs */
         .floating-orbs {
             position: fixed;
             top: 0;
@@ -1006,6 +933,26 @@
             0% { transform: translate(0, 0) scale(1); }
             100% { transform: translate(50px, 50px) scale(1.2); }
         }
+
+        /* Remove cursor lag - simple dot cursor */
+        .simple-cursor {
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 20px white;
+            opacity: 0.5;
+            transition: opacity 0.2s;
+        }
+
+        .simple-cursor.hover {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.5);
+        }
     </style>
 </head>
 <body>
@@ -1017,13 +964,13 @@
         </div>
     </div>
 
-    <!-- Custom cursor -->
-    <div class="cursor" id="cursor"></div>
+    <!-- Simple cursor (no lag) -->
+    <div class="simple-cursor" id="cursor"></div>
 
     <!-- Progress bar -->
     <div class="progress-bar" id="progressBar"></div>
 
-    <!-- Floating orbs (replaces planet) -->
+    <!-- Floating orbs -->
     <div class="floating-orbs">
         <div class="orb"></div>
         <div class="orb"></div>
@@ -1165,7 +1112,7 @@
     <script type="module">
         import * as THREE from 'three';
 
-        // --- 3D SETUP - NO PLANET, JUST PURE MAGIC ---
+        // --- 3D SETUP - OPTIMIZED ---
         const canvas = document.getElementById('canvas-3d');
         const scene = new THREE.Scene();
         scene.background = new THREE.Color(0x020308);
@@ -1173,21 +1120,20 @@
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         camera.position.set(0, 0, 12);
         
-        const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+        const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false, powerPreference: "high-performance" });
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-        // --- PURE ENERGY FIELD (replaces planet) ---
+        // --- OPTIMIZED ENERGY FIELD (fewer particles for better performance) ---
         const energyGroup = new THREE.Group();
 
-        // Particle field - thousands of floating lights
-        const particleCount = 4000;
+        // Particle field - reduced from 4000 to 2000 for better performance
+        const particleCount = 2000;
         const particleGeo = new THREE.BufferGeometry();
         const particlePos = new Float32Array(particleCount * 3);
         const particleColors = new Float32Array(particleCount * 3);
 
         for (let i = 0; i < particleCount * 3; i += 3) {
-            // Random distribution in a sphere
             const radius = 8 + Math.random() * 5;
             const theta = Math.random() * Math.PI * 2;
             const phi = Math.acos((Math.random() * 2) - 1);
@@ -1196,7 +1142,6 @@
             particlePos[i+1] = radius * Math.sin(phi) * Math.sin(theta);
             particlePos[i+2] = radius * Math.cos(phi);
 
-            // Dreamy colors - pastels with variation
             const hue = (Math.random() * 0.3 + 0.6 + (Math.random() - 0.5) * 0.2) % 1.0;
             const color = new THREE.Color().setHSL(hue, 0.8, 0.6);
             particleColors[i] = color.r;
@@ -1219,9 +1164,9 @@
         const particles = new THREE.Points(particleGeo, particleMat);
         energyGroup.add(particles);
 
-        // Floating light wisps
-        for (let j = 0; j < 20; j++) {
-            const wispCount = 50;
+        // Reduced wisps from 20 to 10 for performance
+        for (let j = 0; j < 10; j++) {
+            const wispCount = 30;
             const wispGeo = new THREE.BufferGeometry();
             const wispPos = new Float32Array(wispCount * 3);
             
@@ -1247,9 +1192,9 @@
 
         scene.add(energyGroup);
 
-        // Distant stars
+        // Distant stars - reduced for performance
         const starsGeo = new THREE.BufferGeometry();
-        const starsCount = 3000;
+        const starsCount = 1500;
         const starsPos = new Float32Array(starsCount * 3);
         
         for (let i = 0; i < starsCount * 3; i += 3) {
@@ -1294,15 +1239,12 @@
             requestAnimationFrame(animate);
 
             // Smooth rotation based on mouse
-            energyGroup.rotation.y += (targetRotationY - energyGroup.rotation.y) * 0.03;
-            energyGroup.rotation.x += (targetRotationX - energyGroup.rotation.x) * 0.03;
+            energyGroup.rotation.y += (targetRotationY - energyGroup.rotation.y) * 0.05;
+            energyGroup.rotation.x += (targetRotationX - energyGroup.rotation.x) * 0.05;
 
             // Gentle constant rotation
-            energyGroup.rotation.y += 0.0005;
+            energyGroup.rotation.y += 0.0003;
             
-            // Stars slowly rotate
-            stars.rotation.y += 0.0001;
-
             renderer.render(scene, camera);
         }
 
@@ -1315,7 +1257,7 @@
             renderer.setSize(window.innerWidth, window.innerHeight);
         });
 
-        // --- CURSOR EFFECT ---
+        // --- SIMPLE CURSOR (no lag) ---
         const cursor = document.getElementById('cursor');
         
         document.addEventListener('mousemove', (e) => {
@@ -1343,7 +1285,6 @@
             }, 30);
         }
 
-        // Start counters when in view
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1368,17 +1309,17 @@
             document.getElementById('progressBar').style.width = scrolled + '%';
         });
 
-        // --- CREATE FLOATING PARTICLES (HTML) ---
+        // --- CREATE FLOATING PARTICLES (reduced for performance) ---
         function createParticles() {
             const container = document.getElementById('particlesContainer');
-            for (let i = 0; i < 200; i++) {
+            for (let i = 0; i < 100; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 particle.style.left = Math.random() * 100 + '%';
                 particle.style.animationDelay = Math.random() * 15 + 's';
                 particle.style.animationDuration = 10 + Math.random() * 20 + 's';
-                particle.style.opacity = (Math.random() * 0.3).toString();
-                particle.style.width = (Math.random() * 3 + 1) + 'px';
+                particle.style.opacity = (Math.random() * 0.2).toString();
+                particle.style.width = (Math.random() * 2 + 1) + 'px';
                 particle.style.height = particle.style.width;
                 particle.style.background = `hsl(${Math.random() * 60 + 200}, 80%, 70%)`;
                 container.appendChild(particle);
@@ -1386,17 +1327,6 @@
         }
 
         createParticles();
-
-        // --- WORK ITEM MOUSE FOLLOW EFFECT ---
-        document.querySelectorAll('.work-item, .stat-item').forEach(item => {
-            item.addEventListener('mousemove', (e) => {
-                const rect = item.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                item.style.setProperty('--x', x + 'px');
-                item.style.setProperty('--y', y + 'px');
-            });
-        });
 
         // --- LOADING SCREEN ---
         window.addEventListener('load', () => {

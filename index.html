@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STUDIO · INFINITE</title>
+    <title>STUDIO · INFINITY</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
@@ -18,29 +18,49 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: #03050a;
+            background: #020308;
             color: #fff;
             overflow-x: hidden;
         }
 
-        /* Custom cursor */
+        /* Custom cursor - more magical */
         .cursor {
-            width: 20px;
-            height: 20px;
-            border: 2px solid rgba(255,255,255,0.5);
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(255,255,255,0.3);
             border-radius: 50%;
             position: fixed;
             pointer-events: none;
             z-index: 9999;
-            transition: transform 0.2s;
+            transition: all 0.1s ease;
             transform: translate(-50%, -50%);
             mix-blend-mode: difference;
+            backdrop-filter: invert(1);
+        }
+
+        .cursor::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            animation: cursorPulse 2s infinite;
+        }
+
+        @keyframes cursorPulse {
+            0%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.5; transform: translate(-50%, -50%) scale(1.5); }
         }
 
         .cursor.hover {
-            transform: translate(-50%, -50%) scale(1.5);
-            background: rgba(255,255,255,0.1);
-            border-color: #fff;
+            width: 60px;
+            height: 60px;
+            border-color: rgba(255,255,255,0.8);
+            backdrop-filter: blur(5px);
         }
 
         /* Canvas for 3D */
@@ -51,56 +71,69 @@
             width: 100%;
             height: 100%;
             z-index: 0;
+            opacity: 0.9;
         }
 
         /* Content overlay */
         .content {
             position: relative;
-            z-index: 1;
+            z-index: 2;
             max-width: 1400px;
             margin: 0 auto;
             padding: 40px;
             pointer-events: none;
         }
 
-        /* Navigation */
+        /* Navigation with floating effect */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
-            margin-bottom: 100px;
+            padding: 30px 0;
+            margin-bottom: 120px;
             pointer-events: auto;
             position: relative;
+            animation: navFadeIn 1.5s ease;
+        }
+
+        @keyframes navFadeIn {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .logo {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 300;
-            letter-spacing: 6px;
-            color: rgba(255,255,255,0.7);
+            letter-spacing: 8px;
+            color: rgba(255,255,255,0.8);
             position: relative;
-            overflow: hidden;
+            padding: 10px 0;
         }
 
         .logo span {
             font-weight: 700;
             color: #fff;
             text-shadow: 0 0 30px rgba(255,255,255,0.5);
+            animation: glowPulse 3s infinite;
         }
 
-        .logo::after {
+        @keyframes glowPulse {
+            0%, 100% { text-shadow: 0 0 30px rgba(255,255,255,0.3); }
+            50% { text-shadow: 0 0 60px rgba(255,255,255,0.8); }
+        }
+
+        .logo::before {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: 0;
             left: 0;
             width: 100%;
             height: 1px;
             background: linear-gradient(90deg, transparent, #fff, transparent);
-            animation: logoLine 3s infinite;
+            animation: lineMove 3s infinite;
         }
 
-        @keyframes logoLine {
+        @keyframes lineMove {
             0% { transform: translateX(-100%); }
             50% { transform: translateX(0); }
             100% { transform: translateX(100%); }
@@ -108,23 +141,24 @@
 
         .nav-links {
             display: flex;
-            gap: 60px;
+            gap: 70px;
         }
 
         .nav-links a {
-            color: rgba(255,255,255,0.5);
+            color: rgba(255,255,255,0.4);
             text-decoration: none;
             font-size: 14px;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             transition: all 0.4s;
             position: relative;
             padding: 5px 0;
+            text-transform: uppercase;
         }
 
         .nav-links a::before {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: -5px;
             left: 0;
             width: 0;
             height: 1px;
@@ -136,32 +170,44 @@
         .nav-links a:hover {
             color: #fff;
             text-shadow: 0 0 20px rgba(255,255,255,0.5);
+            transform: translateY(-2px);
         }
 
         .nav-links a:hover::before {
             width: 100%;
         }
 
-        /* Hero section */
+        /* Hero section with particle text */
         .hero {
             text-align: center;
-            margin-bottom: 150px;
+            margin-bottom: 180px;
             position: relative;
+            animation: heroFadeIn 2s ease;
+        }
+
+        @keyframes heroFadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         .floating-badge {
             display: inline-block;
-            padding: 10px 30px;
-            background: rgba(255,255,255,0.03);
+            padding: 12px 35px;
+            background: rgba(255,255,255,0.02);
             border: 1px solid rgba(255,255,255,0.1);
             border-radius: 50px;
             font-size: 12px;
-            letter-spacing: 2px;
-            margin-bottom: 40px;
+            letter-spacing: 4px;
+            margin-bottom: 50px;
             backdrop-filter: blur(10px);
-            animation: badgePulse 3s infinite;
             position: relative;
             overflow: hidden;
+            animation: badgeFloat 3s infinite;
+        }
+
+        @keyframes badgeFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
 
         .floating-badge::before {
@@ -172,163 +218,233 @@
             width: 200%;
             height: 200%;
             background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            animation: badgeGlow 4s infinite;
+            animation: rotate 4s infinite linear;
         }
 
-        @keyframes badgeGlow {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes badgePulse {
-            0%, 100% { box-shadow: 0 0 20px rgba(255,255,255,0.1); }
-            50% { box-shadow: 0 0 40px rgba(255,255,255,0.2); }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         h1 {
-            font-size: 120px;
-            font-weight: 300;
+            font-size: 130px;
+            font-weight: 200;
             letter-spacing: -4px;
-            line-height: 0.9;
-            margin-bottom: 30px;
+            line-height: 0.85;
+            margin-bottom: 40px;
             position: relative;
-            display: inline-block;
         }
 
         .gradient-text {
             background: linear-gradient(45deg, 
-                #fff, #ff8a8a, #ffd58a, #8aff8a, #8ad5ff, #d58aff, #fff);
+                #fff, #ffb3b3, #b3d9ff, #b3ffb3, #ffb3ff, #fff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-size: 300% 300%;
-            animation: gradientShift 8s ease infinite;
+            background-size: 400% 400%;
+            animation: gradientFlow 6s ease infinite;
             display: inline-block;
-            filter: drop-shadow(0 0 30px rgba(255,255,255,0.3));
+            filter: drop-shadow(0 0 40px rgba(255,255,255,0.2));
+            position: relative;
         }
 
-        @keyframes gradientShift {
+        @keyframes gradientFlow {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
+        .glitch-text {
+            position: relative;
+            display: inline-block;
+        }
+
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.5;
+        }
+
+        .glitch-text::before {
+            animation: glitch1 2s infinite;
+            color: #ff00ff;
+            z-index: -1;
+        }
+
+        .glitch-text::after {
+            animation: glitch2 2s infinite;
+            color: #00ffff;
+            z-index: -2;
+        }
+
+        @keyframes glitch1 {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-3px, 2px); }
+            40% { transform: translate(3px, -2px); }
+            60% { transform: translate(-2px, 3px); }
+            80% { transform: translate(2px, -3px); }
+        }
+
+        @keyframes glitch2 {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(3px, -2px); }
+            40% { transform: translate(-3px, 2px); }
+            60% { transform: translate(2px, -3px); }
+            80% { transform: translate(-2px, 3px); }
+        }
+
         .hero p {
-            font-size: 20px;
+            font-size: 18px;
             color: rgba(255,255,255,0.5);
             max-width: 700px;
             margin: 0 auto;
-            line-height: 1.8;
+            line-height: 2;
             position: relative;
-            padding: 20px;
-        }
-
-        .hero p::before,
-        .hero p::after {
-            content: '';
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            opacity: 0.3;
+            padding: 30px;
+            letter-spacing: 1px;
         }
 
         .hero p::before {
-            top: 0;
-            left: 0;
-            border-left: 1px solid rgba(255,255,255,0.3);
-            border-top: 1px solid rgba(255,255,255,0.3);
+            content: '✦';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.3);
+            animation: starSpin 4s infinite linear;
         }
 
-        .hero p::after {
-            bottom: 0;
-            right: 0;
-            border-right: 1px solid rgba(255,255,255,0.3);
-            border-bottom: 1px solid rgba(255,255,255,0.3);
+        @keyframes starSpin {
+            from { transform: translateX(-50%) rotate(0deg); }
+            to { transform: translateX(-50%) rotate(360deg); }
         }
 
-        /* Stats with animated counters */
+        /* Stats with glass morphism */
         .stats {
             display: flex;
             justify-content: center;
-            gap: 100px;
-            margin-bottom: 150px;
-            position: relative;
+            gap: 80px;
+            margin-bottom: 180px;
+            flex-wrap: wrap;
+            animation: statsFadeIn 2.5s ease;
+        }
+
+        @keyframes statsFadeIn {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .stat-item {
             text-align: center;
             position: relative;
-            padding: 30px;
+            padding: 40px;
+            min-width: 200px;
+            background: rgba(255,255,255,0.02);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 40px;
+            transition: all 0.5s;
             cursor: pointer;
-            transition: transform 0.3s;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-10px);
+            overflow: hidden;
         }
 
         .stat-item::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 30px;
+            top: var(--y, 0);
+            left: var(--x, 0);
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
             opacity: 0;
             transition: opacity 0.3s;
         }
 
         .stat-item:hover::before {
             opacity: 1;
-            animation: borderGlow 2s infinite;
         }
 
-        @keyframes borderGlow {
-            0%, 100% { border-color: rgba(255,255,255,0.2); box-shadow: 0 0 30px rgba(255,255,255,0.1); }
-            50% { border-color: rgba(255,255,255,0.5); box-shadow: 0 0 50px rgba(255,255,255,0.2); }
+        .stat-item:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: rgba(255,255,255,0.2);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
         }
 
         .stat-number {
-            font-size: 60px;
-            font-weight: 300;
+            font-size: 70px;
+            font-weight: 200;
             margin-bottom: 10px;
-            background: linear-gradient(135deg, #fff, #aaa);
+            background: linear-gradient(135deg, #fff, #ccc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 40px rgba(255,255,255,0.3);
+            text-shadow: 0 0 60px rgba(255,255,255,0.3);
+            position: relative;
+            display: inline-block;
+        }
+
+        .stat-number::after {
+            content: '+';
+            font-size: 40px;
+            position: absolute;
+            top: 0;
+            right: -30px;
+            opacity: 0.5;
         }
 
         .stat-label {
-            font-size: 14px;
+            font-size: 13px;
             letter-spacing: 4px;
             color: rgba(255,255,255,0.5);
             text-transform: uppercase;
+            position: relative;
+            display: inline-block;
         }
 
-        /* Featured work section */
+        .stat-label::before,
+        .stat-label::after {
+            content: '✦';
+            margin: 0 10px;
+            opacity: 0.3;
+            font-size: 8px;
+        }
+
+        /* Featured work with 3D cards */
         .featured {
-            margin-bottom: 150px;
+            margin-bottom: 180px;
+            animation: workFadeIn 3s ease;
+        }
+
+        @keyframes workFadeIn {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .section-title {
-            font-size: 14px;
-            letter-spacing: 8px;
+            font-size: 13px;
+            letter-spacing: 12px;
             color: rgba(255,255,255,0.3);
-            margin-bottom: 40px;
+            margin-bottom: 60px;
             text-align: center;
             position: relative;
+            text-transform: uppercase;
         }
 
         .section-title::before,
         .section-title::after {
             content: '✦';
             margin: 0 20px;
-            opacity: 0.5;
-            animation: spin 4s infinite linear;
+            opacity: 0.3;
+            animation: spinSlow 6s infinite linear;
         }
 
-        @keyframes spin {
+        @keyframes spinSlow {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
@@ -337,34 +453,48 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 40px;
+            perspective: 1000px;
         }
 
         .work-item {
             background: rgba(255,255,255,0.02);
             border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 40px;
-            padding: 50px 40px;
+            border-radius: 50px;
+            padding: 60px 40px;
             backdrop-filter: blur(20px);
             cursor: pointer;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
             pointer-events: auto;
+            transform-style: preserve-3d;
+            animation: cardFloat 4s infinite;
+        }
+
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0) rotateX(0); }
+            50% { transform: translateY(-10px) rotateX(2deg); }
+        }
+
+        .work-item:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .work-item:nth-child(3) {
+            animation-delay: 1s;
         }
 
         .work-item::before {
             content: '';
             position: absolute;
-            top: var(--y, 0);
-            left: var(--x, 0);
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255,255,255,0.1) 0%, transparent 50%);
             opacity: 0;
             transition: opacity 0.3s;
+            pointer-events: none;
         }
 
         .work-item:hover::before {
@@ -372,16 +502,16 @@
         }
 
         .work-item:hover {
-            transform: translateY(-15px) scale(1.02);
+            transform: translateY(-20px) scale(1.05) rotateX(5deg);
             border-color: rgba(255,255,255,0.2);
             box-shadow: 0 50px 100px rgba(0,0,0,0.5);
         }
 
         .work-year {
             font-size: 12px;
-            color: rgba(255,255,255,0.3);
-            letter-spacing: 4px;
-            margin-bottom: 20px;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 5px;
+            margin-bottom: 25px;
             position: relative;
             display: inline-block;
         }
@@ -389,7 +519,7 @@
         .work-year::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: -8px;
             left: 0;
             width: 30px;
             height: 1px;
@@ -404,36 +534,46 @@
         }
 
         .work-title {
-            font-size: 36px;
-            font-weight: 400;
+            font-size: 42px;
+            font-weight: 300;
             margin-bottom: 15px;
             position: relative;
+            letter-spacing: -1px;
         }
 
         .work-category {
             font-size: 14px;
             color: rgba(255,255,255,0.5);
-            letter-spacing: 1px;
+            letter-spacing: 2px;
         }
 
         .work-icon {
             position: absolute;
             bottom: 40px;
             right: 40px;
-            font-size: 40px;
-            opacity: 0.3;
-            transition: all 0.3s;
+            font-size: 50px;
+            opacity: 0.2;
+            transition: all 0.5s;
             filter: drop-shadow(0 0 20px currentColor);
+            transform: rotate(0deg);
         }
 
         .work-item:hover .work-icon {
             opacity: 1;
-            transform: rotate(10deg) scale(1.1);
+            transform: rotate(15deg) scale(1.2);
+            right: 50px;
+            bottom: 50px;
         }
 
-        /* Testimonials section */
+        /* Testimonials with floating avatars */
         .testimonials {
-            margin-bottom: 150px;
+            margin-bottom: 180px;
+            animation: testimonialFadeIn 3.5s ease;
+        }
+
+        @keyframes testimonialFadeIn {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .testimonial-grid {
@@ -445,39 +585,73 @@
         .testimonial-item {
             background: rgba(255,255,255,0.02);
             border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 40px;
-            padding: 50px;
+            border-radius: 50px;
+            padding: 60px;
             backdrop-filter: blur(20px);
-            transition: all 0.3s;
+            transition: all 0.4s;
             pointer-events: auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-item::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+            animation: rotate 20s infinite linear;
         }
 
         .testimonial-item:hover {
+            transform: translateX(-15px) scale(1.02);
             border-color: rgba(255,255,255,0.2);
-            transform: translateX(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
         }
 
         .testimonial-text {
             font-size: 18px;
-            line-height: 1.8;
-            color: rgba(255,255,255,0.7);
-            margin-bottom: 30px;
+            line-height: 1.9;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 40px;
             font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-text::before {
+            content: '"';
+            font-size: 80px;
+            position: absolute;
+            top: -30px;
+            left: -20px;
+            opacity: 0.1;
+            font-family: serif;
         }
 
         .testimonial-author {
             display: flex;
             align-items: center;
             gap: 20px;
+            position: relative;
+            z-index: 1;
         }
 
         .author-avatar {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             background: linear-gradient(135deg, #fff, #aaa);
             position: relative;
             overflow: hidden;
+            animation: avatarPulse 3s infinite;
+        }
+
+        @keyframes avatarPulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(255,255,255,0.2); }
+            50% { box-shadow: 0 0 40px rgba(255,255,255,0.5); }
         }
 
         .author-avatar::before {
@@ -487,7 +661,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.5) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
             animation: rotate 4s infinite linear;
         }
 
@@ -495,22 +669,30 @@
             font-size: 16px;
             font-weight: 500;
             margin-bottom: 5px;
+            letter-spacing: 1px;
         }
 
         .author-info p {
             font-size: 12px;
             color: rgba(255,255,255,0.5);
+            letter-spacing: 2px;
         }
 
-        /* CTA section */
+        /* CTA with magnetic effect */
         .cta {
             text-align: center;
-            padding: 100px 0;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 120px 0;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
             margin-bottom: 80px;
             position: relative;
             overflow: hidden;
+            animation: ctaFadeIn 4s ease;
+        }
+
+        @keyframes ctaFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .cta::before {
@@ -521,67 +703,74 @@
             width: 200%;
             height: 200%;
             background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
-            animation: rotateSlow 20s infinite linear;
-        }
-
-        @keyframes rotateSlow {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+            animation: rotate 30s infinite linear;
         }
 
         .cta h2 {
-            font-size: 60px;
-            font-weight: 300;
-            margin-bottom: 30px;
+            font-size: 70px;
+            font-weight: 200;
+            margin-bottom: 40px;
             position: relative;
             z-index: 1;
+            line-height: 1.2;
         }
 
         .cta h2 span {
             font-weight: 700;
-            background: linear-gradient(45deg, #fff, #8ad5ff);
+            background: linear-gradient(45deg, #fff, #b3d9ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 30px rgba(138,213,255,0.5));
+            filter: drop-shadow(0 0 30px rgba(179,217,255,0.5));
+            display: inline-block;
+            animation: spanFloat 3s infinite;
+        }
+
+        @keyframes spanFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
 
         .cta-btn {
             display: inline-block;
-            padding: 20px 60px;
+            padding: 22px 70px;
             background: transparent;
             border: 2px solid rgba(255,255,255,0.2);
-            border-radius: 60px;
+            border-radius: 70px;
             color: #fff;
             text-decoration: none;
             font-size: 16px;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             transition: all 0.4s;
             pointer-events: auto;
             position: relative;
             z-index: 1;
             overflow: hidden;
+            text-transform: uppercase;
         }
 
         .cta-btn::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-            transition: left 0.5s;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
         }
 
         .cta-btn:hover::before {
-            left: 100%;
+            width: 300px;
+            height: 300px;
         }
 
         .cta-btn:hover {
             border-color: #fff;
-            box-shadow: 0 0 60px rgba(255,255,255,0.2);
+            box-shadow: 0 0 80px rgba(255,255,255,0.3);
             transform: scale(1.05);
-            letter-spacing: 4px;
+            letter-spacing: 5px;
         }
 
         /* Footer */
@@ -592,14 +781,20 @@
             padding: 40px 0;
             color: rgba(255,255,255,0.3);
             font-size: 12px;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             pointer-events: auto;
             position: relative;
+            animation: footerFadeIn 4.5s ease;
+        }
+
+        @keyframes footerFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .footer-links {
             display: flex;
-            gap: 40px;
+            gap: 50px;
         }
 
         .footer-links a {
@@ -607,6 +802,8 @@
             text-decoration: none;
             transition: all 0.3s;
             position: relative;
+            font-size: 12px;
+            letter-spacing: 3px;
         }
 
         .footer-links a::after {
@@ -618,17 +815,19 @@
             height: 1px;
             background: #fff;
             transition: width 0.3s;
+            box-shadow: 0 0 20px #fff;
         }
 
         .footer-links a:hover {
             color: #fff;
+            transform: translateY(-2px);
         }
 
         .footer-links a:hover::after {
             width: 100%;
         }
 
-        /* Floating particles */
+        /* Floating particles system */
         .particles-container {
             position: fixed;
             top: 0;
@@ -636,22 +835,33 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 2;
+            z-index: 3;
         }
 
         .particle {
             position: absolute;
-            width: 2px;
-            height: 2px;
-            background: #fff;
+            background: white;
             border-radius: 50%;
-            opacity: 0.3;
-            animation: floatParticle 20s infinite linear;
+            pointer-events: none;
+            opacity: 0;
+            animation: particleFloat 15s infinite linear;
         }
 
-        @keyframes floatParticle {
-            from { transform: translateY(100vh) rotate(0deg); }
-            to { transform: translateY(-100vh) rotate(360deg); }
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100vh) scale(1);
+                opacity: 0;
+            }
         }
 
         /* Scroll indicator */
@@ -662,17 +872,18 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
             color: rgba(255,255,255,0.3);
-            font-size: 12px;
-            letter-spacing: 2px;
+            font-size: 11px;
+            letter-spacing: 3px;
             writing-mode: vertical-rl;
             z-index: 10;
+            text-transform: uppercase;
         }
 
         .scroll-line {
             width: 1px;
-            height: 80px;
+            height: 100px;
             background: linear-gradient(180deg, #fff, transparent);
             animation: scrollPulse 2s infinite;
         }
@@ -690,19 +901,133 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, #fff, #8ad5ff, #fff);
+            background: linear-gradient(90deg, #fff, #b3d9ff, #ffb3b3, #fff);
             z-index: 100;
             transition: width 0.1s;
-            box-shadow: 0 0 30px #fff;
+            box-shadow: 0 0 40px #fff;
+            animation: progressGlow 2s infinite;
+        }
+
+        @keyframes progressGlow {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
+        /* Loading screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #020308;
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1.5s ease, visibility 1.5s ease;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader {
+            text-align: center;
+        }
+
+        .loader-text {
+            font-size: 12px;
+            letter-spacing: 12px;
+            margin-bottom: 20px;
+            color: rgba(255,255,255,0.3);
+            animation: loaderPulse 1.5s infinite;
+        }
+
+        @keyframes loaderPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .loader-line {
+            width: 200px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #fff, transparent);
+            animation: loaderLine 1.5s infinite;
+        }
+
+        @keyframes loaderLine {
+            0% { transform: scaleX(0); opacity: 0; }
+            50% { transform: scaleX(1); opacity: 1; }
+            100% { transform: scaleX(0); opacity: 0; }
+        }
+
+        /* Floating orbs (replacing planet) */
+        .floating-orbs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .orb {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.1) 0%, transparent 70%);
+            filter: blur(40px);
+            animation: orbFloat 20s infinite alternate;
+        }
+
+        .orb:nth-child(1) {
+            top: 10%;
+            left: 5%;
+            background: radial-gradient(circle at 30% 30%, rgba(100,150,255,0.15) 0%, transparent 70%);
+            animation-duration: 25s;
+        }
+
+        .orb:nth-child(2) {
+            bottom: 10%;
+            right: 5%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle at 70% 70%, rgba(255,150,150,0.1) 0%, transparent 70%);
+            animation-duration: 30s;
+            animation-direction: reverse;
+        }
+
+        @keyframes orbFloat {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, 50px) scale(1.2); }
         }
     </style>
 </head>
 <body>
+    <!-- Loading screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader">
+            <div class="loader-text">ENTERING</div>
+            <div class="loader-line"></div>
+        </div>
+    </div>
+
     <!-- Custom cursor -->
     <div class="cursor" id="cursor"></div>
 
     <!-- Progress bar -->
     <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Floating orbs (replaces planet) -->
+    <div class="floating-orbs">
+        <div class="orb"></div>
+        <div class="orb"></div>
+    </div>
 
     <!-- 3D Canvas -->
     <canvas id="canvas-3d"></canvas>
@@ -712,7 +1037,7 @@
 
     <!-- Scroll indicator -->
     <div class="scroll-indicator">
-        <span>SCROLL</span>
+        <span>EXPLORE</span>
         <div class="scroll-line"></div>
     </div>
 
@@ -720,65 +1045,65 @@
     <div class="content">
         <!-- Navigation -->
         <nav>
-            <div class="logo"><span>✦</span> INFINITE STUDIO</div>
+            <div class="logo"><span>✦</span> INFINITY STUDIO</div>
             <div class="nav-links">
-                <a href="#" data-cursor="work">WORK</a>
-                <a href="#" data-cursor="studio">STUDIO</a>
-                <a href="#" data-cursor="insights">INSIGHTS</a>
-                <a href="#" data-cursor="contact">CONTACT</a>
+                <a href="#" data-cursor="work">CREATION</a>
+                <a href="#" data-cursor="studio">ESSENCE</a>
+                <a href="#" data-cursor="insights">VISIONS</a>
+                <a href="#" data-cursor="contact">CONNECT</a>
             </div>
         </nav>
 
         <!-- Hero -->
         <section class="hero">
-            <div class="floating-badge">✦ CREATIVE TECHNOLOGY ✦</div>
+            <div class="floating-badge">✦ BEYOND IMAGINATION ✦</div>
             <h1>
-                <span class="gradient-text">BUILD BEYOND</span><br>
-                <span class="gradient-text">IMAGINATION</span>
+                <span class="gradient-text">CREATE THE</span><br>
+                <span class="gradient-text glitch-text" data-text="UNCREATED">UNCREATED</span>
             </h1>
-            <p>We create digital experiences that transcend the ordinary,<br>where technology meets artistry and dreams become reality.</p>
+            <p>We don't just build websites. We craft digital dimensions where reality and imagination merge into experiences that defy description.</p>
         </section>
 
         <!-- Stats -->
         <section class="stats">
-            <div class="stat-item" data-count="8">
+            <div class="stat-item" data-count="8" data-target="8">
                 <div class="stat-number" id="stat1">0</div>
                 <div class="stat-label">YEARS</div>
             </div>
-            <div class="stat-item" data-count="50">
+            <div class="stat-item" data-count="150" data-target="150">
                 <div class="stat-number" id="stat2">0</div>
-                <div class="stat-label">PROJECTS</div>
+                <div class="stat-label">CREATIONS</div>
             </div>
-            <div class="stat-item" data-count="30">
+            <div class="stat-item" data-count="50" data-target="50">
                 <div class="stat-number" id="stat3">0</div>
-                <div class="stat-label">CLIENTS</div>
+                <div class="stat-label">DREAMS</div>
             </div>
-            <div class="stat-item" data-count="100">
+            <div class="stat-item" data-count="100" data-target="100">
                 <div class="stat-number" id="stat4">0</div>
-                <div class="stat-label">SATISFACTION</div>
+                <div class="stat-label">POSSIBLE</div>
             </div>
         </section>
 
         <!-- Featured work -->
         <section class="featured">
-            <div class="section-title">FEATURED WORK</div>
+            <div class="section-title">DIMENSIONS</div>
             <div class="work-grid">
                 <div class="work-item" data-cursor="project">
                     <div class="work-year">2024</div>
                     <div class="work-title">NEBULA</div>
-                    <div class="work-category">AI · Platform</div>
+                    <div class="work-category">CONSCIOUSNESS</div>
                     <div class="work-icon">🌌</div>
                 </div>
                 <div class="work-item" data-cursor="project">
                     <div class="work-year">2024</div>
                     <div class="work-title">ECHO</div>
-                    <div class="work-category">Fintech · App</div>
+                    <div class="work-category">INFINITY</div>
                     <div class="work-icon">🌊</div>
                 </div>
                 <div class="work-item" data-cursor="project">
                     <div class="work-year">2023</div>
                     <div class="work-title">AURA</div>
-                    <div class="work-category">Health · Tech</div>
+                    <div class="work-category">ETERNITY</div>
                     <div class="work-icon">✨</div>
                 </div>
             </div>
@@ -786,25 +1111,25 @@
 
         <!-- Testimonials -->
         <section class="testimonials">
-            <div class="section-title">VOICES</div>
+            <div class="section-title">WHISPERS</div>
             <div class="testimonial-grid">
                 <div class="testimonial-item">
-                    <div class="testimonial-text">"They didn't just build a website; they created an experience that transformed our entire brand perception."</div>
+                    <div class="testimonial-text">"They didn't just understand our vision. They saw beyond it and created something we never knew was possible."</div>
                     <div class="testimonial-author">
                         <div class="author-avatar"></div>
                         <div class="author-info">
-                            <h4>Sarah Chen</h4>
-                            <p>CEO · NEBULA</p>
+                            <h4>Elena Voss</h4>
+                            <p>DREAMER · NEBULA</p>
                         </div>
                     </div>
                 </div>
                 <div class="testimonial-item">
-                    <div class="testimonial-text">"The level of detail and craftsmanship is unlike anything I've seen in the industry. Truly next level."</div>
+                    <div class="testimonial-text">"Working with them is like watching magic happen. Every detail, every pixel, every moment is perfect."</div>
                     <div class="testimonial-author">
                         <div class="author-avatar"></div>
                         <div class="author-info">
-                            <h4>Marcus Rodriguez</h4>
-                            <p>Director · ECHO</p>
+                            <h4>James Chen</h4>
+                            <p>VISIONARY · ECHO</p>
                         </div>
                     </div>
                 </div>
@@ -813,18 +1138,18 @@
 
         <!-- CTA -->
         <section class="cta">
-            <h2>Ready to build <span>something</span> extraordinary?</h2>
-            <a href="#" class="cta-btn">START THE JOURNEY</a>
+            <h2>Ready to create <span>the impossible?</span></h2>
+            <a href="#" class="cta-btn">BEGIN THE JOURNEY</a>
         </section>
 
         <!-- Footer -->
         <footer>
-            <div>© 2026 INFINITE STUDIO</div>
+            <div>© 2026 INFINITY STUDIO</div>
             <div class="footer-links">
-                <a href="#">INSTAGRAM</a>
-                <a href="#">LINKEDIN</a>
-                <a href="#">GITHUB</a>
-                <a href="#">TWITTER</a>
+                <a href="#">DIMENSIONS</a>
+                <a href="#">ETERNITY</a>
+                <a href="#">INFINITY</a>
+                <a href="#">DREAMS</a>
             </div>
         </footer>
     </div>
@@ -840,60 +1165,30 @@
     <script type="module">
         import * as THREE from 'three';
 
-        // --- 3D SETUP ---
+        // --- 3D SETUP - NO PLANET, JUST PURE MAGIC ---
         const canvas = document.getElementById('canvas-3d');
         const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x03050a);
+        scene.background = new THREE.Color(0x020308);
         
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.set(0, 2, 15);
+        camera.position.set(0, 0, 12);
         
         const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        renderer.shadowMap.enabled = true;
 
-        // --- CREATE MAIN 3D OBJECTS ---
-        const mainGroup = new THREE.Group();
+        // --- PURE ENERGY FIELD (replaces planet) ---
+        const energyGroup = new THREE.Group();
 
-        // Central glowing sphere
-        const coreGeo = new THREE.SphereGeometry(2, 64, 64);
-        const coreMat = new THREE.MeshStandardMaterial({
-            color: 0x4466aa,
-            emissive: 0x224488,
-            roughness: 0.2,
-            metalness: 0.8,
-            transparent: true,
-            opacity: 0.9
-        });
-        const core = new THREE.Mesh(coreGeo, coreMat);
-        core.castShadow = true;
-        core.receiveShadow = true;
-        mainGroup.add(core);
-
-        // Inner rings
-        for (let i = 0; i < 3; i++) {
-            const ringGeo = new THREE.TorusGeometry(2.5 + i * 0.5, 0.05, 16, 100);
-            const ringMat = new THREE.MeshStandardMaterial({
-                color: 0x88aaff,
-                emissive: 0x224466,
-                transparent: true,
-                opacity: 0.3 + i * 0.1
-            });
-            const ring = new THREE.Mesh(ringGeo, ringMat);
-            ring.rotation.x = Math.PI / 2;
-            ring.rotation.z = i * 0.5;
-            mainGroup.add(ring);
-        }
-
-        // Outer particles
-        const particleCount = 2000;
+        // Particle field - thousands of floating lights
+        const particleCount = 4000;
         const particleGeo = new THREE.BufferGeometry();
         const particlePos = new Float32Array(particleCount * 3);
         const particleColors = new Float32Array(particleCount * 3);
 
         for (let i = 0; i < particleCount * 3; i += 3) {
-            const radius = 4 + Math.random() * 3;
+            // Random distribution in a sphere
+            const radius = 8 + Math.random() * 5;
             const theta = Math.random() * Math.PI * 2;
             const phi = Math.acos((Math.random() * 2) - 1);
             
@@ -901,11 +1196,9 @@
             particlePos[i+1] = radius * Math.sin(phi) * Math.sin(theta);
             particlePos[i+2] = radius * Math.cos(phi);
 
-            const color = new THREE.Color().setHSL(
-                0.6 + Math.random() * 0.4,
-                0.8,
-                0.5 + Math.random() * 0.3
-            );
+            // Dreamy colors - pastels with variation
+            const hue = (Math.random() * 0.3 + 0.6 + (Math.random() - 0.5) * 0.2) % 1.0;
+            const color = new THREE.Color().setHSL(hue, 0.8, 0.6);
             particleColors[i] = color.r;
             particleColors[i+1] = color.g;
             particleColors[i+2] = color.b;
@@ -915,19 +1208,46 @@
         particleGeo.setAttribute('color', new THREE.BufferAttribute(particleColors, 3));
 
         const particleMat = new THREE.PointsMaterial({
-            size: 0.1,
+            size: 0.08,
             vertexColors: true,
             transparent: true,
             blending: THREE.AdditiveBlending,
-            sizeAttenuation: true
+            sizeAttenuation: true,
+            opacity: 0.7
         });
 
         const particles = new THREE.Points(particleGeo, particleMat);
-        mainGroup.add(particles);
+        energyGroup.add(particles);
 
-        scene.add(mainGroup);
+        // Floating light wisps
+        for (let j = 0; j < 20; j++) {
+            const wispCount = 50;
+            const wispGeo = new THREE.BufferGeometry();
+            const wispPos = new Float32Array(wispCount * 3);
+            
+            const radius = 6 + Math.random() * 4;
+            for (let i = 0; i < wispCount * 3; i += 3) {
+                const t = i / (wispCount * 3) * Math.PI * 2;
+                wispPos[i] = Math.cos(t) * radius;
+                wispPos[i+1] = Math.sin(t * 2) * 2;
+                wispPos[i+2] = Math.sin(t) * radius;
+            }
+            
+            wispGeo.setAttribute('position', new THREE.BufferAttribute(wispPos, 3));
+            const wispMat = new THREE.LineBasicMaterial({ 
+                color: new THREE.Color().setHSL(0.7 + Math.random() * 0.2, 0.8, 0.6),
+                transparent: true,
+                opacity: 0.1
+            });
+            const wisp = new THREE.LineLoop(wispGeo, wispMat);
+            wisp.rotation.x = Math.random() * Math.PI;
+            wisp.rotation.y = Math.random() * Math.PI;
+            energyGroup.add(wisp);
+        }
 
-        // Background stars
+        scene.add(energyGroup);
+
+        // Distant stars
         const starsGeo = new THREE.BufferGeometry();
         const starsCount = 3000;
         const starsPos = new Float32Array(starsCount * 3);
@@ -935,48 +1255,52 @@
         for (let i = 0; i < starsCount * 3; i += 3) {
             starsPos[i] = (Math.random() - 0.5) * 200;
             starsPos[i+1] = (Math.random() - 0.5) * 200;
-            starsPos[i+2] = (Math.random() - 0.5) * 200;
+            starsPos[i+2] = (Math.random() - 0.5) * 200 - 50;
         }
         
         starsGeo.setAttribute('position', new THREE.BufferAttribute(starsPos, 3));
-        const starsMat = new THREE.PointsMaterial({ color: 0xffffff, size: 0.1 });
+        const starsMat = new THREE.PointsMaterial({ color: 0xffffff, size: 0.1, transparent: true, opacity: 0.5 });
         const stars = new THREE.Points(starsGeo, starsMat);
         scene.add(stars);
 
-        // Lights
+        // Lighting
         const ambientLight = new THREE.AmbientLight(0x404060);
         scene.add(ambientLight);
 
-        const light1 = new THREE.PointLight(0x88aaff, 2, 20);
-        light1.position.set(3, 3, 5);
+        const light1 = new THREE.PointLight(0x88aaff, 1, 30);
+        light1.position.set(2, 2, 5);
         scene.add(light1);
 
-        const light2 = new THREE.PointLight(0xff88aa, 1, 20);
-        light2.position.set(-3, -2, 5);
+        const light2 = new THREE.PointLight(0xff88aa, 0.8, 30);
+        light2.position.set(-2, -1, 5);
         scene.add(light2);
-
-        const light3 = new THREE.PointLight(0xaaff88, 1, 20);
-        light3.position.set(2, -3, 5);
-        scene.add(light3);
 
         // --- MOUSE INTERACTION ---
         let mouseX = 0;
         let mouseY = 0;
+        let targetRotationX = 0;
+        let targetRotationY = 0;
 
         document.addEventListener('mousemove', (event) => {
             mouseX = (event.clientX / window.innerWidth - 0.5) * 2;
             mouseY = (event.clientY / window.innerHeight - 0.5) * 2;
+            
+            targetRotationY = mouseX * 0.3;
+            targetRotationX = mouseY * 0.2;
         });
 
         // --- ANIMATION ---
         function animate() {
             requestAnimationFrame(animate);
 
-            // Rotate main group based on mouse
-            mainGroup.rotation.y += (mouseX * 0.5 - mainGroup.rotation.y) * 0.02;
-            mainGroup.rotation.x += (mouseY * 0.3 - mainGroup.rotation.x) * 0.02;
+            // Smooth rotation based on mouse
+            energyGroup.rotation.y += (targetRotationY - energyGroup.rotation.y) * 0.03;
+            energyGroup.rotation.x += (targetRotationX - energyGroup.rotation.x) * 0.03;
 
-            // Rotate stars slowly
+            // Gentle constant rotation
+            energyGroup.rotation.y += 0.0005;
+            
+            // Stars slowly rotate
             stars.rotation.y += 0.0001;
 
             renderer.render(scene, camera);
@@ -1007,7 +1331,7 @@
         // --- ANIMATED COUNTERS ---
         function animateCounter(element, target) {
             let current = 0;
-            const increment = target / 50;
+            const increment = target / 60;
             const timer = setInterval(() => {
                 current += increment;
                 if (current >= target) {
@@ -1024,15 +1348,15 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const statItems = document.querySelectorAll('.stat-item');
-                    statItems.forEach((item, index) => {
-                        const target = parseInt(item.dataset.count);
+                    statItems.forEach((item) => {
+                        const target = parseInt(item.dataset.target);
                         const numberEl = item.querySelector('.stat-number');
                         animateCounter(numberEl, target);
                     });
                     observer.disconnect();
                 }
             });
-        });
+        }, { threshold: 0.5 });
 
         observer.observe(document.querySelector('.stats'));
 
@@ -1044,16 +1368,16 @@
             document.getElementById('progressBar').style.width = scrolled + '%';
         });
 
-        // --- CREATE FLOATING PARTICLES ---
+        // --- CREATE FLOATING PARTICLES (HTML) ---
         function createParticles() {
             const container = document.getElementById('particlesContainer');
-            for (let i = 0; i < 100; i++) {
+            for (let i = 0; i < 200; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 20 + 's';
-                particle.style.animationDuration = 15 + Math.random() * 20 + 's';
-                particle.style.opacity = Math.random() * 0.3;
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = 10 + Math.random() * 20 + 's';
+                particle.style.opacity = (Math.random() * 0.3).toString();
                 particle.style.width = (Math.random() * 3 + 1) + 'px';
                 particle.style.height = particle.style.width;
                 particle.style.background = `hsl(${Math.random() * 60 + 200}, 80%, 70%)`;
@@ -1064,7 +1388,7 @@
         createParticles();
 
         // --- WORK ITEM MOUSE FOLLOW EFFECT ---
-        document.querySelectorAll('.work-item').forEach(item => {
+        document.querySelectorAll('.work-item, .stat-item').forEach(item => {
             item.addEventListener('mousemove', (e) => {
                 const rect = item.getBoundingClientRect();
                 const x = e.clientX - rect.left;
@@ -1072,6 +1396,13 @@
                 item.style.setProperty('--x', x + 'px');
                 item.style.setProperty('--y', y + 'px');
             });
+        });
+
+        // --- LOADING SCREEN ---
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loadingScreen').classList.add('hidden');
+            }, 1500);
         });
     </script>
 </body>

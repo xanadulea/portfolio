@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STUDIO · BLACK</title>
+    <title>LAB STUDIO</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -43,7 +43,7 @@
             flex-direction: column;
         }
 
-        /* Navigation - clean, no particles overlapping */
+        /* Navigation */
         nav {
             display: flex;
             justify-content: space-between;
@@ -52,7 +52,6 @@
             margin-bottom: 60px;
             border-bottom: 1px solid rgba(255,255,255,0.05);
             position: relative;
-            background: transparent;
         }
 
         .logo {
@@ -68,9 +67,15 @@
             color: #fff;
         }
 
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
         .nav-links {
             display: flex;
-            gap: 60px;
+            gap: 40px;
         }
 
         .nav-links a {
@@ -87,7 +92,37 @@
             color: #fff;
         }
 
-        /* Hero - clean text */
+        /* Language Switcher */
+        .lang-switcher {
+            display: flex;
+            gap: 15px;
+            border-left: 1px solid rgba(255,255,255,0.1);
+            padding-left: 30px;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: rgba(255,255,255,0.3);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 20px;
+            transition: all 0.3s;
+            letter-spacing: 1px;
+        }
+
+        .lang-btn:hover {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .lang-btn.active {
+            color: #fff;
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Hero */
         .hero {
             margin-bottom: 100px;
         }
@@ -117,7 +152,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* Stats - clean numbers */
+        /* Stats */
         .stats {
             display: flex;
             gap: 80px;
@@ -143,7 +178,7 @@
             text-transform: uppercase;
         }
 
-        /* Work grid - CLICKABLE squares for examples */
+        /* Work grid */
         .work-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -192,7 +227,7 @@
             text-transform: uppercase;
         }
 
-        /* CTA Section */
+        /* CTA */
         .cta {
             margin-bottom: 80px;
         }
@@ -229,7 +264,7 @@
             background: rgba(255,255,255,0.02);
         }
 
-        /* Footer - clean at bottom */
+        /* Footer */
         footer {
             margin-top: auto;
             display: flex;
@@ -260,7 +295,7 @@
             color: #fff;
         }
 
-        /* Scroll indicator - subtle */
+        /* Scroll indicator */
         .scroll-indicator {
             position: fixed;
             bottom: 40px;
@@ -273,7 +308,7 @@
             text-transform: uppercase;
         }
 
-        /* Loading - simple */
+        /* Loading */
         .loading {
             position: fixed;
             top: 0;
@@ -312,94 +347,103 @@
             .work-grid { grid-template-columns: 1fr; }
             .stats { flex-direction: column; gap: 30px; }
             nav { flex-direction: column; gap: 20px; }
-            .nav-links { gap: 30px; }
+            .nav-right { flex-direction: column; gap: 20px; }
+            .nav-links { gap: 20px; }
+            .lang-switcher { border-left: none; padding-left: 0; }
             footer { flex-direction: column; gap: 20px; }
         }
     </style>
 </head>
 <body>
-    <!-- Simple loading -->
+    <!-- Loading -->
     <div class="loading" id="loading">
         <div class="loading-line"></div>
     </div>
 
-    <!-- 3D Canvas - particles only in background -->
+    <!-- 3D Canvas -->
     <canvas id="canvas-3d"></canvas>
 
-    <!-- Subtle scroll indicator -->
-    <div class="scroll-indicator">SCROLL</div>
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator" id="scrollText">SCROLL</div>
 
-    <!-- Main content - ALL TEXT IS CLEAN, NO PARTICLES OVERLAP -->
+    <!-- Main content -->
     <div class="content">
-        <!-- Navigation - clean -->
+        <!-- Navigation -->
         <nav>
-            <div class="logo"><span>✦</span> STUDIO</div>
-            <div class="nav-links">
-                <a href="#">WORK</a>
-                <a href="#">STUDIO</a>
-                <a href="#">CONTACT</a>
+            <div class="logo"><span>✦</span> LAB STUDIO</div>
+            <div class="nav-right">
+                <div class="nav-links">
+                    <a href="#" id="nav-work">WORK</a>
+                    <a href="#" id="nav-studio">STUDIO</a>
+                    <a href="#" id="nav-contact">CONTACT</a>
+                </div>
+                <!-- Language Switcher -->
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="en">🇬🇧 ENG</button>
+                    <button class="lang-btn" data-lang="sl">🇸🇮 SLO</button>
+                </div>
             </div>
         </nav>
 
-        <!-- Hero - clean text -->
+        <!-- Hero -->
         <section class="hero">
-            <h1>CREATE <span>WITH</span> PURPOSE</h1>
-            <p>Digital experiences crafted at the intersection of design and technology. We build websites and applications that leave a lasting impression.</p>
+            <h1><span id="hero-line1">CREATE</span> <span id="hero-line2">WITH</span> <span id="hero-line3">PURPOSE</span></h1>
+            <p id="hero-desc">Digital experiences crafted at the intersection of design and technology. We build websites and applications that leave a lasting impression.</p>
         </section>
 
-        <!-- Stats - clean numbers -->
+        <!-- Stats -->
         <section class="stats">
             <div class="stat-item">
-                <div class="stat-number">8+</div>
-                <div class="stat-label">YEARS</div>
+                <div class="stat-number" id="stat1">8+</div>
+                <div class="stat-label" id="stat1-label">YEARS</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number">50+</div>
-                <div class="stat-label">PROJECTS</div>
+                <div class="stat-number" id="stat2">50+</div>
+                <div class="stat-label" id="stat2-label">PROJECTS</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number">20+</div>
-                <div class="stat-label">CLIENTS</div>
+                <div class="stat-number" id="stat3">20+</div>
+                <div class="stat-label" id="stat3-label">CLIENTS</div>
             </div>
         </section>
 
-        <!-- WORK EXAMPLES - Clickable squares that will show different website designs -->
+        <!-- Work examples -->
         <section class="work-grid">
-            <a href="#" class="work-item" id="nebula">
+            <a href="nebula.html" class="work-item" id="nebula">
                 <div class="work-year">2024</div>
                 <div class="work-title">NEBULA</div>
-                <div class="work-category">AI PLATFORM</div>
+                <div class="work-category" id="nebula-cat">TECH STARTUP</div>
             </a>
-            <a href="#" class="work-item" id="echo">
+            <a href="echo.html" class="work-item" id="echo">
                 <div class="work-year">2024</div>
                 <div class="work-title">ECHO</div>
-                <div class="work-category">FINANCE APP</div>
+                <div class="work-category" id="echo-cat">MEDICAL</div>
             </a>
-            <a href="#" class="work-item" id="aura">
+            <a href="aura.html" class="work-item" id="aura">
                 <div class="work-year">2023</div>
                 <div class="work-title">AURA</div>
-                <div class="work-category">HEALTHCARE</div>
+                <div class="work-category" id="aura-cat">RESTAURANT</div>
             </a>
         </section>
 
         <!-- CTA -->
         <section class="cta">
-            <h2>Ready to build <span>something?</span></h2>
-            <a href="#" class="cta-btn">START HERE</a>
+            <h2><span id="cta-line1">READY TO BUILD</span> <span id="cta-line2">SOMETHING?</span></h2>
+            <a href="#" class="cta-btn" id="cta-btn">START HERE</a>
         </section>
 
-        <!-- Footer - clean, with your IG, LI, GH -->
+        <!-- Footer -->
         <footer>
-            <div>© 2026 STUDIO</div>
+            <div id="copyright">© 2026 LAB STUDIO</div>
             <div class="footer-links">
-                <a href="#">IG</a>
-                <a href="#">LI</a>
-                <a href="#">GH</a>
+                <a href="#" id="footer-ig">IG</a>
+                <a href="#" id="footer-li">LI</a>
+                <a href="#" id="footer-gh">GH</a>
             </div>
         </footer>
     </div>
 
-    <!-- Three.js for background particles ONLY -->
+    <!-- Three.js -->
     <script type="importmap">
         {
             "imports": {
@@ -411,7 +455,7 @@
     <script type="module">
         import * as THREE from 'three';
 
-        // Setup - simple, just background
+        // Setup
         const canvas = document.getElementById('canvas-3d');
         const scene = new THREE.Scene();
         scene.background = new THREE.Color(0x000000);
@@ -423,21 +467,19 @@
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-        // Particles - ONLY in background, not overlapping text
+        // Particles
         const particlesGeo = new THREE.BufferGeometry();
-        const particlesCount = 800; // Fewer particles for cleaner look
+        const particlesCount = 800;
         const posArray = new Float32Array(particlesCount * 3);
         
         for(let i = 0; i < particlesCount * 3; i += 3) {
-            // Spread particles wide, but they'll stay behind text
             posArray[i] = (Math.random() - 0.5) * 30;
             posArray[i+1] = (Math.random() - 0.5) * 30;
-            posArray[i+2] = (Math.random() - 0.5) * 20 - 10; // Push some back
+            posArray[i+2] = (Math.random() - 0.5) * 20 - 10;
         }
         
         particlesGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
         
-        // Very subtle particles
         const particlesMat = new THREE.PointsMaterial({ 
             size: 0.08, 
             color: 0xffffff,
@@ -449,7 +491,7 @@
         const particlesMesh = new THREE.Points(particlesGeo, particlesMat);
         scene.add(particlesMesh);
 
-        // Animation - very slow, calming
+        // Animation
         function animate() {
             requestAnimationFrame(animate);
             particlesMesh.rotation.y += 0.0001;
@@ -470,30 +512,103 @@
             document.getElementById('loading').classList.add('hidden');
         }, 1500);
 
-        // ===== CLICK HANDLERS for the three examples =====
-        // When you click Nebula, Echo, or Aura, they will load different website designs
-        
-        document.getElementById('nebula').addEventListener('click', (e) => {
-            e.preventDefault();
-            // This will load the NEBULA website design
-            console.log('Loading NEBULA design...');
-            // We'll create nebula.html separately
-            window.location.href = 'nebula.html';
+        // ===== LANGUAGE DATA =====
+        const translations = {
+            en: {
+                'nav-work': 'WORK',
+                'nav-studio': 'STUDIO',
+                'nav-contact': 'CONTACT',
+                'hero-line1': 'CREATE',
+                'hero-line2': 'WITH',
+                'hero-line3': 'PURPOSE',
+                'hero-desc': 'Digital experiences crafted at the intersection of design and technology. We build websites and applications that leave a lasting impression.',
+                'stat1-label': 'YEARS',
+                'stat2-label': 'PROJECTS',
+                'stat3-label': 'CLIENTS',
+                'nebula-cat': 'TECH STARTUP',
+                'echo-cat': 'MEDICAL',
+                'aura-cat': 'RESTAURANT',
+                'cta-line1': 'READY TO BUILD',
+                'cta-line2': 'SOMETHING?',
+                'cta-btn': 'START HERE',
+                'footer-ig': 'IG',
+                'footer-li': 'LI',
+                'footer-gh': 'GH',
+                'copyright': '© 2026 LAB STUDIO',
+                'scrollText': 'SCROLL'
+            },
+            sl: {
+                'nav-work': 'DELA',
+                'nav-studio': 'STUDIO',
+                'nav-contact': 'KONTAKT',
+                'hero-line1': 'USTVARJAJ',
+                'hero-line2': 'Z',
+                'hero-line3': 'NAMENOM',
+                'hero-desc': 'Digitalne izkušnje, ustvarjene na stičišču oblikovanja in tehnologije. Gradimo spletne strani in aplikacije, ki pustijo trajen vtis.',
+                'stat1-label': 'LET',
+                'stat2-label': 'PROJEKTOV',
+                'stat3-label': 'STRANK',
+                'nebula-cat': 'TEHNOLOŠKI ZAGON',
+                'echo-cat': 'MEDICINA',
+                'aura-cat': 'RESTAVRACIJA',
+                'cta-line1': 'PRIPRAVLJEN',
+                'cta-line2': 'ZAČETI?',
+                'cta-btn': 'ZAČNIMO',
+                'footer-ig': 'IG',
+                'footer-li': 'LI',
+                'footer-gh': 'GH',
+                'copyright': '© 2026 LAB STUDIO',
+                'scrollText': 'POMIK'
+            }
+        };
+
+        // ===== LANGUAGE SWITCHER =====
+        const langBtns = document.querySelectorAll('.lang-btn');
+        let currentLang = 'en';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            
+            // Update active button
+            langBtns.forEach(btn => {
+                if (btn.dataset.lang === lang) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            // Update all text elements
+            const elements = document.querySelectorAll('[id]');
+            elements.forEach(el => {
+                const id = el.id;
+                if (translations[lang] && translations[lang][id]) {
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = translations[lang][id];
+                    } else {
+                        el.textContent = translations[lang][id];
+                    }
+                }
+            });
+
+            // Special handling for hero line (it has spans)
+            document.getElementById('hero-line1').textContent = translations[lang]['hero-line1'];
+            document.getElementById('hero-line2').textContent = translations[lang]['hero-line2'];
+            document.getElementById('hero-line3').textContent = translations[lang]['hero-line3'];
+            
+            // Special handling for cta line
+            document.getElementById('cta-line1').textContent = translations[lang]['cta-line1'];
+            document.getElementById('cta-line2').textContent = translations[lang]['cta-line2'];
+        }
+
+        langBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                setLanguage(btn.dataset.lang);
+            });
         });
-        
-        document.getElementById('echo').addEventListener('click', (e) => {
-            e.preventDefault();
-            // This will load the ECHO website design
-            console.log('Loading ECHO design...');
-            window.location.href = 'echo.html';
-        });
-        
-        document.getElementById('aura').addEventListener('click', (e) => {
-            e.preventDefault();
-            // This will load the AURA website design
-            console.log('Loading AURA design...');
-            window.location.href = 'aura.html';
-        });
+
+        // Initialize with English
+        setLanguage('en');
     </script>
 </body>
 </html>

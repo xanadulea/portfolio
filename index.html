@@ -19,7 +19,7 @@
             overflow-x: hidden;
         }
 
-        /* Simple canvas */
+        /* Canvas - particles ONLY in background */
         #canvas-3d {
             position: fixed;
             top: 0;
@@ -27,35 +27,40 @@
             width: 100%;
             height: 100%;
             z-index: 0;
-            opacity: 0.8;
+            opacity: 0.6;
+            pointer-events: none;
         }
 
-        /* Content */
+        /* Content - sits ABOVE particles */
         .content {
             position: relative;
             z-index: 2;
             max-width: 1400px;
             margin: 0 auto;
-            padding: 40px;
-            pointer-events: none;
+            padding: 40px 60px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* Navigation */
+        /* Navigation - clean, no particles overlapping */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 30px 0;
-            margin-bottom: 120px;
-            pointer-events: auto;
+            padding: 20px 0 40px;
+            margin-bottom: 60px;
             border-bottom: 1px solid rgba(255,255,255,0.05);
+            position: relative;
+            background: transparent;
         }
 
         .logo {
-            font-size: 18px;
+            font-size: 24px;
             font-weight: 300;
-            letter-spacing: 8px;
-            color: rgba(255,255,255,0.8);
+            letter-spacing: 10px;
+            color: #fff;
+            text-shadow: 0 0 20px rgba(255,255,255,0.2);
         }
 
         .logo span {
@@ -69,35 +74,36 @@
         }
 
         .nav-links a {
-            color: rgba(255,255,255,0.4);
+            color: rgba(255,255,255,0.6);
             text-decoration: none;
             font-size: 14px;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             transition: color 0.3s;
             text-transform: uppercase;
+            font-weight: 400;
         }
 
         .nav-links a:hover {
             color: #fff;
         }
 
-        /* Hero */
+        /* Hero - clean text */
         .hero {
-            text-align: center;
-            margin-bottom: 180px;
+            margin-bottom: 100px;
         }
 
-        h1 {
-            font-size: 120px;
+        .hero h1 {
+            font-size: 100px;
             font-weight: 200;
-            letter-spacing: -4px;
-            line-height: 0.9;
+            letter-spacing: -3px;
+            line-height: 1;
             margin-bottom: 30px;
+            text-shadow: 0 0 40px rgba(0,0,0,0.9);
         }
 
-        h1 span {
+        .hero h1 span {
             font-weight: 700;
-            background: linear-gradient(45deg, #fff, #aaa);
+            background: linear-gradient(45deg, #fff, #e0e0e0);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -105,128 +111,135 @@
         .hero p {
             font-size: 18px;
             color: rgba(255,255,255,0.5);
-            max-width: 700px;
-            margin: 0 auto;
+            max-width: 600px;
             line-height: 1.8;
+            font-weight: 300;
+            letter-spacing: 0.5px;
         }
 
-        /* Stats */
+        /* Stats - clean numbers */
         .stats {
             display: flex;
-            justify-content: center;
             gap: 80px;
-            margin-bottom: 180px;
+            margin-bottom: 120px;
         }
 
         .stat-item {
-            text-align: center;
+            text-align: left;
         }
 
         .stat-number {
-            font-size: 60px;
+            font-size: 48px;
             font-weight: 200;
-            margin-bottom: 10px;
             color: #fff;
+            margin-bottom: 5px;
+            letter-spacing: -1px;
         }
 
         .stat-label {
-            font-size: 13px;
-            letter-spacing: 4px;
+            font-size: 12px;
+            letter-spacing: 3px;
             color: rgba(255,255,255,0.4);
             text-transform: uppercase;
         }
 
-        /* Work grid - SQUARES like you wanted */
+        /* Work grid - CLICKABLE squares for examples */
         .work-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            margin-bottom: 180px;
+            gap: 30px;
+            margin-bottom: 120px;
         }
 
         .work-item {
             background: rgba(255,255,255,0.02);
             border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 30px;
-            padding: 50px 40px;
+            border-radius: 24px;
+            padding: 40px;
             cursor: pointer;
-            transition: all 0.3s;
-            pointer-events: auto;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+            text-decoration: none;
+            color: #fff;
+            display: block;
         }
 
         .work-item:hover {
-            transform: translateY(-10px);
+            transform: translateY(-8px);
             border-color: rgba(255,255,255,0.2);
-            background: rgba(255,255,255,0.04);
+            background: rgba(255,255,255,0.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
 
         .work-year {
             font-size: 12px;
             color: rgba(255,255,255,0.3);
-            letter-spacing: 4px;
+            letter-spacing: 3px;
             margin-bottom: 20px;
         }
 
         .work-title {
-            font-size: 36px;
+            font-size: 32px;
             font-weight: 300;
             margin-bottom: 10px;
+            letter-spacing: -0.5px;
         }
 
         .work-category {
-            font-size: 14px;
+            font-size: 13px;
             color: rgba(255,255,255,0.5);
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
-        /* CTA */
+        /* CTA Section */
         .cta {
-            text-align: center;
-            padding: 100px 0;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
             margin-bottom: 80px;
         }
 
         .cta h2 {
-            font-size: 60px;
+            font-size: 48px;
             font-weight: 200;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
+            letter-spacing: -1px;
         }
 
         .cta h2 span {
-            font-weight: 700;
+            font-weight: 600;
             color: #fff;
         }
 
         .cta-btn {
             display: inline-block;
-            padding: 20px 60px;
-            border: 2px solid rgba(255,255,255,0.2);
-            border-radius: 50px;
+            padding: 16px 48px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 40px;
             color: #fff;
             text-decoration: none;
-            font-size: 16px;
+            font-size: 14px;
             letter-spacing: 3px;
             transition: all 0.3s;
-            pointer-events: auto;
             text-transform: uppercase;
+            background: transparent;
         }
 
         .cta-btn:hover {
             border-color: #fff;
             transform: scale(1.05);
+            background: rgba(255,255,255,0.02);
         }
 
-        /* Footer */
+        /* Footer - clean at bottom */
         footer {
+            margin-top: auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 40px 0;
+            padding: 40px 0 20px;
+            border-top: 1px solid rgba(255,255,255,0.05);
             color: rgba(255,255,255,0.3);
             font-size: 12px;
             letter-spacing: 2px;
-            pointer-events: auto;
         }
 
         .footer-links {
@@ -238,22 +251,26 @@
             color: rgba(255,255,255,0.3);
             text-decoration: none;
             transition: color 0.3s;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
         .footer-links a:hover {
             color: #fff;
         }
 
-        /* Scroll indicator - simple */
+        /* Scroll indicator - subtle */
         .scroll-indicator {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 40px;
+            right: 40px;
             color: rgba(255,255,255,0.2);
             font-size: 11px;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             writing-mode: vertical-rl;
             z-index: 10;
+            text-transform: uppercase;
         }
 
         /* Loading - simple */
@@ -268,7 +285,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: opacity 1s;
+            transition: opacity 1s ease;
         }
 
         .loading.hidden {
@@ -280,7 +297,7 @@
             width: 200px;
             height: 1px;
             background: linear-gradient(90deg, transparent, #fff, transparent);
-            animation: loading 1.5s infinite;
+            animation: loading 2s infinite;
         }
 
         @keyframes loading {
@@ -288,18 +305,33 @@
             50% { transform: scaleX(1); opacity: 1; }
             100% { transform: scaleX(0); opacity: 0; }
         }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 60px; }
+            .work-grid { grid-template-columns: 1fr; }
+            .stats { flex-direction: column; gap: 30px; }
+            nav { flex-direction: column; gap: 20px; }
+            .nav-links { gap: 30px; }
+            footer { flex-direction: column; gap: 20px; }
+        }
     </style>
 </head>
 <body>
+    <!-- Simple loading -->
     <div class="loading" id="loading">
         <div class="loading-line"></div>
     </div>
 
+    <!-- 3D Canvas - particles only in background -->
     <canvas id="canvas-3d"></canvas>
 
+    <!-- Subtle scroll indicator -->
     <div class="scroll-indicator">SCROLL</div>
 
+    <!-- Main content - ALL TEXT IS CLEAN, NO PARTICLES OVERLAP -->
     <div class="content">
+        <!-- Navigation - clean -->
         <nav>
             <div class="logo"><span>✦</span> STUDIO</div>
             <div class="nav-links">
@@ -309,49 +341,54 @@
             </div>
         </nav>
 
+        <!-- Hero - clean text -->
         <section class="hero">
             <h1>CREATE <span>WITH</span> PURPOSE</h1>
-            <p>Digital experiences crafted at the intersection of design and technology</p>
+            <p>Digital experiences crafted at the intersection of design and technology. We build websites and applications that leave a lasting impression.</p>
         </section>
 
+        <!-- Stats - clean numbers -->
         <section class="stats">
             <div class="stat-item">
-                <div class="stat-number" id="stat1">8+</div>
+                <div class="stat-number">8+</div>
                 <div class="stat-label">YEARS</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number" id="stat2">50+</div>
+                <div class="stat-number">50+</div>
                 <div class="stat-label">PROJECTS</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number" id="stat3">20+</div>
+                <div class="stat-number">20+</div>
                 <div class="stat-label">CLIENTS</div>
             </div>
         </section>
 
+        <!-- WORK EXAMPLES - Clickable squares that will show different website designs -->
         <section class="work-grid">
-            <div class="work-item">
+            <a href="#" class="work-item" id="nebula">
                 <div class="work-year">2024</div>
                 <div class="work-title">NEBULA</div>
                 <div class="work-category">AI PLATFORM</div>
-            </div>
-            <div class="work-item">
+            </a>
+            <a href="#" class="work-item" id="echo">
                 <div class="work-year">2024</div>
                 <div class="work-title">ECHO</div>
                 <div class="work-category">FINANCE APP</div>
-            </div>
-            <div class="work-item">
+            </a>
+            <a href="#" class="work-item" id="aura">
                 <div class="work-year">2023</div>
                 <div class="work-title">AURA</div>
                 <div class="work-category">HEALTHCARE</div>
-            </div>
+            </a>
         </section>
 
+        <!-- CTA -->
         <section class="cta">
             <h2>Ready to build <span>something?</span></h2>
             <a href="#" class="cta-btn">START HERE</a>
         </section>
 
+        <!-- Footer - clean, with your IG, LI, GH -->
         <footer>
             <div>© 2026 STUDIO</div>
             <div class="footer-links">
@@ -362,6 +399,7 @@
         </footer>
     </div>
 
+    <!-- Three.js for background particles ONLY -->
     <script type="importmap">
         {
             "imports": {
@@ -373,7 +411,7 @@
     <script type="module">
         import * as THREE from 'three';
 
-        // Simple setup
+        // Setup - simple, just background
         const canvas = document.getElementById('canvas-3d');
         const scene = new THREE.Scene();
         scene.background = new THREE.Color(0x000000);
@@ -383,27 +421,39 @@
         
         const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
         renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-        // Simple particles
+        // Particles - ONLY in background, not overlapping text
         const particlesGeo = new THREE.BufferGeometry();
-        const particlesCount = 1000;
+        const particlesCount = 800; // Fewer particles for cleaner look
         const posArray = new Float32Array(particlesCount * 3);
         
         for(let i = 0; i < particlesCount * 3; i += 3) {
-            posArray[i] = (Math.random() - 0.5) * 20;
-            posArray[i+1] = (Math.random() - 0.5) * 20;
-            posArray[i+2] = (Math.random() - 0.5) * 20;
+            // Spread particles wide, but they'll stay behind text
+            posArray[i] = (Math.random() - 0.5) * 30;
+            posArray[i+1] = (Math.random() - 0.5) * 30;
+            posArray[i+2] = (Math.random() - 0.5) * 20 - 10; // Push some back
         }
         
         particlesGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-        const particlesMat = new THREE.PointsMaterial({ size: 0.05, color: 0xffffff });
+        
+        // Very subtle particles
+        const particlesMat = new THREE.PointsMaterial({ 
+            size: 0.08, 
+            color: 0xffffff,
+            transparent: true,
+            opacity: 0.3,
+            blending: THREE.AdditiveBlending
+        });
+        
         const particlesMesh = new THREE.Points(particlesGeo, particlesMat);
         scene.add(particlesMesh);
 
-        // Animation
+        // Animation - very slow, calming
         function animate() {
             requestAnimationFrame(animate);
-            particlesMesh.rotation.y += 0.0002;
+            particlesMesh.rotation.y += 0.0001;
+            particlesMesh.rotation.x += 0.00005;
             renderer.render(scene, camera);
         }
         animate();
@@ -419,6 +469,31 @@
         setTimeout(() => {
             document.getElementById('loading').classList.add('hidden');
         }, 1500);
+
+        // ===== CLICK HANDLERS for the three examples =====
+        // When you click Nebula, Echo, or Aura, they will load different website designs
+        
+        document.getElementById('nebula').addEventListener('click', (e) => {
+            e.preventDefault();
+            // This will load the NEBULA website design
+            console.log('Loading NEBULA design...');
+            // We'll create nebula.html separately
+            window.location.href = 'nebula.html';
+        });
+        
+        document.getElementById('echo').addEventListener('click', (e) => {
+            e.preventDefault();
+            // This will load the ECHO website design
+            console.log('Loading ECHO design...');
+            window.location.href = 'echo.html';
+        });
+        
+        document.getElementById('aura').addEventListener('click', (e) => {
+            e.preventDefault();
+            // This will load the AURA website design
+            console.log('Loading AURA design...');
+            window.location.href = 'aura.html';
+        });
     </script>
 </body>
 </html>

@@ -18,7 +18,7 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: #020308;
+            background: #000000; /* Pure black - more visible */
             color: #fff;
             overflow-x: hidden;
         }
@@ -31,7 +31,7 @@
             width: 100%;
             height: 100%;
             z-index: 0;
-            opacity: 0.9;
+            opacity: 0.8; /* Slightly reduced for better text visibility */
         }
 
         /* Content overlay */
@@ -82,6 +82,7 @@
             50% { text-shadow: 0 0 60px rgba(255,255,255,0.8); }
         }
 
+        /* FIXED: Line now stays within logo width */
         .logo::before {
             content: '';
             position: absolute;
@@ -91,12 +92,13 @@
             height: 1px;
             background: linear-gradient(90deg, transparent, #fff, transparent);
             animation: lineMove 3s infinite;
+            transform-origin: left;
         }
 
         @keyframes lineMove {
-            0% { transform: translateX(-100%); }
-            50% { transform: translateX(0); }
-            100% { transform: translateX(100%); }
+            0% { transform: scaleX(0); opacity: 0; }
+            50% { transform: scaleX(1); opacity: 1; }
+            100% { transform: scaleX(0); opacity: 0; }
         }
 
         .nav-links {
@@ -356,7 +358,7 @@
             font-size: 8px;
         }
 
-        /* Featured work */
+        /* Featured work - NOW WITH CIRCLES */
         .featured {
             margin-bottom: 180px;
             animation: workFadeIn 3s ease;
@@ -397,11 +399,13 @@
             perspective: 1000px;
         }
 
+        /* CHANGED: Circles instead of squares */
         .work-item {
             background: rgba(255,255,255,0.02);
             border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 50px;
-            padding: 60px 40px;
+            border-radius: 50%; /* Made them circles */
+            aspect-ratio: 1/1; /* Perfect circles */
+            padding: 40px;
             backdrop-filter: blur(20px);
             cursor: pointer;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -410,6 +414,11 @@
             pointer-events: auto;
             transform-style: preserve-3d;
             animation: cardFloat 4s infinite;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
         }
 
         @keyframes cardFloat {
@@ -436,7 +445,7 @@
             font-size: 12px;
             color: rgba(255,255,255,0.4);
             letter-spacing: 5px;
-            margin-bottom: 25px;
+            margin-bottom: 15px;
             position: relative;
             display: inline-block;
         }
@@ -445,52 +454,48 @@
             content: '';
             position: absolute;
             bottom: -8px;
-            left: 0;
-            width: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
             height: 1px;
             background: rgba(255,255,255,0.3);
             transition: width 0.3s;
         }
 
         .work-item:hover .work-year::after {
-            width: 100%;
+            width: 50px;
             background: #fff;
             box-shadow: 0 0 20px #fff;
         }
 
         .work-title {
-            font-size: 42px;
+            font-size: 36px;
             font-weight: 300;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             position: relative;
             letter-spacing: -1px;
         }
 
         .work-category {
-            font-size: 14px;
+            font-size: 12px;
             color: rgba(255,255,255,0.5);
             letter-spacing: 2px;
         }
 
         .work-icon {
-            position: absolute;
-            bottom: 40px;
-            right: 40px;
-            font-size: 50px;
-            opacity: 0.2;
+            font-size: 40px;
+            opacity: 0.3;
             transition: all 0.5s;
             filter: drop-shadow(0 0 20px currentColor);
-            transform: rotate(0deg);
+            margin-top: 20px;
         }
 
         .work-item:hover .work-icon {
             opacity: 1;
-            transform: rotate(15deg) scale(1.2);
-            right: 50px;
-            bottom: 50px;
+            transform: scale(1.2);
         }
 
-        /* Testimonials */
+        /* Testimonials - also circles */
         .testimonials {
             margin-bottom: 180px;
             animation: testimonialFadeIn 3.5s ease;
@@ -511,7 +516,7 @@
             background: rgba(255,255,255,0.02);
             border: 1px solid rgba(255,255,255,0.05);
             border-radius: 50px;
-            padding: 60px;
+            padding: 50px;
             backdrop-filter: blur(20px);
             transition: all 0.4s;
             pointer-events: auto;
@@ -541,7 +546,7 @@
             font-size: 18px;
             line-height: 1.9;
             color: rgba(255,255,255,0.8);
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             font-style: italic;
             position: relative;
             z-index: 1;
@@ -847,7 +852,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: #020308;
+            background: #000000;
             z-index: 10000;
             display: flex;
             justify-content: center;
@@ -907,7 +912,7 @@
             width: 300px;
             height: 300px;
             border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.1) 0%, transparent 70%);
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.08) 0%, transparent 70%);
             filter: blur(40px);
             animation: orbFloat 20s infinite alternate;
         }
@@ -915,7 +920,7 @@
         .orb:nth-child(1) {
             top: 10%;
             left: 5%;
-            background: radial-gradient(circle at 30% 30%, rgba(100,150,255,0.15) 0%, transparent 70%);
+            background: radial-gradient(circle at 30% 30%, rgba(100,150,255,0.12) 0%, transparent 70%);
             animation-duration: 25s;
         }
 
@@ -924,7 +929,7 @@
             right: 5%;
             width: 400px;
             height: 400px;
-            background: radial-gradient(circle at 70% 70%, rgba(255,150,150,0.1) 0%, transparent 70%);
+            background: radial-gradient(circle at 70% 70%, rgba(255,150,150,0.08) 0%, transparent 70%);
             animation-duration: 30s;
             animation-direction: reverse;
         }
@@ -934,7 +939,7 @@
             100% { transform: translate(50px, 50px) scale(1.2); }
         }
 
-        /* Remove cursor lag - simple dot cursor */
+        /* Simple cursor */
         .simple-cursor {
             width: 8px;
             height: 8px;
@@ -964,7 +969,7 @@
         </div>
     </div>
 
-    <!-- Simple cursor (no lag) -->
+    <!-- Simple cursor -->
     <div class="simple-cursor" id="cursor"></div>
 
     <!-- Progress bar -->
@@ -1031,7 +1036,7 @@
             </div>
         </section>
 
-        <!-- Featured work -->
+        <!-- Featured work - NOW CIRCLES -->
         <section class="featured">
             <div class="section-title">DIMENSIONS</div>
             <div class="work-grid">
@@ -1112,10 +1117,10 @@
     <script type="module">
         import * as THREE from 'three';
 
-        // --- 3D SETUP - OPTIMIZED ---
+        // --- 3D SETUP ---
         const canvas = document.getElementById('canvas-3d');
         const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x020308);
+        scene.background = new THREE.Color(0x000000); // Pure black
         
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         camera.position.set(0, 0, 12);
@@ -1124,11 +1129,11 @@
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-        // --- OPTIMIZED ENERGY FIELD (fewer particles for better performance) ---
+        // --- ENERGY FIELD ---
         const energyGroup = new THREE.Group();
 
-        // Particle field - reduced from 4000 to 2000 for better performance
-        const particleCount = 2000;
+        // Particle field
+        const particleCount = 1500;
         const particleGeo = new THREE.BufferGeometry();
         const particlePos = new Float32Array(particleCount * 3);
         const particleColors = new Float32Array(particleCount * 3);
@@ -1158,43 +1163,17 @@
             transparent: true,
             blending: THREE.AdditiveBlending,
             sizeAttenuation: true,
-            opacity: 0.7
+            opacity: 0.6
         });
 
         const particles = new THREE.Points(particleGeo, particleMat);
         energyGroup.add(particles);
 
-        // Reduced wisps from 20 to 10 for performance
-        for (let j = 0; j < 10; j++) {
-            const wispCount = 30;
-            const wispGeo = new THREE.BufferGeometry();
-            const wispPos = new Float32Array(wispCount * 3);
-            
-            const radius = 6 + Math.random() * 4;
-            for (let i = 0; i < wispCount * 3; i += 3) {
-                const t = i / (wispCount * 3) * Math.PI * 2;
-                wispPos[i] = Math.cos(t) * radius;
-                wispPos[i+1] = Math.sin(t * 2) * 2;
-                wispPos[i+2] = Math.sin(t) * radius;
-            }
-            
-            wispGeo.setAttribute('position', new THREE.BufferAttribute(wispPos, 3));
-            const wispMat = new THREE.LineBasicMaterial({ 
-                color: new THREE.Color().setHSL(0.7 + Math.random() * 0.2, 0.8, 0.6),
-                transparent: true,
-                opacity: 0.1
-            });
-            const wisp = new THREE.LineLoop(wispGeo, wispMat);
-            wisp.rotation.x = Math.random() * Math.PI;
-            wisp.rotation.y = Math.random() * Math.PI;
-            energyGroup.add(wisp);
-        }
-
         scene.add(energyGroup);
 
-        // Distant stars - reduced for performance
+        // Stars
         const starsGeo = new THREE.BufferGeometry();
-        const starsCount = 1500;
+        const starsCount = 1000;
         const starsPos = new Float32Array(starsCount * 3);
         
         for (let i = 0; i < starsCount * 3; i += 3) {
@@ -1204,7 +1183,7 @@
         }
         
         starsGeo.setAttribute('position', new THREE.BufferAttribute(starsPos, 3));
-        const starsMat = new THREE.PointsMaterial({ color: 0xffffff, size: 0.1, transparent: true, opacity: 0.5 });
+        const starsMat = new THREE.PointsMaterial({ color: 0xffffff, size: 0.1, transparent: true, opacity: 0.3 });
         const stars = new THREE.Points(starsGeo, starsMat);
         scene.add(stars);
 
@@ -1238,11 +1217,8 @@
         function animate() {
             requestAnimationFrame(animate);
 
-            // Smooth rotation based on mouse
             energyGroup.rotation.y += (targetRotationY - energyGroup.rotation.y) * 0.05;
             energyGroup.rotation.x += (targetRotationX - energyGroup.rotation.x) * 0.05;
-
-            // Gentle constant rotation
             energyGroup.rotation.y += 0.0003;
             
             renderer.render(scene, camera);
@@ -1257,7 +1233,7 @@
             renderer.setSize(window.innerWidth, window.innerHeight);
         });
 
-        // --- SIMPLE CURSOR (no lag) ---
+        // --- SIMPLE CURSOR ---
         const cursor = document.getElementById('cursor');
         
         document.addEventListener('mousemove', (e) => {
@@ -1309,16 +1285,16 @@
             document.getElementById('progressBar').style.width = scrolled + '%';
         });
 
-        // --- CREATE FLOATING PARTICLES (reduced for performance) ---
+        // --- PARTICLES ---
         function createParticles() {
             const container = document.getElementById('particlesContainer');
-            for (let i = 0; i < 100; i++) {
+            for (let i = 0; i < 80; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 particle.style.left = Math.random() * 100 + '%';
                 particle.style.animationDelay = Math.random() * 15 + 's';
                 particle.style.animationDuration = 10 + Math.random() * 20 + 's';
-                particle.style.opacity = (Math.random() * 0.2).toString();
+                particle.style.opacity = (Math.random() * 0.15).toString();
                 particle.style.width = (Math.random() * 2 + 1) + 'px';
                 particle.style.height = particle.style.width;
                 particle.style.background = `hsl(${Math.random() * 60 + 200}, 80%, 70%)`;

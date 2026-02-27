@@ -49,7 +49,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 0 40px;
-            margin-bottom: 60px;
+            margin-bottom: 80px;
             border-bottom: 1px solid rgba(255,255,255,0.05);
             position: relative;
         }
@@ -124,7 +124,8 @@
 
         /* Hero */
         .hero {
-            margin-bottom: 100px;
+            margin-bottom: 120px;
+            max-width: 900px;
         }
 
         .hero h1 {
@@ -150,32 +151,6 @@
             line-height: 1.8;
             font-weight: 300;
             letter-spacing: 0.5px;
-        }
-
-        /* Stats */
-        .stats {
-            display: flex;
-            gap: 80px;
-            margin-bottom: 120px;
-        }
-
-        .stat-item {
-            text-align: left;
-        }
-
-        .stat-number {
-            font-size: 48px;
-            font-weight: 200;
-            color: #fff;
-            margin-bottom: 5px;
-            letter-spacing: -1px;
-        }
-
-        .stat-label {
-            font-size: 12px;
-            letter-spacing: 3px;
-            color: rgba(255,255,255,0.4);
-            text-transform: uppercase;
         }
 
         /* Work grid */
@@ -345,7 +320,6 @@
         @media (max-width: 768px) {
             .hero h1 { font-size: 60px; }
             .work-grid { grid-template-columns: 1fr; }
-            .stats { flex-direction: column; gap: 30px; }
             nav { flex-direction: column; gap: 20px; }
             .nav-right { flex-direction: column; gap: 20px; }
             .nav-links { gap: 20px; }
@@ -379,32 +353,16 @@
                 </div>
                 <!-- Language Switcher -->
                 <div class="lang-switcher">
-                    <button class="lang-btn active" data-lang="en">🇬🇧 ENG</button>
-                    <button class="lang-btn" data-lang="sl">🇸🇮 SLO</button>
+                    <button class="lang-btn" data-lang="en">🇬🇧 ENG</button>
+                    <button class="lang-btn active" data-lang="sl">🇸🇮 SLO</button>
                 </div>
             </div>
         </nav>
 
         <!-- Hero -->
         <section class="hero">
-            <h1><span id="hero-line1">CREATE</span> <span id="hero-line2">WITH</span> <span id="hero-line3">PURPOSE</span></h1>
-            <p id="hero-desc">Digital experiences crafted at the intersection of design and technology. We build websites and applications that leave a lasting impression.</p>
-        </section>
-
-        <!-- Stats -->
-        <section class="stats">
-            <div class="stat-item">
-                <div class="stat-number" id="stat1">8+</div>
-                <div class="stat-label" id="stat1-label">YEARS</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number" id="stat2">50+</div>
-                <div class="stat-label" id="stat2-label">PROJECTS</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number" id="stat3">20+</div>
-                <div class="stat-label" id="stat3-label">CLIENTS</div>
-            </div>
+            <h1><span id="hero-line1">USTVARJAJ</span> <span id="hero-line2">Z</span> <span id="hero-line3">NAMENOM</span></h1>
+            <p id="hero-desc">Digitalne izkušnje, ustvarjene na stičišču oblikovanja in tehnologije. Gradimo spletne strani in aplikacije, ki pustijo trajen vtis.</p>
         </section>
 
         <!-- Work examples -->
@@ -412,24 +370,24 @@
             <a href="nebula.html" class="work-item" id="nebula">
                 <div class="work-year">2024</div>
                 <div class="work-title">NEBULA</div>
-                <div class="work-category" id="nebula-cat">TECH STARTUP</div>
+                <div class="work-category" id="nebula-cat">TEHNOLOŠKI ZAGON</div>
             </a>
             <a href="echo.html" class="work-item" id="echo">
                 <div class="work-year">2024</div>
                 <div class="work-title">ECHO</div>
-                <div class="work-category" id="echo-cat">MEDICAL</div>
+                <div class="work-category" id="echo-cat">MEDICINA</div>
             </a>
             <a href="aura.html" class="work-item" id="aura">
                 <div class="work-year">2023</div>
                 <div class="work-title">AURA</div>
-                <div class="work-category" id="aura-cat">RESTAURANT</div>
+                <div class="work-category" id="aura-cat">RESTAVRACIJA</div>
             </a>
         </section>
 
         <!-- CTA -->
         <section class="cta">
-            <h2><span id="cta-line1">READY TO BUILD</span> <span id="cta-line2">SOMETHING?</span></h2>
-            <a href="#" class="cta-btn" id="cta-btn">START HERE</a>
+            <h2><span id="cta-line1">PRIPRAVLJEN</span> <span id="cta-line2">ZAČETI?</span></h2>
+            <a href="#" class="cta-btn" id="cta-btn">ZAČNIMO</a>
         </section>
 
         <!-- Footer -->
@@ -522,14 +480,11 @@
                 'hero-line2': 'WITH',
                 'hero-line3': 'PURPOSE',
                 'hero-desc': 'Digital experiences crafted at the intersection of design and technology. We build websites and applications that leave a lasting impression.',
-                'stat1-label': 'YEARS',
-                'stat2-label': 'PROJECTS',
-                'stat3-label': 'CLIENTS',
                 'nebula-cat': 'TECH STARTUP',
                 'echo-cat': 'MEDICAL',
                 'aura-cat': 'RESTAURANT',
-                'cta-line1': 'READY TO BUILD',
-                'cta-line2': 'SOMETHING?',
+                'cta-line1': 'READY TO',
+                'cta-line2': 'BUILD?',
                 'cta-btn': 'START HERE',
                 'footer-ig': 'IG',
                 'footer-li': 'LI',
@@ -545,9 +500,6 @@
                 'hero-line2': 'Z',
                 'hero-line3': 'NAMENOM',
                 'hero-desc': 'Digitalne izkušnje, ustvarjene na stičišču oblikovanja in tehnologije. Gradimo spletne strani in aplikacije, ki pustijo trajen vtis.',
-                'stat1-label': 'LET',
-                'stat2-label': 'PROJEKTOV',
-                'stat3-label': 'STRANK',
                 'nebula-cat': 'TEHNOLOŠKI ZAGON',
                 'echo-cat': 'MEDICINA',
                 'aura-cat': 'RESTAVRACIJA',
@@ -564,7 +516,7 @@
 
         // ===== LANGUAGE SWITCHER =====
         const langBtns = document.querySelectorAll('.lang-btn');
-        let currentLang = 'en';
+        let currentLang = 'sl'; // Default to Slovenian
 
         function setLanguage(lang) {
             currentLang = lang;
@@ -607,8 +559,8 @@
             });
         });
 
-        // Initialize with English
-        setLanguage('en');
+        // Initialize with Slovenian (active by default in HTML)
+        setLanguage('sl');
     </script>
 </body>
 </html>

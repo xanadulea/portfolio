@@ -808,7 +808,7 @@
     <!-- Hero -->
     <section class="hero">
         <div>
-            <h1>Kjer <span>okus</span> pripoveduje zgodbe</h1>
+            <h1 id="hero-title">Kjer <span>okus</span> pripoveduje zgodbe</h1>
             <p id="hero-desc">Doživite sodobno kulinariko, pripravljeno s strastjo, tradicijo in najboljšimi sezonskimi sestavinami.</p>
             <div class="hero-btns">
                 <a href="#" class="btn-primary" id="hero-btn1">POGLEJ MENI</a>
@@ -840,7 +840,7 @@
 
     <!-- Atmosphere -->
     <section class="atmosphere">
-        <h2 class="section-title">Doživetje <span>Aura</span></h2>
+        <h2 class="section-title" id="atmosphere-title">Doživetje <span>Aura</span></h2>
         <p class="section-subtitle" id="atmosphere-sub">Več kot obrok - potovanje za čute</p>
         
         <div class="atmosphere-grid">
@@ -870,7 +870,7 @@
 
     <!-- Menu -->
     <section class="menu">
-        <h2 class="section-title">Naše <span>specialitete</span></h2>
+        <h2 class="section-title" id="menu-title">Naše <span>specialitete</span></h2>
         <p class="section-subtitle" id="menu-sub">Pripravljeno s strastjo, postreženo s ponosom</p>
 
         <div class="menu-grid">
@@ -900,7 +900,7 @@
             </div>
             <div class="menu-item">
                 <div class="menu-item-image">
-                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Wagyu">
+                    <img src="https://images.unsplash.com/photo-1558030006-4506753939d6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Wagyu">
                 </div>
                 <div class="menu-item-content">
                     <div class="menu-item-header">
@@ -942,7 +942,7 @@
 
     <!-- Reviews -->
     <section class="reviews">
-        <h2 class="section-title">Mnenja <span>gostov</span></h2>
+        <h2 class="section-title" id="reviews-title">Mnenja <span>gostov</span></h2>
         <p class="section-subtitle" id="reviews-sub">Ne verjemite nam na besedo</p>
 
         <div class="reviews-grid">
@@ -971,7 +971,7 @@
     <section class="reservation">
         <div class="reservation-grid">
             <div class="reservation-content">
-                <h2>Rezervirajte <span>svojo mizo</span></h2>
+                <h2 id="reservation-title">Rezervirajte <span>svojo mizo</span></h2>
                 <p id="reservation-desc">Pridružite se nam za nepozabno kulinarično izkušnjo.</p>
             </div>
             <div class="reservation-form">
@@ -1027,7 +1027,7 @@
 
     <!-- Gallery -->
     <section class="gallery">
-        <h2 class="section-title">Trenutki <span>iz Aura</span></h2>
+        <h2 class="section-title" id="gallery-title">Trenutki <span>iz Aura</span></h2>
         <p class="section-subtitle" id="gallery-sub">Pogled v naš svet</p>
 
         <div class="gallery-grid">
@@ -1092,12 +1092,14 @@
                 'nav-about': 'ABOUT',
                 'nav-contact': 'CONTACT',
                 'nav-btn': 'RESERVE',
+                'hero-title': 'Where <span>flavors</span> tell stories',
                 'hero-desc': 'Experience contemporary cuisine crafted with passion, tradition, and the finest seasonal ingredients.',
                 'hero-btn1': 'VIEW MENU',
                 'hero-btn2': 'RESERVE',
                 'hours-mon-thu': 'Mon-Thu: 11am - 10pm',
                 'hours-fri-sat': 'Fri-Sat: 11am - 12am',
                 'hours-sun': 'Sunday: 10am - 9pm',
+                'atmosphere-title': 'The <span>Aura</span> Experience',
                 'atmosphere-sub': 'More than a meal - a journey for the senses',
                 'atmos1-title': 'Garden Terrace',
                 'atmos1-desc': 'Al fresco dining in our lush garden',
@@ -1105,6 +1107,7 @@
                 'atmos2-desc': '500+ curated wines',
                 'atmos3-title': 'Open Kitchen',
                 'atmos3-desc': 'Watch our chefs create magic',
+                'menu-title': 'Signature <span>Dishes</span>',
                 'menu-sub': 'Crafted with passion, presented with pride',
                 'menu1-name': 'Burrata Salad',
                 'menu1-desc': 'Creamy burrata, tomatoes, basil',
@@ -1116,13 +1119,15 @@
                 'menu4-desc': 'Wild salmon, lemon, vegetables',
                 'chef-desc1': 'With over 25 years of experience in Michelin-starred restaurants across Europe and Asia, Chef Marco brings a unique blend of tradition and innovation to every dish.',
                 'chef-desc2': 'His philosophy is simple: let the ingredients speak.',
-                'reviews-sub': "Don't just take our word for it",
+                'reviews-title': 'Guest <span>Reviews</span>',
+                'reviews-sub': 'Don\'t just take our word for it',
                 'review1-text': 'The best dining experience in years. The wagyu was perfection.',
                 'review1-author': '— Anna K.',
                 'review2-text': 'Incredible atmosphere, even better food. The wine list is excellent.',
                 'review2-author': '— Mark N.',
                 'review3-text': 'The tasting menu is a journey. Each course tells a story.',
                 'review3-author': '— Petra S.',
+                'reservation-title': 'Reserve <span>your table</span>',
                 'reservation-desc': 'Join us for an unforgettable dining experience.',
                 'form-date': 'Date',
                 'form-time': 'Time',
@@ -1134,6 +1139,7 @@
                 'form-name-label': 'Full Name',
                 'form-email-label': 'Email',
                 'form-btn': 'FIND A TABLE',
+                'gallery-title': 'Moments <span>from Aura</span>',
                 'gallery-sub': 'A glimpse into our world',
                 'footer-desc': 'Contemporary cuisine in the heart of the city.',
                 'footer-hours': 'Hours',
@@ -1156,12 +1162,14 @@
                 'nav-about': 'O NAS',
                 'nav-contact': 'KONTAKT',
                 'nav-btn': 'REZERVIRAJ',
+                'hero-title': 'Kjer <span>okus</span> pripoveduje zgodbe',
                 'hero-desc': 'Doživite sodobno kulinariko, pripravljeno s strastjo, tradicijo in najboljšimi sezonskimi sestavinami.',
                 'hero-btn1': 'POGLEJ MENI',
                 'hero-btn2': 'REZERVIRAJ',
                 'hours-mon-thu': 'Pon-Čet: 11:00 - 22:00',
                 'hours-fri-sat': 'Pet-Sob: 11:00 - 24:00',
                 'hours-sun': 'Nedelja: 10:00 - 21:00',
+                'atmosphere-title': 'Doživetje <span>Aura</span>',
                 'atmosphere-sub': 'Več kot obrok - potovanje za čute',
                 'atmos1-title': 'Vrtna terasa',
                 'atmos1-desc': 'Obedovanje na prostem v bujnem vrtu',
@@ -1169,6 +1177,7 @@
                 'atmos2-desc': '500+ skrbno izbranih vin',
                 'atmos3-title': 'Odprta kuhinja',
                 'atmos3-desc': 'Opazujte naše kuharje pri delu',
+                'menu-title': 'Naše <span>specialitete</span>',
                 'menu-sub': 'Pripravljeno s strastjo, postreženo s ponosom',
                 'menu1-name': 'Burrata solata',
                 'menu1-desc': 'Kremasta burrata, paradižnik, bazilika',
@@ -1180,6 +1189,7 @@
                 'menu4-desc': 'Divji losos, limona, zelenjava',
                 'chef-desc1': 'Z več kot 25 leti izkušenj v Michelinovih restavracijah po Evropi in Aziji, chef Marco prinaša edinstveno mešanico tradicije in inovacij v vsako jed.',
                 'chef-desc2': 'Njegova filozofija je preprosta: naj sestavine govorijo same zase.',
+                'reviews-title': 'Mnenja <span>gostov</span>',
                 'reviews-sub': 'Ne verjemite nam na besedo',
                 'review1-text': 'Najboljša kulinarična izkušnja v letih. Wagyu je bil popoln.',
                 'review1-author': '— Ana K.',
@@ -1187,6 +1197,7 @@
                 'review2-author': '— Marko N.',
                 'review3-text': 'Degustacijski meni je potovanje. Vsaka jed pripoveduje zgodbo.',
                 'review3-author': '— Petra S.',
+                'reservation-title': 'Rezervirajte <span>svojo mizo</span>',
                 'reservation-desc': 'Pridružite se nam za nepozabno kulinarično izkušnjo.',
                 'form-date': 'Datum',
                 'form-time': 'Ura',
@@ -1198,6 +1209,7 @@
                 'form-name-label': 'Ime in priimek',
                 'form-email-label': 'Email',
                 'form-btn': 'POIŠČI MIZO',
+                'gallery-title': 'Trenutki <span>iz Aura</span>',
                 'gallery-sub': 'Pogled v naš svet',
                 'footer-desc': 'Sodobna kulinarika v srcu mesta.',
                 'footer-hours': 'Ure',
@@ -1236,6 +1248,13 @@
                         el.placeholder = translations[lang][id];
                     } else if (el.tagName === 'OPTION') {
                         el.textContent = translations[lang][id];
+                    } else if (el.tagName === 'H1' || el.tagName === 'H2' || el.tagName === 'H3' || el.tagName === 'P' || el.tagName === 'A' || el.tagName === 'SPAN') {
+                        // Handle HTML content for titles with spans
+                        if (id === 'hero-title' || id === 'atmosphere-title' || id === 'menu-title' || id === 'reviews-title' || id === 'reservation-title' || id === 'gallery-title') {
+                            el.innerHTML = translations[lang][id];
+                        } else {
+                            el.textContent = translations[lang][id];
+                        }
                     } else {
                         el.textContent = translations[lang][id];
                     }

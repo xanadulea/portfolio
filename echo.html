@@ -44,6 +44,12 @@
             font-weight: 300;
         }
 
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
         .nav-links {
             display: flex;
             gap: 40px;
@@ -60,10 +66,40 @@
             color: #0f4c81;
         }
 
+        /* Language Switcher */
+        .lang-switcher {
+            display: flex;
+            gap: 15px;
+            border-left: 1px solid #e2e8f0;
+            padding-left: 30px;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 20px;
+            transition: all 0.3s;
+            letter-spacing: 1px;
+        }
+
+        .lang-btn:hover {
+            color: #0f4c81;
+        }
+
+        .lang-btn.active {
+            color: #0f4c81;
+            background: #e6f0fa;
+        }
+
         .nav-btn {
             background: #0f4c81;
             color: white;
-            padding: 12px 30px;
+            padding: 10px 25px;
             border-radius: 30px;
             text-decoration: none;
             font-size: 14px;
@@ -72,7 +108,6 @@
 
         .nav-btn:hover {
             background: #0a3a5e;
-            transform: translateY(-2px);
         }
 
         /* Hero */
@@ -141,7 +176,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 120px;
+            overflow: hidden;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         /* Trust Badges */
@@ -279,7 +320,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 60px;
+            overflow: hidden;
+        }
+
+        .doctor-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .doctor-info {
@@ -302,34 +349,6 @@
             color: #64748b;
             font-size: 14px;
             line-height: 1.6;
-        }
-
-        /* Stats */
-        .stats {
-            padding: 60px 50px;
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 40px;
-            font-weight: 700;
-            color: #0f4c81;
-            margin-bottom: 5px;
-        }
-
-        .stat-label {
-            color: #64748b;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         /* Appointment */
@@ -372,10 +391,6 @@
             gap: 15px;
             color: #4b5563;
             border-bottom: 1px solid #e2e8f0;
-        }
-
-        .appointment-features li:last-child {
-            border-bottom: none;
         }
 
         .check {
@@ -423,11 +438,6 @@
             box-shadow: 0 0 0 3px rgba(15,76,129,0.1);
         }
 
-        .form-group textarea {
-            height: 100px;
-            resize: vertical;
-        }
-
         .form-btn {
             width: 100%;
             padding: 14px;
@@ -443,64 +453,6 @@
 
         .form-btn:hover {
             background: #0a3a5e;
-        }
-
-        /* Testimonials */
-        .testimonials {
-            padding: 80px 50px;
-            background: #f1f5f9;
-        }
-
-        .testimonials-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-        }
-
-        .testimonial-card {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
-
-        .testimonial-text {
-            font-size: 16px;
-            line-height: 1.8;
-            color: #4b5563;
-            margin-bottom: 20px;
-            font-style: italic;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: #e6f0fa;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #0f4c81;
-            font-weight: bold;
-        }
-
-        .author-info h4 {
-            font-size: 16px;
-            margin-bottom: 3px;
-            color: #0f4c81;
-        }
-
-        .author-info p {
-            font-size: 13px;
-            color: #64748b;
         }
 
         /* Footer */
@@ -546,16 +498,6 @@
             font-size: 14px;
         }
 
-        .footer-bottom a {
-            color: #94a3b8;
-            text-decoration: none;
-            margin: 0 10px;
-        }
-
-        .footer-bottom a:hover {
-            color: white;
-        }
-
         /* Back button */
         .back-btn {
             position: fixed;
@@ -576,10 +518,8 @@
         .back-btn:hover {
             background: #0f4c81;
             color: white;
-            border-color: #0f4c81;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .hero {
                 grid-template-columns: 1fr;
@@ -587,8 +527,6 @@
             }
             .services-grid,
             .doctors-grid,
-            .stats,
-            .testimonials-grid,
             .footer-grid {
                 grid-template-columns: 1fr;
             }
@@ -598,159 +536,154 @@
             nav {
                 flex-direction: column;
                 gap: 20px;
-                padding: 20px;
             }
-            .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
+            .nav-right {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .lang-switcher {
+                border-left: none;
+                padding-left: 0;
             }
         }
     </style>
 </head>
 <body>
     <!-- Back to portfolio -->
-    <a href="index.html" class="back-btn">← BACK TO PORTFOLIO</a>
+    <a href="index.html" class="back-btn" id="back-btn">← NAZAJ</a>
 
     <!-- Navigation -->
     <nav>
         <div class="logo">ECHO <span>Medical Center</span></div>
-        <div class="nav-links">
-            <a href="#">Home</a>
-            <a href="#">Services</a>
-            <a href="#">Doctors</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
+        <div class="nav-right">
+            <div class="nav-links">
+                <a href="#" id="nav-home">DOMOV</a>
+                <a href="#" id="nav-services">STORITVE</a>
+                <a href="#" id="nav-doctors">ZDRAVNIKI</a>
+                <a href="#" id="nav-about">O NAS</a>
+                <a href="#" id="nav-contact">KONTAKT</a>
+            </div>
+            <div class="lang-switcher">
+                <button class="lang-btn" data-lang="en">🇬🇧 ENG</button>
+                <button class="lang-btn active" data-lang="sl">🇸🇮 SLO</button>
+            </div>
+            <a href="#" class="nav-btn" id="nav-btn">NAROČI SE</a>
         </div>
-        <a href="#" class="nav-btn">Book Appointment</a>
     </nav>
 
     <!-- Hero -->
     <section class="hero">
         <div>
-            <h1>Your Health, Our Priority</h1>
-            <p>Echo Medical Center provides compassionate, comprehensive healthcare for you and your family. With state-of-the-art facilities and experienced doctors, we're here for you 24/7.</p>
+            <h1 id="hero-title">Vaše zdravje, naša prioriteta</h1>
+            <p id="hero-desc">Echo Medical Center zagotavlja sočutno in celovito zdravstveno oskrbo za vas in vašo družino.</p>
             <div class="hero-btns">
-                <a href="#" class="btn-primary">Find a Doctor</a>
-                <a href="#" class="btn-secondary">Our Services</a>
+                <a href="#" class="btn-primary" id="hero-btn1">Poišči zdravnika</a>
+                <a href="#" class="btn-secondary" id="hero-btn2">Naše storitve</a>
             </div>
         </div>
         <div class="hero-image">
-            🏥
+            <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Medical center">
         </div>
     </section>
 
     <!-- Trust Badges -->
     <section class="trust">
-        <p>TRUSTED BY THOUSANDS OF PATIENTS</p>
+        <p id="trust-title">ZAUPATAJO NAM TISOČI PACIENTOV</p>
         <div class="trust-grid">
             <div class="trust-item">
                 <div class="trust-icon">✓</div>
-                <span>Board Certified</span>
+                <span id="trust1">Certificirani</span>
             </div>
             <div class="trust-item">
                 <div class="trust-icon">✓</div>
-                <span>24/7 Emergency</span>
+                <span id="trust2">24/7 Urgenca</span>
             </div>
             <div class="trust-item">
                 <div class="trust-icon">✓</div>
-                <span>Insurance Accepted</span>
+                <span id="trust3">Sprejemamo zavarovanja</span>
             </div>
             <div class="trust-item">
                 <div class="trust-icon">✓</div>
-                <span>100+ Specialists</span>
+                <span id="trust4">100+ Specialistov</span>
             </div>
         </div>
     </section>
 
     <!-- Services -->
     <section class="services">
-        <h2 class="section-title">Our Medical Services</h2>
-        <p class="section-subtitle">Comprehensive healthcare services tailored to your needs</p>
+        <h2 class="section-title" id="services-title">Naše medicinske storitve</h2>
+        <p class="section-subtitle" id="services-sub">Celovita zdravstvena oskrba prilagojena vašim potrebam</p>
         
         <div class="services-grid">
             <div class="service-card">
                 <div class="service-icon">❤️</div>
-                <h3>Cardiology</h3>
-                <p>Expert heart care with advanced diagnostic and treatment options for all cardiac conditions.</p>
+                <h3 id="service1-title">Kardiologija</h3>
+                <p id="service1-desc">Strokovna oskrba srca z naprednimi diagnostičnimi možnostmi.</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">🧠</div>
-                <h3>Neurology</h3>
-                <p>Comprehensive care for brain and nervous system disorders with leading specialists.</p>
+                <h3 id="service2-title">Nevrologija</h3>
+                <p id="service2-desc">Celovita oskrba za bolezni možganov in živčevja.</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">🦷</div>
-                <h3>Dentistry</h3>
-                <p>Complete dental care for the whole family, from routine checkups to complex procedures.</p>
+                <h3 id="service3-title">Zobozdravstvo</h3>
+                <p id="service3-desc">Popolna zobozdravstvena oskrba za vso družino.</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">👁️</div>
-                <h3>Ophthalmology</h3>
-                <p>Advanced eye care and vision correction services with state-of-the-art technology.</p>
+                <h3 id="service4-title">Oftalmologija</h3>
+                <p id="service4-desc">Napredna oskrba oči in korekcija vida.</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">🫀</div>
-                <h3>Orthopedics</h3>
-                <p>Expert care for bones, joints, and muscles to help you stay active and pain-free.</p>
+                <h3 id="service5-title">Ortopedija</h3>
+                <p id="service5-desc">Strokovna oskrba kosti, sklepov in mišic.</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">👶</div>
-                <h3>Pediatrics</h3>
-                <p>Specialized healthcare for children from infancy through adolescence.</p>
+                <h3 id="service6-title">Pediatrija</h3>
+                <p id="service6-desc">Specializirana zdravstvena oskrba za otroke.</p>
             </div>
         </div>
     </section>
 
     <!-- Doctors -->
     <section class="doctors">
-        <h2 class="section-title">Meet Our Specialists</h2>
-        <p class="section-subtitle">Experienced doctors dedicated to your wellbeing</p>
+        <h2 class="section-title" id="doctors-title">Naši specialisti</h2>
+        <p class="section-subtitle" id="doctors-sub">Izkušeni zdravniki posvečeni vašemu dobremu počutju</p>
         
         <div class="doctors-grid">
             <div class="doctor-card">
-                <div class="doctor-image">👩‍⚕️</div>
+                <div class="doctor-image">
+                    <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Dr. Sarah Chen">
+                </div>
                 <div class="doctor-info">
                     <h3>Dr. Sarah Chen</h3>
-                    <div class="doctor-title">Cardiologist, MD</div>
-                    <p class="doctor-desc">15+ years experience in interventional cardiology. Harvard trained.</p>
+                    <div class="doctor-title" id="doctor1-title">Kardiologinja, MD</div>
+                    <p class="doctor-desc" id="doctor1-desc">15+ let izkušenj v interventni kardiologiji.</p>
                 </div>
             </div>
             <div class="doctor-card">
-                <div class="doctor-image">👨‍⚕️</div>
+                <div class="doctor-image">
+                    <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Dr. James Wilson">
+                </div>
                 <div class="doctor-info">
                     <h3>Dr. James Wilson</h3>
-                    <div class="doctor-title">Neurologist, PhD</div>
-                    <p class="doctor-desc">Specializes in neurodegenerative disorders and stroke treatment.</p>
+                    <div class="doctor-title" id="doctor2-title">Nevrolog, PhD</div>
+                    <p class="doctor-desc" id="doctor2-desc">Specializiran za nevrodegenerativne bolezni.</p>
                 </div>
             </div>
             <div class="doctor-card">
-                <div class="doctor-image">👩‍⚕️</div>
+                <div class="doctor-image">
+                    <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Dr. Emily Rodriguez">
+                </div>
                 <div class="doctor-info">
                     <h3>Dr. Emily Rodriguez</h3>
-                    <div class="doctor-title">Pediatrician, MD</div>
-                    <p class="doctor-desc">Dedicated to children's health with a gentle, caring approach.</p>
+                    <div class="doctor-title" id="doctor3-title">Pediatrinja, MD</div>
+                    <p class="doctor-desc" id="doctor3-desc">Predana otroškemu zdravju s nežnim pristopom.</p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Stats -->
-    <section class="stats">
-        <div class="stat-item">
-            <div class="stat-number">50K+</div>
-            <div class="stat-label">PATIENTS</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-number">100+</div>
-            <div class="stat-label">SPECIALISTS</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-number">25</div>
-            <div class="stat-label">YEARS</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-number">24/7</div>
-            <div class="stat-label">EMERGENCY</div>
         </div>
     </section>
 
@@ -758,74 +691,38 @@
     <section class="appointment">
         <div class="appointment-grid">
             <div class="appointment-content">
-                <h2>Book Your Appointment Today</h2>
-                <p>Take the first step towards better health. Schedule a visit with our specialists at your convenience.</p>
+                <h2 id="appointment-title">Naročite se še danes</h2>
+                <p id="appointment-desc">Naredite prvi korak k boljšemu zdravju. Termin pri naših specialistih lahko rezervirate kadarkoli.</p>
                 <ul class="appointment-features">
-                    <li><span class="check">✓</span> Same-day appointments available</li>
-                    <li><span class="check">✓</span> Virtual consultations</li>
-                    <li><span class="check">✓</span> Most insurance accepted</li>
-                    <li><span class="check">✓</span> No long waiting lists</li>
+                    <li><span class="check">✓</span> <span id="appoint1">Termini še isti dan</span></li>
+                    <li><span class="check">✓</span> <span id="appoint2">Virtualni posveti</span></li>
+                    <li><span class="check">✓</span> <span id="appoint3">Sprejemamo večino zavarovanj</span></li>
                 </ul>
             </div>
             <div class="appointment-form">
                 <form>
                     <div class="form-group">
-                        <label>Full Name</label>
-                        <input type="text" placeholder="John Doe">
+                        <label id="form-name">Ime in priimek</label>
+                        <input type="text" placeholder="Janez Novak" id="form-name-input">
                     </div>
                     <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" placeholder="john@example.com">
+                        <label id="form-email">Email</label>
+                        <input type="email" placeholder="janez@email.com" id="form-email-input">
                     </div>
                     <div class="form-group">
-                        <label>Phone</label>
-                        <input type="tel" placeholder="(555) 123-4567">
+                        <label id="form-phone">Telefon</label>
+                        <input type="tel" placeholder="041 123 456" id="form-phone-input">
                     </div>
                     <div class="form-group">
-                        <label>Service</label>
-                        <select>
-                            <option>Cardiology</option>
-                            <option>Neurology</option>
-                            <option>Pediatrics</option>
-                            <option>Dentistry</option>
-                            <option>Other</option>
+                        <label id="form-service">Storitev</label>
+                        <select id="form-service-select">
+                            <option id="service-opt1">Kardiologija</option>
+                            <option id="service-opt2">Nevrologija</option>
+                            <option id="service-opt3">Pediatrija</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label>Message</label>
-                        <textarea placeholder="Any specific concerns?"></textarea>
-                    </div>
-                    <button type="submit" class="form-btn">Request Appointment</button>
+                    <button type="submit" class="form-btn" id="form-btn">Pošlji povpraševanje</button>
                 </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="testimonials">
-        <h2 class="section-title">What Our Patients Say</h2>
-        <p class="section-subtitle">Real stories from real people we've had the privilege to care for</p>
-        
-        <div class="testimonials-grid">
-            <div class="testimonial-card">
-                <div class="testimonial-text">"The care I received at Echo was exceptional. Dr. Chen took time to explain everything and made me feel truly heard. I couldn't ask for better healthcare."</div>
-                <div class="testimonial-author">
-                    <div class="author-avatar">M</div>
-                    <div class="author-info">
-                        <h4>Margaret Thompson</h4>
-                        <p>Cardiology Patient</p>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-card">
-                <div class="testimonial-text">"As a new mom, I was nervous about finding the right pediatrician. Dr. Rodriguez is wonderful with my baby and so supportive. We're so grateful."</div>
-                <div class="testimonial-author">
-                    <div class="author-avatar">J</div>
-                    <div class="author-info">
-                        <h4>Jessica Park</h4>
-                        <p>Pediatrics Patient</p>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -834,43 +731,205 @@
     <footer>
         <div class="footer-grid">
             <div class="footer-col">
-                <h4>Echo Medical</h4>
-                <a href="#">About Us</a>
-                <a href="#">Careers</a>
-                <a href="#">Insurance</a>
-                <a href="#">Patient Portal</a>
+                <h4 id="footer-echo">Echo Medical</h4>
+                <a href="#" id="footer-about-link">O nas</a>
+                <a href="#" id="footer-careers-link">Kariera</a>
+                <a href="#" id="footer-insurance">Zavarovanja</a>
             </div>
             <div class="footer-col">
-                <h4>Services</h4>
-                <a href="#">Cardiology</a>
-                <a href="#">Neurology</a>
-                <a href="#">Pediatrics</a>
-                <a href="#">Dentistry</a>
-                <a href="#">Orthopedics</a>
+                <h4 id="footer-services">Storitve</h4>
+                <a href="#">Kardiologija</a>
+                <a href="#">Nevrologija</a>
+                <a href="#">Pediatrija</a>
             </div>
             <div class="footer-col">
-                <h4>Patients</h4>
-                <a href="#">Appointments</a>
-                <a href="#">Medical Records</a>
-                <a href="#">Billing</a>
-                <a href="#">FAQs</a>
+                <h4 id="footer-patients">Pacienti</h4>
+                <a href="#" id="footer-appointments">Naročanje</a>
+                <a href="#" id="footer-records">Kartoteka</a>
+                <a href="#" id="footer-billing">Plačila</a>
             </div>
             <div class="footer-col">
-                <h4>Contact</h4>
-                <a href="#">(555) 123-4567</a>
+                <h4 id="footer-contact-title">Kontakt</h4>
+                <a href="#">(01) 123 45 67</a>
                 <a href="#">info@echo.medical</a>
-                <a href="#">123 Health Ave</a>
-                <a href="#">Emergency: 911</a>
+                <a href="#" id="footer-address">Slovenska cesta 10, Ljubljana</a>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2026 Echo Medical Center. All rights reserved.</p>
-            <p>
-                <a href="#">Privacy Policy</a> |
-                <a href="#">Terms of Use</a> |
-                <a href="#">Accessibility</a>
-            </p>
+            <p id="footer-copyright">© 2026 ECHO Medical Center. Vse pravice pridržane.</p>
         </div>
     </footer>
+
+    <script>
+        const translations = {
+            en: {
+                'back-btn': '← BACK',
+                'nav-home': 'HOME',
+                'nav-services': 'SERVICES',
+                'nav-doctors': 'DOCTORS',
+                'nav-about': 'ABOUT',
+                'nav-contact': 'CONTACT',
+                'nav-btn': 'BOOK NOW',
+                'hero-title': 'Your Health, Our Priority',
+                'hero-desc': 'Echo Medical Center provides compassionate healthcare for you and your family.',
+                'hero-btn1': 'Find a Doctor',
+                'hero-btn2': 'Our Services',
+                'trust-title': 'TRUSTED BY THOUSANDS OF PATIENTS',
+                'trust1': 'Board Certified',
+                'trust2': '24/7 Emergency',
+                'trust3': 'Insurance Accepted',
+                'trust4': '100+ Specialists',
+                'services-title': 'Our Medical Services',
+                'services-sub': 'Comprehensive healthcare tailored to your needs',
+                'service1-title': 'Cardiology',
+                'service1-desc': 'Expert heart care with advanced diagnostic options.',
+                'service2-title': 'Neurology',
+                'service2-desc': 'Comprehensive care for brain and nervous system.',
+                'service3-title': 'Dentistry',
+                'service3-desc': 'Complete dental care for the whole family.',
+                'service4-title': 'Ophthalmology',
+                'service4-desc': 'Advanced eye care and vision correction.',
+                'service5-title': 'Orthopedics',
+                'service5-desc': 'Expert care for bones, joints, and muscles.',
+                'service6-title': 'Pediatrics',
+                'service6-desc': 'Specialized healthcare for children.',
+                'doctors-title': 'Meet Our Specialists',
+                'doctors-sub': 'Experienced doctors dedicated to your wellbeing',
+                'doctor1-title': 'Cardiologist, MD',
+                'doctor1-desc': '15+ years experience in interventional cardiology.',
+                'doctor2-title': 'Neurologist, PhD',
+                'doctor2-desc': 'Specializes in neurodegenerative disorders.',
+                'doctor3-title': 'Pediatrician, MD',
+                'doctor3-desc': 'Dedicated to children\'s health with a gentle approach.',
+                'appointment-title': 'Book Your Appointment Today',
+                'appointment-desc': 'Take the first step towards better health.',
+                'appoint1': 'Same-day appointments available',
+                'appoint2': 'Virtual consultations',
+                'appoint3': 'Most insurance accepted',
+                'form-name': 'Full Name',
+                'form-email': 'Email',
+                'form-phone': 'Phone',
+                'form-service': 'Service',
+                'service-opt1': 'Cardiology',
+                'service-opt2': 'Neurology',
+                'service-opt3': 'Pediatrics',
+                'form-btn': 'Request Appointment',
+                'footer-echo': 'Echo Medical',
+                'footer-about-link': 'About',
+                'footer-careers-link': 'Careers',
+                'footer-insurance': 'Insurance',
+                'footer-services': 'Services',
+                'footer-patients': 'Patients',
+                'footer-appointments': 'Appointments',
+                'footer-records': 'Records',
+                'footer-billing': 'Billing',
+                'footer-contact-title': 'Contact',
+                'footer-address': '123 Health Ave, Ljubljana',
+                'footer-copyright': '© 2026 ECHO Medical Center. All rights reserved.'
+            },
+            sl: {
+                'back-btn': '← NAZAJ',
+                'nav-home': 'DOMOV',
+                'nav-services': 'STORITVE',
+                'nav-doctors': 'ZDRAVNIKI',
+                'nav-about': 'O NAS',
+                'nav-contact': 'KONTAKT',
+                'nav-btn': 'NAROČI SE',
+                'hero-title': 'Vaše zdravje, naša prioriteta',
+                'hero-desc': 'Echo Medical Center zagotavlja sočutno in celovito zdravstveno oskrbo za vas in vašo družino.',
+                'hero-btn1': 'Poišči zdravnika',
+                'hero-btn2': 'Naše storitve',
+                'trust-title': 'ZAUPATAJO NAM TISOČI PACIENTOV',
+                'trust1': 'Certificirani',
+                'trust2': '24/7 Urgenca',
+                'trust3': 'Sprejemamo zavarovanja',
+                'trust4': '100+ Specialistov',
+                'services-title': 'Naše medicinske storitve',
+                'services-sub': 'Celovita zdravstvena oskrba prilagojena vašim potrebam',
+                'service1-title': 'Kardiologija',
+                'service1-desc': 'Strokovna oskrba srca z naprednimi diagnostičnimi možnostmi.',
+                'service2-title': 'Nevrologija',
+                'service2-desc': 'Celovita oskrba za bolezni možganov in živčevja.',
+                'service3-title': 'Zobozdravstvo',
+                'service3-desc': 'Popolna zobozdravstvena oskrba za vso družino.',
+                'service4-title': 'Oftalmologija',
+                'service4-desc': 'Napredna oskrba oči in korekcija vida.',
+                'service5-title': 'Ortopedija',
+                'service5-desc': 'Strokovna oskrba kosti, sklepov in mišic.',
+                'service6-title': 'Pediatrija',
+                'service6-desc': 'Specializirana zdravstvena oskrba za otroke.',
+                'doctors-title': 'Naši specialisti',
+                'doctors-sub': 'Izkušeni zdravniki posvečeni vašemu dobremu počutju',
+                'doctor1-title': 'Kardiologinja, MD',
+                'doctor1-desc': '15+ let izkušenj v interventni kardiologiji.',
+                'doctor2-title': 'Nevrolog, PhD',
+                'doctor2-desc': 'Specializiran za nevrodegenerativne bolezni.',
+                'doctor3-title': 'Pediatrinja, MD',
+                'doctor3-desc': 'Predana otroškemu zdravju s nežnim pristopom.',
+                'appointment-title': 'Naročite se še danes',
+                'appointment-desc': 'Naredite prvi korak k boljšemu zdravju.',
+                'appoint1': 'Termini še isti dan',
+                'appoint2': 'Virtualni posveti',
+                'appoint3': 'Sprejemamo večino zavarovanj',
+                'form-name': 'Ime in priimek',
+                'form-email': 'Email',
+                'form-phone': 'Telefon',
+                'form-service': 'Storitev',
+                'service-opt1': 'Kardiologija',
+                'service-opt2': 'Nevrologija',
+                'service-opt3': 'Pediatrija',
+                'form-btn': 'Pošlji povpraševanje',
+                'footer-echo': 'Echo Medical',
+                'footer-about-link': 'O nas',
+                'footer-careers-link': 'Kariera',
+                'footer-insurance': 'Zavarovanja',
+                'footer-services': 'Storitve',
+                'footer-patients': 'Pacienti',
+                'footer-appointments': 'Naročanje',
+                'footer-records': 'Kartoteka',
+                'footer-billing': 'Plačila',
+                'footer-contact-title': 'Kontakt',
+                'footer-address': 'Slovenska cesta 10, Ljubljana',
+                'footer-copyright': '© 2026 ECHO Medical Center. Vse pravice pridržane.'
+            }
+        };
+
+        const langBtns = document.querySelectorAll('.lang-btn');
+        let currentLang = 'sl';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            
+            langBtns.forEach(btn => {
+                if (btn.dataset.lang === lang) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            const elements = document.querySelectorAll('[id]');
+            elements.forEach(el => {
+                const id = el.id;
+                if (translations[lang] && translations[lang][id]) {
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = translations[lang][id];
+                    } else if (el.tagName === 'OPTION') {
+                        el.textContent = translations[lang][id];
+                    } else {
+                        el.textContent = translations[lang][id];
+                    }
+                }
+            });
+        }
+
+        langBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                setLanguage(btn.dataset.lang);
+            });
+        });
+
+        setLanguage('sl');
+    </script>
 </body>
 </html>

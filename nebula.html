@@ -24,7 +24,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 30px 50px;
+            padding: 20px 50px;
             background: rgba(10,10,15,0.8);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255,255,255,0.05);
@@ -42,9 +42,15 @@
             -webkit-text-fill-color: transparent;
         }
 
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
         .nav-links {
             display: flex;
-            gap: 50px;
+            gap: 40px;
         }
 
         .nav-links a {
@@ -58,14 +64,45 @@
             color: #fff;
         }
 
+        /* Language Switcher */
+        .lang-switcher {
+            display: flex;
+            gap: 15px;
+            border-left: 1px solid rgba(255,255,255,0.1);
+            padding-left: 30px;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: rgba(255,255,255,0.3);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 20px;
+            transition: all 0.3s;
+            letter-spacing: 1px;
+        }
+
+        .lang-btn:hover {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .lang-btn.active {
+            color: #fff;
+            background: rgba(255,255,255,0.1);
+        }
+
         .nav-btn {
             background: rgba(255,255,255,0.1);
             border: 1px solid rgba(255,255,255,0.2);
-            padding: 12px 30px;
+            padding: 10px 25px;
             border-radius: 30px;
             color: #fff;
             text-decoration: none;
             transition: all 0.3s;
+            font-size: 14px;
         }
 
         .nav-btn:hover {
@@ -137,13 +174,19 @@
         .hero-image {
             background: linear-gradient(135deg, #1a1a2a, #2a1a3a);
             border-radius: 30px;
-            padding: 40px;
             height: 400px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 100px;
             border: 1px solid rgba(255,255,255,0.1);
+            overflow: hidden;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.9;
         }
 
         /* Logos */
@@ -231,7 +274,7 @@
             line-height: 1.8;
         }
 
-        /* Product Showcase */
+        /* Showcase */
         .showcase {
             padding: 100px 50px;
             background: rgba(255,255,255,0.02);
@@ -266,8 +309,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 120px;
             border: 1px solid rgba(255,255,255,0.1);
+            overflow: hidden;
+        }
+
+        .showcase-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         /* Pricing */
@@ -464,48 +513,65 @@
             nav {
                 flex-direction: column;
                 gap: 20px;
+                padding: 20px;
+            }
+            .nav-right {
+                flex-direction: column;
+                gap: 20px;
             }
             .nav-links {
                 flex-wrap: wrap;
                 justify-content: center;
+            }
+            .lang-switcher {
+                border-left: none;
+                padding-left: 0;
             }
         }
     </style>
 </head>
 <body>
     <!-- Back to portfolio -->
-    <a href="index.html" class="back-btn">← BACK TO PORTFOLIO</a>
+    <a href="index.html" class="back-btn" id="back-btn">← NAZAJ</a>
 
     <!-- Navigation -->
     <nav>
         <div class="logo">NEBULA</div>
-        <div class="nav-links">
-            <a href="#">Product</a>
-            <a href="#">Features</a>
-            <a href="#">Pricing</a>
-            <a href="#">About</a>
+        <div class="nav-right">
+            <div class="nav-links">
+                <a href="#" id="nav-product">PRODUCT</a>
+                <a href="#" id="nav-features">FEATURES</a>
+                <a href="#" id="nav-pricing">PRICING</a>
+                <a href="#" id="nav-about">ABOUT</a>
+            </div>
+            <!-- Language Switcher -->
+            <div class="lang-switcher">
+                <button class="lang-btn" data-lang="en">🇬🇧 ENG</button>
+                <button class="lang-btn active" data-lang="sl">🇸🇮 SLO</button>
+            </div>
+            <a href="#" class="nav-btn" id="nav-btn">GET STARTED</a>
         </div>
-        <a href="#" class="nav-btn">Get Started</a>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
         <div>
-            <h1>Build faster with AI-powered development</h1>
-            <p>Nebula helps developers and teams ship better code faster with intelligent automation and real-time collaboration.</p>
+            <h1 id="hero-title">Build faster with AI-powered development</h1>
+            <p id="hero-desc">Nebula helps developers and teams ship better code faster with intelligent automation and real-time collaboration.</p>
             <div class="hero-btns">
-                <a href="#" class="btn-primary">Start Building</a>
-                <a href="#" class="btn-secondary">Watch Demo</a>
+                <a href="#" class="btn-primary" id="hero-btn1">Start Building</a>
+                <a href="#" class="btn-secondary" id="hero-btn2">Watch Demo</a>
             </div>
         </div>
         <div class="hero-image">
-            🚀
+            <!-- Replace with your royalty-free image -->
+            <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Tech startup">
         </div>
     </section>
 
     <!-- Logos Section -->
     <section class="logos">
-        <p>TRUSTED BY INNOVATIVE TEAMS</p>
+        <p id="logos-title">TRUSTED BY INNOVATIVE TEAMS</p>
         <div class="logo-grid">
             <span class="logo-item">VERCEL</span>
             <span class="logo-item">NETLIFY</span>
@@ -517,39 +583,39 @@
 
     <!-- Features Section -->
     <section class="features">
-        <h2 class="section-title">Everything you need to build great products</h2>
-        <p class="section-subtitle">Powerful features that help you and your team work better together</p>
+        <h2 class="section-title" id="features-title">Everything you need to build great products</h2>
+        <p class="section-subtitle" id="features-sub">Powerful features that help you and your team work better together</p>
         
         <div class="features-grid">
             <div class="feature-card">
                 <div class="feature-icon">⚡</div>
-                <h3>Lightning Fast</h3>
-                <p>Build and deploy in seconds with our optimized infrastructure and intelligent caching.</p>
+                <h3 id="feature1-title">Lightning Fast</h3>
+                <p id="feature1-desc">Build and deploy in seconds with our optimized infrastructure.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🤖</div>
-                <h3>AI-Powered</h3>
-                <p>Get intelligent suggestions and automation that learn from your code patterns.</p>
+                <h3 id="feature2-title">AI-Powered</h3>
+                <p id="feature2-desc">Intelligent suggestions that learn from your code patterns.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🔒</div>
-                <h3>Enterprise Security</h3>
-                <p>Bank-level encryption and security features to keep your code safe.</p>
+                <h3 id="feature3-title">Enterprise Security</h3>
+                <p id="feature3-desc">Bank-level encryption to keep your code safe.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🌐</div>
-                <h3>Global CDN</h3>
-                <p>Serve your content from anywhere in the world with our global network.</p>
+                <h3 id="feature4-title">Global CDN</h3>
+                <p id="feature4-desc">Serve content from anywhere in the world.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">📊</div>
-                <h3>Real-time Analytics</h3>
-                <p>See exactly how your applications are performing with detailed insights.</p>
+                <h3 id="feature5-title">Real-time Analytics</h3>
+                <p id="feature5-desc">Detailed insights into your application performance.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">👥</div>
-                <h3>Team Collaboration</h3>
-                <p>Work together seamlessly with real-time editing and comments.</p>
+                <h3 id="feature6-title">Team Collaboration</h3>
+                <p id="feature6-desc">Work together seamlessly in real-time.</p>
             </div>
         </div>
     </section>
@@ -558,100 +624,268 @@
     <section class="showcase">
         <div class="showcase-grid">
             <div class="showcase-content">
-                <h2>See your code come to life</h2>
-                <p>Nebula's real-time preview shows you exactly what you're building as you type. No more switching between editor and browser.</p>
-                <a href="#" class="btn-primary">Try it now</a>
+                <h2 id="showcase-title">See your code come to life</h2>
+                <p id="showcase-desc">Real-time preview shows you exactly what you're building as you type.</p>
+                <a href="#" class="btn-primary" id="showcase-btn">Try it now</a>
             </div>
             <div class="showcase-image">
-                💻
+                <!-- Replace with your royalty-free image -->
+                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Coding">
             </div>
         </div>
     </section>
 
     <!-- Pricing Section -->
     <section class="pricing">
-        <h2 class="section-title">Simple, transparent pricing</h2>
-        <p class="section-subtitle">Choose the plan that's right for you</p>
+        <h2 class="section-title" id="pricing-title">Simple, transparent pricing</h2>
+        <p class="section-subtitle" id="pricing-sub">Choose the plan that's right for you</p>
         
         <div class="pricing-grid">
             <div class="pricing-card">
-                <h3>Starter</h3>
-                <div class="price">$0 <span>/month</span></div>
+                <h3 id="plan1-name">Starter</h3>
+                <div class="price">$0 <span id="plan1-period">/month</span></div>
                 <ul class="pricing-features">
-                    <li>3 projects</li>
-                    <li>Basic analytics</li>
-                    <li>Community support</li>
-                    <li>2 team members</li>
+                    <li id="plan1-feat1">3 projects</li>
+                    <li id="plan1-feat2">Basic analytics</li>
+                    <li id="plan1-feat3">Community support</li>
                 </ul>
-                <a href="#" class="pricing-btn">Get Started</a>
+                <a href="#" class="pricing-btn" id="plan1-btn">Get Started</a>
             </div>
             <div class="pricing-card popular">
-                <h3>Pro</h3>
+                <h3 id="plan2-name">Pro</h3>
                 <div class="price">$29 <span>/month</span></div>
                 <ul class="pricing-features">
-                    <li>Unlimited projects</li>
-                    <li>Advanced analytics</li>
-                    <li>Priority support</li>
-                    <li>10 team members</li>
+                    <li id="plan2-feat1">Unlimited projects</li>
+                    <li id="plan2-feat2">Advanced analytics</li>
+                    <li id="plan2-feat3">Priority support</li>
                 </ul>
-                <a href="#" class="pricing-btn">Get Started</a>
+                <a href="#" class="pricing-btn" id="plan2-btn">Get Started</a>
             </div>
             <div class="pricing-card">
-                <h3>Enterprise</h3>
+                <h3 id="plan3-name">Enterprise</h3>
                 <div class="price">$99 <span>/month</span></div>
                 <ul class="pricing-features">
-                    <li>Custom solutions</li>
-                    <li>Dedicated support</li>
-                    <li>SLA guarantee</li>
-                    <li>Unlimited team</li>
+                    <li id="plan3-feat1">Custom solutions</li>
+                    <li id="plan3-feat2">Dedicated support</li>
+                    <li id="plan3-feat3">SLA guarantee</li>
                 </ul>
-                <a href="#" class="pricing-btn">Contact Sales</a>
+                <a href="#" class="pricing-btn" id="plan3-btn">Contact Sales</a>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
     <section class="cta">
-        <h2>Ready to build something amazing?</h2>
-        <p>Join thousands of developers who are already shipping faster with Nebula.</p>
-        <a href="#" class="cta-btn">Start your free trial</a>
+        <h2 id="cta-title">Ready to build something amazing?</h2>
+        <p id="cta-desc">Join thousands of developers shipping faster with Nebula.</p>
+        <a href="#" class="cta-btn" id="cta-btn">Start your free trial</a>
     </section>
 
     <!-- Footer -->
     <footer>
         <div class="footer-grid">
             <div class="footer-col">
-                <h4>Product</h4>
-                <a href="#">Features</a>
-                <a href="#">Pricing</a>
-                <a href="#">Integrations</a>
-                <a href="#">Changelog</a>
+                <h4 id="footer-product">Product</h4>
+                <a href="#" id="footer-features">Features</a>
+                <a href="#" id="footer-pricing">Pricing</a>
+                <a href="#" id="footer-integrations">Integrations</a>
             </div>
             <div class="footer-col">
-                <h4>Resources</h4>
-                <a href="#">Documentation</a>
-                <a href="#">Tutorials</a>
-                <a href="#">Blog</a>
-                <a href="#">Community</a>
+                <h4 id="footer-resources">Resources</h4>
+                <a href="#" id="footer-docs">Documentation</a>
+                <a href="#" id="footer-tutorials">Tutorials</a>
+                <a href="#" id="footer-blog">Blog</a>
             </div>
             <div class="footer-col">
-                <h4>Company</h4>
-                <a href="#">About</a>
-                <a href="#">Careers</a>
-                <a href="#">Press</a>
-                <a href="#">Contact</a>
+                <h4 id="footer-company">Company</h4>
+                <a href="#" id="footer-about">About</a>
+                <a href="#" id="footer-careers">Careers</a>
+                <a href="#" id="footer-contact">Contact</a>
             </div>
             <div class="footer-col">
-                <h4>Legal</h4>
-                <a href="#">Privacy</a>
-                <a href="#">Terms</a>
-                <a href="#">Security</a>
-                <a href="#">Status</a>
+                <h4 id="footer-legal">Legal</h4>
+                <a href="#" id="footer-privacy">Privacy</a>
+                <a href="#" id="footer-terms">Terms</a>
+                <a href="#" id="footer-security">Security</a>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2026 NEBULA. All rights reserved.</p>
+            <p id="footer-copyright">© 2026 NEBULA. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // ===== LANGUAGE DATA =====
+        const translations = {
+            en: {
+                'back-btn': '← BACK',
+                'nav-product': 'PRODUCT',
+                'nav-features': 'FEATURES',
+                'nav-pricing': 'PRICING',
+                'nav-about': 'ABOUT',
+                'nav-btn': 'GET STARTED',
+                'hero-title': 'Build faster with AI-powered development',
+                'hero-desc': 'Nebula helps developers and teams ship better code faster with intelligent automation and real-time collaboration.',
+                'hero-btn1': 'Start Building',
+                'hero-btn2': 'Watch Demo',
+                'logos-title': 'TRUSTED BY INNOVATIVE TEAMS',
+                'features-title': 'Everything you need to build great products',
+                'features-sub': 'Powerful features that help you and your team work better together',
+                'feature1-title': 'Lightning Fast',
+                'feature1-desc': 'Build and deploy in seconds with our optimized infrastructure.',
+                'feature2-title': 'AI-Powered',
+                'feature2-desc': 'Intelligent suggestions that learn from your code patterns.',
+                'feature3-title': 'Enterprise Security',
+                'feature3-desc': 'Bank-level encryption to keep your code safe.',
+                'feature4-title': 'Global CDN',
+                'feature4-desc': 'Serve content from anywhere in the world.',
+                'feature5-title': 'Real-time Analytics',
+                'feature5-desc': 'Detailed insights into your application performance.',
+                'feature6-title': 'Team Collaboration',
+                'feature6-desc': 'Work together seamlessly in real-time.',
+                'showcase-title': 'See your code come to life',
+                'showcase-desc': 'Real-time preview shows you exactly what you\'re building as you type.',
+                'showcase-btn': 'Try it now',
+                'pricing-title': 'Simple, transparent pricing',
+                'pricing-sub': 'Choose the plan that\'s right for you',
+                'plan1-name': 'Starter',
+                'plan1-period': '/month',
+                'plan1-feat1': '3 projects',
+                'plan1-feat2': 'Basic analytics',
+                'plan1-feat3': 'Community support',
+                'plan1-btn': 'Get Started',
+                'plan2-name': 'Pro',
+                'plan2-feat1': 'Unlimited projects',
+                'plan2-feat2': 'Advanced analytics',
+                'plan2-feat3': 'Priority support',
+                'plan2-btn': 'Get Started',
+                'plan3-name': 'Enterprise',
+                'plan3-feat1': 'Custom solutions',
+                'plan3-feat2': 'Dedicated support',
+                'plan3-feat3': 'SLA guarantee',
+                'plan3-btn': 'Contact Sales',
+                'cta-title': 'Ready to build something amazing?',
+                'cta-desc': 'Join thousands of developers shipping faster with Nebula.',
+                'cta-btn': 'Start your free trial',
+                'footer-product': 'Product',
+                'footer-features': 'Features',
+                'footer-pricing': 'Pricing',
+                'footer-integrations': 'Integrations',
+                'footer-resources': 'Resources',
+                'footer-docs': 'Documentation',
+                'footer-tutorials': 'Tutorials',
+                'footer-blog': 'Blog',
+                'footer-company': 'Company',
+                'footer-about': 'About',
+                'footer-careers': 'Careers',
+                'footer-contact': 'Contact',
+                'footer-legal': 'Legal',
+                'footer-privacy': 'Privacy',
+                'footer-terms': 'Terms',
+                'footer-security': 'Security',
+                'footer-copyright': '© 2026 NEBULA. All rights reserved.'
+            },
+            sl: {
+                'back-btn': '← NAZAJ',
+                'nav-product': 'IZDELEK',
+                'nav-features': 'ZNAČILNOSTI',
+                'nav-pricing': 'CENE',
+                'nav-about': 'O NAS',
+                'nav-btn': 'ZAČNITE',
+                'hero-title': 'Gradite hitreje z AI razvojem',
+                'hero-desc': 'Nebula pomaga razvijalcem in ekipam hitreje izdajati boljšo kodo z inteligentno avtomatizacijo.',
+                'hero-btn1': 'Začni graditi',
+                'hero-btn2': 'Oglej si demo',
+                'logos-title': 'ZAUPATAJIO NAM INOVATIVNE EKIPE',
+                'features-title': 'Vse kar potrebujete za odlične produkte',
+                'features-sub': 'Zmogljive funkcije za boljše sodelovanje',
+                'feature1-title': 'Bliskovito hitro',
+                'feature1-desc': 'Gradite in objavite v sekundah.',
+                'feature2-title': 'AI podprto',
+                'feature2-desc': 'Inteligentni predlogi iz vaše kode.',
+                'feature3-title': 'Varnost',
+                'feature3-desc': 'Zaščita na ravni banke.',
+                'feature4-title': 'Globalni CDN',
+                'feature4-desc': 'Vsebina dostavljena po vsem svetu.',
+                'feature5-title': 'Analitika v realnem času',
+                'feature5-desc': 'Podrobni vpogledi v delovanje.',
+                'feature6-title': 'Sodelovanje',
+                'feature6-desc': 'Delajte skupaj brez težav.',
+                'showcase-title': 'Opazujte kodo v živo',
+                'showcase-desc': 'Predogled v realnem času med tipkanjem.',
+                'showcase-btn': 'Preizkusite',
+                'pricing-title': 'Preproste, pregledne cene',
+                'pricing-sub': 'Izberite pravi načrt zase',
+                'plan1-name': 'Začetni',
+                'plan1-period': '/mesec',
+                'plan1-feat1': '3 projekti',
+                'plan1-feat2': 'Osnovna analitika',
+                'plan1-feat3': 'Skupnostna podpora',
+                'plan1-btn': 'Začnite',
+                'plan2-name': 'Pro',
+                'plan2-feat1': 'Neomejeno projektov',
+                'plan2-feat2': 'Napredna analitika',
+                'plan2-feat3': 'Prioritetna podpora',
+                'plan2-btn': 'Začnite',
+                'plan3-name': 'Podjetje',
+                'plan3-feat1': 'Prilagojene rešitve',
+                'plan3-feat2': 'Namenska podpora',
+                'plan3-feat3': 'SLA garancija',
+                'plan3-btn': 'Kontaktirajte',
+                'cta-title': 'Pripravljeni zgraditi nekaj neverjetnega?',
+                'cta-desc': 'Pridružite se tisočim razvijalcem.',
+                'cta-btn': 'Začnite brezplačno',
+                'footer-product': 'Izdelek',
+                'footer-features': 'Značilnosti',
+                'footer-pricing': 'Cene',
+                'footer-integrations': 'Integracije',
+                'footer-resources': 'Viri',
+                'footer-docs': 'Dokumentacija',
+                'footer-tutorials': 'Vaje',
+                'footer-blog': 'Blog',
+                'footer-company': 'Podjetje',
+                'footer-about': 'O nas',
+                'footer-careers': 'Kariera',
+                'footer-contact': 'Kontakt',
+                'footer-legal': 'Pravno',
+                'footer-privacy': 'Zasebnost',
+                'footer-terms': 'Pogoji',
+                'footer-security': 'Varnost',
+                'footer-copyright': '© 2026 NEBULA. Vse pravice pridržane.'
+            }
+        };
+
+        // ===== LANGUAGE SWITCHER =====
+        const langBtns = document.querySelectorAll('.lang-btn');
+        let currentLang = 'sl';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            
+            langBtns.forEach(btn => {
+                if (btn.dataset.lang === lang) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            const elements = document.querySelectorAll('[id]');
+            elements.forEach(el => {
+                const id = el.id;
+                if (translations[lang] && translations[lang][id]) {
+                    el.textContent = translations[lang][id];
+                }
+            });
+        }
+
+        langBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                setLanguage(btn.dataset.lang);
+            });
+        });
+
+        setLanguage('sl');
+    </script>
 </body>
 </html>
